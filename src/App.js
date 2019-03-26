@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import './App.css';
+import io from 'socket.io-client';
 
 class App extends Component {
+
+  componentDidMount(){
+    this.socket = io('/');
+  }
+
   render() {
     return (
       <div className="App">
-      hello
+        hello, sockets!
       </div>
     );
   }
