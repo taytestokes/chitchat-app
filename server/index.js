@@ -16,5 +16,12 @@ const io = socket(server);
 
 //this function fires when the client connects to the server socket
 io.on('connection', (socket) => {
-    console.log('socket connected')
+    console.log('socket connected on:', socket.handshake.time)
+    socket.emit('welcome', {userID: socket.id});
+
+    //listens for a new message then emits it to the other sockets
+    socket.on('new message', (data) => {
+        data.user = this.id;
+        io.emit('message dispatched', data)
+    })
 })
