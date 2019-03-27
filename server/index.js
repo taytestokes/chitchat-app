@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const socket = require('socket.io');
-const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 
 //Express Setup
 const app = express();
@@ -13,15 +13,10 @@ let {
     DATABASE_CONNECTION
 } = process.env;
 
-
-//mongodb connection
-const mongodb = new MongoClient(DATABASE_CONNECTION, {useNewUrlParser: true});
-mongodb.connect(err => {
-    if(err){
-        throw err;
-    }
-    console.log('Mongodb is connected');
-})
+//mongoose db connection
+mongoose.connect(DATABASE_CONNECTION, {useNewUrlParser: true}, () => {
+    console.log('Connected to Mongodb cluster')
+});
 
 
 const server = app.listen(4000, () => {
