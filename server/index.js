@@ -2,7 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const socket = require('socket.io');
-const massive = require('massive');
+const MongoClient = require('mongodb').MongoClient;
 
 //Express Setup
 const app = express();
@@ -13,13 +13,14 @@ let {
     DATABASE_CONNECTION
 } = process.env;
 
-//database connection using massive
-massive(DATABASE_CONNECTION).then(dbInstance => {
-    app.set('db', dbInstance);
-    console.log('database connected');
-}).catch(err => {
-    console.log(DATABASE_CONNECTION)
-    console.log('database connection failed', err);
+
+//mongodb connection
+const mongodb = new MongoClient(DATABASE_CONNECTION, {useNewUrlParser: true});
+mongodb.connect(err => {
+    if(err){
+        throw err;
+    }
+    console.log('Mongodb is connected');
 })
 
 
