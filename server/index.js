@@ -4,6 +4,11 @@ const bodyParser = require('body-parser');
 const socket = require('socket.io');
 const mongoose = require('mongoose');
 
+//mongoose models
+const User = require('./models/user.model');
+const Conversation = require('./models/conversation.model');
+const Message = require('./models/message.model');
+
 //Express Setup
 const app = express();
 app.use(bodyParser.json());
