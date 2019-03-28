@@ -18,4 +18,4 @@ I wanted to give this application a more modern feel with the ability to switchb
 #28B463 - Green
 ```
 
-![Dark Mode Home](Screen Shot 2019-03-27 at 6.14.55 PM)
+![Dark Mode Home](assets/darkmode.png)
