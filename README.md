@@ -1,6 +1,6 @@
 # ChitChat App
 
-This is a small messeanging platform application that was designed and developed by myself.
+This is a small messaging platform application that was designed and developed by myself.
 
 ## Design
 
@@ -17,3 +17,5 @@ I wanted to give this application a more modern feel with the ability to switchb
 #3498DB - Blue
 #28B463 - Green
 ```
+
+![Dark Mode Home](Screen Shot 2019-03-27 at 6.14.55 PM)
