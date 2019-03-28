@@ -19,3 +19,16 @@ I wanted to give this application a more modern feel with the ability to switchb
 ```
 
 ![Dark Mode](/assets/darkmode.png)
+
+### Light Mode
+
+```
+#232323 - Black Navbar
+#FFFFFF - White
+#F2F4F4 - Light Gray for input fields and text bubbles
+#D8D8D8 - Light Gray
+#3498DB - Blue
+#28B463 - Green
+```
+
+![Light Mode](/assets/lightmode.png)
