@@ -21,7 +21,7 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    friends: [user1_id, user2_id, user3_id]
+    // friends: [user1_id, user2_id, user3_id]
 });
 
 module.exports = mongoose.model('User', userSchema);

@@ -4,11 +4,14 @@
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "mongodb": "^3.2.2",
     "mongoose": "^5.4.20",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
     "socket.io": "^2.2.0"
   },

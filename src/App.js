@@ -41,7 +41,7 @@ class App extends Component {
     this.setState({
       messages: updatedMessages
     })
-  }
+  };
 
   //Handles user input
   handleInput = e => {

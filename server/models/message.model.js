@@ -5,7 +5,7 @@ const messageSchema = new Schema({
     _id: mongoose.Schema.Types.ObjectId,
     author: {
         type: Schema.ObjectId,
-        ref: User
+        ref: 'User'
     },
     content: String,
     created_at: {
@@ -14,7 +14,7 @@ const messageSchema = new Schema({
     },
     conversationId: {
         type: Schema.ObjectId,
-        ref: Conversation
+        ref: 'Conversation'
     }
 });
 
