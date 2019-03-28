@@ -17,5 +17,3 @@ I wanted to give this application a more modern feel with the ability to switchb
 #3498DB - Blue
 #28B463 - Green
 ```
-
-![Dark Mode Home](http://url/assets/darkmode.png)
