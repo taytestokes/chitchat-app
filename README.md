@@ -18,4 +18,4 @@ I wanted to give this application a more modern feel with the ability to switchb
 #28B463 - Green
 ```
 
-![Dark Mode Home](assets/darkmode.png)
+![Dark Mode Home](http://url/assets/darkmode.png)
