@@ -40,7 +40,11 @@ app.use(sessions({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use('login', new LocalStrategy(
+passport.use('login', new LocalStrategy({
+    //setup routes to redirect to
+    successRedirect: `/dashboard`,
+    failureRediect: '/'
+    },
     function(username, password, done){
         //check to make sure there is a username and password
         if(!username || !password){
@@ -67,9 +71,12 @@ passport.use('login', new LocalStrategy(
 ));
 
 passport.use('register', new LocalStrategy({
-    //allow data from the req object to be accessed
-    passReqToCallback: true
-    }, function(req, username, password, done){
+    //allow data from the req object to be accessed and routes to redirect to
+    passReqToCallback: true,
+    successRedirect: `/dashboard/`,
+    failureRediect: '/'
+    }, 
+    function(req, username, password, done){
         //check to see if there is already a user with that username
         User.find({username}).exec(function(err, userResults){
             //check for error
