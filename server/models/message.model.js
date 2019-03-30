@@ -7,13 +7,16 @@ const messageSchema = new Schema({
         type: Schema.ObjectId,
         ref: 'User'
     },
-    content: String,
+    content: {
+        type: String,
+        required: true
+    },
     created_at: {
         type: Date,
         default: Date.now
     },
     conversationId: {
-        type: Schema.ObjectId,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Conversation'
     }
 });

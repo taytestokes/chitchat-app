@@ -3,7 +3,7 @@ import React from 'react'
 export default function LandingNav() {
   return (
     <div>
-      Landing Nav
+      <button>Login</button>
     </div>
   )
 }

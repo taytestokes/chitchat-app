@@ -13,6 +13,10 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
+    email: {
+        type: String,
+        required: true
+    },
     title: {
         type: String,
         required: true
@@ -21,7 +25,12 @@ const userSchema = new Schema({
         type: Boolean,
         default: false
     },
-    // friends: [user1_id, user2_id, user3_id]
+    contacts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 });
 
 module.exports = mongoose.model('User', userSchema);
