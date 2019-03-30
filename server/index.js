@@ -36,7 +36,7 @@ app.use(sessions({
     secret: "This is my secret for now"
 }));
 
-//Passport Configuration
+//Passport Configuration For Authentication
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -44,7 +44,7 @@ passport.use('login', new LocalStrategy(
     function(username, password, done){
         //check to make sure there is a username and password
         if(!username || !password){
-            return done({message: 'Username and Password are required.'});
+            return done(JSON.stringify({message: 'Username and Password are required.'}));
         }
         //find user in database
         User.find({username}).exec(function(err, userResults){
@@ -56,7 +56,7 @@ passport.use('login', new LocalStrategy(
             const userPassword = user.password;
             //check to see if the stored password is the same as the password
             if(!bcrypt.compareSync(password, userPassword)){
-                return done({message: 'Username or Password are invalid.'});
+                return done(JSON.stringify({message: 'Username or Password is invalid.'}));
             };
             //remove the user password so we don't send it back
             delete user.password;
@@ -66,8 +66,49 @@ passport.use('login', new LocalStrategy(
     }
 ));
 
-app.post('/test', passport.authenticate('login'), (req, res) => {
-    console.log(req.body);
+passport.use('register', new LocalStrategy({
+    //allow data from the req object to be accessed
+    passReqToCallback: true
+    }, function(req, username, password, done){
+        //check to see if there is already a user with that username
+        User.find({username}).exec(function(err, userResults){
+            //check for error
+            if(err) throw err;
+            //if user already exists, send error message
+            if(userResults.length > 0){
+                return done(JSON.stringify({message: 'Username is not available.'}));
+            }
+        });
+        //hash the new users password
+        const hashedPassword = bcrypt.hashSync(password, 15);
+        //destruct extra data from req.body
+        let {email} = req.body;
+        //create the new user following the user model
+        const newUser = new User({
+            _id: mongoose.Types.ObjectId(),
+            username: username,
+            password: hashedPassword,
+            email: email
+        })
+        //add the new user to the database
+        newUser.save(function(err){
+            if(err) throw err;
+            return done(JSON.stringify({message: 'User created!'}));
+        });
+    }
+));
+
+passport.serializeUser(function(user, done){
+    done(null, user.id);
+});
+
+passport.deserializeUser(function(user, done){
+    done(null, user.id);
+});
+
+//Endpoints
+app.post('/test', passport.authenticate('register'), (req, res) => {
+    console.log('user created');
 });
 
 const server = app.listen(4000, () => {
