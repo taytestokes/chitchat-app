@@ -1,11 +1,15 @@
 import React, { Component } from 'react'
 
+
+//Styled Components
+import { DashboardNavContainer, SignUpBtn } from './DashboardNavStyles';
+
 export default class DashboardNav extends Component {
   render() {
     return (
-      <div>
-        dashboard nav 
-      </div>
+      <DashboardNavContainer>
+        <SignUpBtn>Sign Up</SignUpBtn>
+      </DashboardNavContainer>
     )
   }
 }
