@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const LandingNavContainer = styled.div`
     width: 100vw;
-    height: 15vh;
-    background: ${props => props.theme.primaryBlack};
+    height: 12vh;
+    background: white;
     color: white;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
 `
 
 export const LandingNavBtn = styled.button`
@@ -23,7 +23,7 @@ export const LandingNavBtn = styled.button`
     display: inline-block;
     font-size: 13px;
     outline: none;
-    margin-right: 3%;
+    margin-right: 2%;
     transition: ease-in 0.2s;
     &:hover {
         cursor: pointer;
@@ -31,4 +31,11 @@ export const LandingNavBtn = styled.button`
         background-color: rgba(0,0,0,0);
         color: ${props => props.theme.primaryRed};
     };
+`
+
+export const LandingNavImage = styled.img`
+    width: 25%;
+    height: 90%;
+    src: ${props => props.src};
+    margin-right: 50%;
 `

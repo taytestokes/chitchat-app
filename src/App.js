@@ -13,7 +13,8 @@ const theme = {
   secondaryBlack: '#404040',
   primaryGreen: '#28B463',
   primaryBlue: '#3498DB',
-  primaryRed: '#EE3E4C'
+  primaryRed: '#EE3E4C',
+  lightGray: '#D8D8D8'
 };
 
 createGlobalStyle`
