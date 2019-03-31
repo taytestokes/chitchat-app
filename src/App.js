@@ -11,17 +11,10 @@ import 'reset-css';
 const theme = {
   primaryBlack: '#232323',
   secondaryBlack: '#404040',
-  primaryGreen: '#28B463',
   primaryBlue: '#3498DB',
   primaryRed: '#EE3E4C',
-  lightGray: '#D8D8D8'
+  lightGray: '#FAFAFA',
 };
-
-createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Roboto');
-
-  font-family: "font-family: 'Roboto', sans-serif";
-`
 
 class App extends Component {
   render() {

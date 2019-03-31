@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const LandingNavContainer = styled.div`
     width: 100vw;
-    height: 12vh;
+    height: 10vh;
     background: white;
     color: white;
     display: flex;
@@ -34,8 +34,8 @@ export const LandingNavBtn = styled.button`
 `
 
 export const LandingNavImage = styled.img`
-    width: 25%;
+    width: 20%;
     height: 90%;
     src: ${props => props.src};
-    margin-right: 50%;
+    margin-right: 55%;
 `
