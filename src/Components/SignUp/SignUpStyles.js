@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const LoginWrapper = styled.div`
+export const SignUpWrapper = styled.div`
     width: 100vw;
     height: 84vh;
     display: flex;
@@ -27,7 +27,7 @@ export const FieldContainer = styled.div`
 export const FieldHeader = styled.h3`
     font-size: 40px;
     color: ${props => props.theme.primaryBlack};
-    margin-bottom: 3%;
+    margin-bottom: 5%;
 `
 
 export const InputField = styled.input`
@@ -74,6 +74,7 @@ export const SignUpBtn = styled.button`
     display: inline-block;
     font-size: 20px;
     outline: none;
+    margin-top: 10%;
     transition: ease-in-out 0.2s;
     &:hover {
         cursor: pointer;

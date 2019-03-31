@@ -12,9 +12,9 @@ export const LandingNavContainer = styled.div`
 `
 
 export const LandingNavBtn = styled.button`
-    background-color: ${props => props.theme.primaryRed};
-    border: 2px solid ${props => props.theme.primaryRed};
-    border-radius: 5px 5px 5px 5px;
+    background-color: ${props => props.login ? props.theme.primaryRed : props.theme.primaryBlue};
+    border: 2px solid ${props => props.login ? props.theme.primaryRed : props.theme.primaryBlue};
+    border-radius: 3px 3px 3px 3px;
     color: white;
     font-weight: bold;
     padding: 12px ${props => props.login ? '48px' : '38px'};
@@ -27,9 +27,9 @@ export const LandingNavBtn = styled.button`
     transition: ease-in 0.2s;
     &:hover {
         cursor: pointer;
-        border: 2px solid ${props => props.theme.primaryRed};
+        border: 2px solid ${props => props.login ? props.theme.primaryRed : props.theme.primaryBlue};
         background-color: rgba(0,0,0,0);
-        color: ${props => props.theme.primaryRed};
+        color: ${props => props.login ? props.theme.primaryRed : props.theme.primaryBlue};
     };
 `
 
