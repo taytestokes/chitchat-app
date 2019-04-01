@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import { ThemeProvider } from 'styled-components';
 
 //Routes
 import routes from './routes';
