@@ -47,7 +47,7 @@ passport.use('login', new LocalStrategy(
         //store the db instance in a variable
         const db = app.get('db');
         //find the user in the database
-        db.find_user([username]).then(userResults => {
+        db.users.find({username}).then(userResults => {
             //if the user is not found, return an error message
             if (userResults.length == 0) {
                 return done(null, false, { message: 'User does not exist.' });
@@ -110,8 +110,8 @@ passport.deserializeUser(function (user, done) {
 
 
 //Endpoints
-app.post('/test', passport.authenticate('register'), (req, res) => {
-    res.send('user created');
+app.post('/test', passport.authenticate('login'), (req, res) => {
+    res.send('user logged in');
 });
 
 const server = app.listen(4000, () => {
