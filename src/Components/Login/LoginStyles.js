@@ -81,3 +81,20 @@ export const SignUpBtn = styled.button`
         background: rgba(0,0,0,0);
     }
 `
+
+export const FlashMessage = styled.div`
+    width: 90%;
+    height: 11%;
+    background: #Ef9A9A;
+    border: 2px solid #ef5350;
+    border-radius: 3px 3px 3px 3px;
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h1 {
+        font-size: 18px;
+        color: ${props => props.theme.primaryBlack}
+    }
+`

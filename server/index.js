@@ -47,7 +47,7 @@ passport.use('login', new LocalStrategy(
         //store the db instance in a variable
         const db = app.get('db');
         //find the user in the database
-        db.users.find({username}).then(userResults => {
+        db.users.find({ username }).then(userResults => {
             //if the user is not found, return an error message
             if (userResults.length == 0) {
                 return done(null, false, { message: 'User does not exist.' });
@@ -80,7 +80,7 @@ passport.use('register', new LocalStrategy({
         //hash and encrypt the new users password
         const hashedPassword = bcrypt.hashSync(password, 15);
         //check to see if there is already a user with that username
-        db.users.find({username}).then(userResults => {
+        db.users.find({ username }).then(userResults => {
             if (userResults.length > 0) {
                 return done(null, false, { message: 'Username is already taken.' })
             }
@@ -95,7 +95,7 @@ passport.use('register', new LocalStrategy({
             done(null, user);
         }).catch(err => {
             console.warn('error');
-            done(null, false, {message: 'Unkown error, please try again.'});
+            done(null, false, { message: 'Unkown error, please try again.' });
         })
     }
 ));
@@ -109,10 +109,11 @@ passport.deserializeUser(function (user, done) {
 });
 
 
-//Endpoints
-app.post('/test', passport.authenticate('login'), (req, res) => {
-    res.send('user logged in');
-});
+//Auth Endpoints
+app.post('/auth/login', passport.authenticate('login', { successRedirect: '/dashboard' }));
+app.post('/auth/register', passport.authenticate('register', { successRedirect: '/dashboard' }));
+
+
 
 const server = app.listen(4000, () => {
     console.log(`Server is running on port 4000`);
