@@ -80,34 +80,38 @@ passport.use('register', new LocalStrategy({
         //hash and encrypt the new users password
         const hashedPassword = bcrypt.hashSync(password, 15);
         //check to see if there is already a user with that username
-        db.find_user([username]).then(userResults => {
+        db.users.find({username}).then(userResults => {
             if (userResults.length > 0) {
                 return done(null, false, { message: 'Username is already taken.' })
             }
             //if username is not already in use, create the new user
-            return db.create_user([username, hashedPassword, email]);
+            return db.users.insert({
+                username,
+                password: hashedPassword,
+                email
+            });
         }).then(user => {
-            //return user to client
+            //send user back to client
             done(null, user);
         }).catch(err => {
-            console.warn(err);
+            console.warn('error');
             done(null, false, {message: 'Unkown error, please try again.'});
         })
     }
 ));
 
 passport.serializeUser(function (user, done) {
-    done(null, user.id);
+    done(null, user);
 });
 
 passport.deserializeUser(function (user, done) {
-    done(null, user.id);
+    done(null, user);
 });
 
 
 //Endpoints
-app.post('/test', passport.authenticate('login'), (req, res) => {
-    res.send('nice')
+app.post('/test', passport.authenticate('register'), (req, res) => {
+    res.send('user created');
 });
 
 const server = app.listen(4000, () => {
