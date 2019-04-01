@@ -42,23 +42,23 @@ passport.use('login', new LocalStrategy(
     function (username, password, done) {
         //check to make sure there is a username and password
         if (!username || !password) {
-            return done(null, false, {message: 'Username and Password are required.'});
+            return done(null, false, { message: 'Username and Password are required.' });
         };
         //store the db instance in a variable
         const db = app.get('db');
         //find the user in the database
         db.find_user([username]).then(userResults => {
             //if the user is not found, return an error message
-            if(userResults.length == 0){
-                return done(null, false, {message: 'User does not exist.'});
+            if (userResults.length == 0) {
+                return done(null, false, { message: 'User does not exist.' });
             };
             //if user is found, store the user
             const user = userResults[0];
             //store users password
             const storedPassword = user.password;
             //if the stored encrypted password doesn't match the password from the client, return an error message
-            if(!bcrypt.compareSync(password, storedPassword)){
-                return done(null, false, {message: 'Invalid username or password.'});
+            if (!bcrypt.compareSync(password, storedPassword)) {
+                return done(null, false, { message: 'Invalid username or password.' });
             };
             //if the passwords match, remove the password from the user before sending back the user information
             delete user.password;
@@ -73,7 +73,26 @@ passport.use('register', new LocalStrategy({
     passReqToCallback: true,
 },
     function (req, username, password, done) {
-        
+        //take the email off of the request body
+        const { email } = req.body;
+        //store the db instance in a variable
+        const db = app.get('db');
+        //hash and encrypt the new users password
+        const hashedPassword = bcrypt.hashSync(password, 15);
+        //check to see if there is already a user with that username
+        db.find_user([username]).then(userResults => {
+            if (userResults.length > 0) {
+                return done(null, false, { message: 'Username is already taken.' })
+            }
+            //if username is not already in use, create the new user
+            return db.create_user([username, hashedPassword, email]);
+        }).then(user => {
+            //return user to client
+            done(null, user);
+        }).catch(err => {
+            console.warn(err);
+            done(null, false, {message: 'Unkown error, please try again.'});
+        })
     }
 ));
 
