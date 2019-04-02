@@ -62,6 +62,7 @@ class Login extends Component {
     };
 
     this.props.login(userData);
+    this.props.history.push('/dashboard');
   };
 
   render() {
