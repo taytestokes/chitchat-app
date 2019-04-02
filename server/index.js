@@ -40,17 +40,13 @@ app.use(passport.session());
 
 passport.use('login', new LocalStrategy(
     function (username, password, done) {
-        //check to make sure there is a username and password
-        if (!username || !password) {
-            return done(null, false, { message: 'Username and Password are required.' });
-        };
         //store the db instance in a variable
         const db = app.get('db');
         //find the user in the database
         db.users.find({ username }).then(userResults => {
             //if the user is not found, return an error message
             if (userResults.length == 0) {
-                return done(null, false, { message: 'User does not exist.' });
+                return done(JSON.stringify({ message: 'User does not exist.' }))
             };
             //if user is found, store the user
             const user = userResults[0];
@@ -58,13 +54,13 @@ passport.use('login', new LocalStrategy(
             const storedPassword = user.password;
             //if the stored encrypted password doesn't match the password from the client, return an error message
             if (!bcrypt.compareSync(password, storedPassword)) {
-                return done(null, false, { message: 'Invalid username or password.' });
+                return done(JSON.stringify({ message: 'Invalid username or password.' }));
             };
             //if the passwords match, remove the password from the user before sending back the user information
             delete user.password;
             //return the user information
             done(null, user);
-        })
+        });
     }
 ));
 
@@ -98,21 +94,28 @@ passport.use('register', new LocalStrategy({
             done(null, false, { message: 'Unkown error, please try again.' });
         })
     }
-));
+))
 
 passport.serializeUser(function (user, done) {
-    done(null, user);
+    done(null, user.user_id);
 });
 
-passport.deserializeUser(function (user, done) {
-    done(null, user);
+passport.deserializeUser(function (id, done) {
+   done(null, id);
 });
 
 
 //Auth Endpoints
-app.post('/auth/login', passport.authenticate('login', { successRedirect: '/dashboard' }));
-app.post('/auth/register', passport.authenticate('register', { successRedirect: '/dashboard' }));
-
+app.post('/auth/login', passport.authenticate('login'), (req, res) => {
+    return res.send(req.user);
+});
+app.post('/auth/register', passport.authenticate('register'), (req, res) => {
+    return res.send('User registered!')
+});
+app.get('/auth/logout', (req, res) => {
+    req.logOut();
+    res.send('User signed out!')
+});
 
 
 const server = app.listen(4000, () => {

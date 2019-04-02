@@ -2,6 +2,8 @@
   "name": "socket-io-chat-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:4000",
+  "main": "server/index.js",
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.5",
@@ -19,8 +21,11 @@
     "passport-local": "^1.0.0",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "redux": "^4.0.1",
+    "redux-promise-middleware": "^6.1.0",
     "reset-css": "^4.0.1",
     "socket.io": "^2.2.0",
     "styled-components": "^4.2.0"
@@ -39,7 +44,5 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "proxy": "http://localhost:4000",
-  "main": "server/index.js"
+  ]
 }

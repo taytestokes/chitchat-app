@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 import axios from 'axios';
-
 //Components
 import LoginNav from '../LoginNav/LoginNav';
 import Footer from '../LoginFooter/LoginFooter';
@@ -8,7 +8,10 @@ import Footer from '../LoginFooter/LoginFooter';
 //Styled Components
 import { LoginWrapper, FieldContainer, FieldHeader, InputField, LoginBtn, SignUpBtn, FlashMessage } from './LoginStyles';
 
-export default class Login extends Component {
+//Redux Actions
+import { login } from '../../redux/reducers/user_reducer';
+
+class Login extends Component {
   constructor() {
     super();
 
@@ -50,20 +53,19 @@ export default class Login extends Component {
       }, 4000);
       //exit the function execution
       return;
-    };
+    }; 
 
     //create an object that will hold the data we send
-    const data = {
+    const userData = {
       username,
       password
     };
-    //Make a POST request to our server to login
-    axios.post('/auth/login', data).then(response => {
-      console.log(response.data);
-    }).catch(err => console.log(err));
+
+    this.props.login(userData);
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <LoginNav />
@@ -88,3 +90,9 @@ export default class Login extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(mapStateToProps, {login})(Login)
