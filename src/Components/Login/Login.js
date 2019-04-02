@@ -83,7 +83,7 @@ class Login extends Component {
             <InputField type="password" placeholder="Password" onChange={event => this.handlePasswordChange(event)} />
             <LoginBtn onClick={this.handleLogin}>Login</LoginBtn>
             <span>or</span>
-            <SignUpBtn>Sign Up</SignUpBtn>
+            <SignUpBtn to="/signup"><h1>Sign Up</h1></SignUpBtn>
           </FieldContainer>
         </LoginWrapper>
         <Footer />

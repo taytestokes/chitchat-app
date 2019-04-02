@@ -2,7 +2,7 @@ import axios from 'axios';
 
 //Initial State
 const initialState = {
-    userSession: {}
+    user: {}
 };
 
 //Action Types
@@ -19,13 +19,13 @@ export function login(userCredentials){
         type: LOGIN,
         payload: user
     };
-}
+};
 
 //User reducer
 export default function userReducer(state = initialState, action){
     switch(action.type){
         case LOGIN + '_FULFILLED':
-            return Object.assign({}, state, {userSession: action.payload});
+            return Object.assign({}, state, {user: action.payload});
         default:
             return state;
     }

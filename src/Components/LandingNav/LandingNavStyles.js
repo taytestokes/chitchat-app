@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {NavLink} from 'react-router-dom';
 
 export const LandingNavContainer = styled.div`
     width: 100vw;
@@ -9,9 +10,10 @@ export const LandingNavContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    @import url('https://fonts.googleapis.com/css?family=Nunito');    font-family: 'Nunito';
 `
 
-export const LandingNavBtn = styled.button`
+export const LandingNavLink = styled(NavLink)`
     background-color: ${props => props.login ? props.theme.primaryRed : props.theme.primaryBlue};
     border: 2px solid ${props => props.login ? props.theme.primaryRed : props.theme.primaryBlue};
     border-radius: 3px 3px 3px 3px;
@@ -20,7 +22,7 @@ export const LandingNavBtn = styled.button`
     padding: 12px ${props => props.login ? '48px' : '38px'};
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: flex;
     font-size: 13px;
     outline: none;
     margin-right: 2%;

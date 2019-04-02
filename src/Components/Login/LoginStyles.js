@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {NavLink} from 'react-router-dom';
 
 export const LoginWrapper = styled.div`
     width: 100vw;
@@ -62,7 +63,7 @@ export const LoginBtn = styled.button`
     }
 `
 
-export const SignUpBtn = styled.button`
+export const SignUpBtn = styled(NavLink)`
     width: 60%;
     height: 10%;
     background-color: ${props => props.theme.primaryBlue};
@@ -71,7 +72,10 @@ export const SignUpBtn = styled.button`
     color: white;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     font-size: 20px;
     outline: none;
     transition: ease-in-out 0.2s;

@@ -10,6 +10,9 @@ const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const massive = require('massive');
 
+//Controllers
+const authController = require('./controllers/authController');
+
 //Variables from .ENV
 let {
     DATABASE_CONNECTION
@@ -106,16 +109,9 @@ passport.deserializeUser(function (id, done) {
 
 
 //Auth Endpoints
-app.post('/auth/login', passport.authenticate('login'), (req, res) => {
-    return res.send(req.user);
-});
-app.post('/auth/register', passport.authenticate('register'), (req, res) => {
-    return res.send('User registered!')
-});
-app.get('/auth/logout', (req, res) => {
-    req.logOut();
-    res.send('User signed out!')
-});
+app.post('/auth/login', passport.authenticate('login'), authController.login);
+app.post('/auth/register', passport.authenticate('register'), authController.register);
+app.get('/auth/logout', authController.logout);
 
 
 const server = app.listen(4000, () => {
