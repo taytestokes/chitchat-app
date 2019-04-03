@@ -38,6 +38,24 @@ class SignUp extends Component {
     });
   };
 
+  signup = () => {
+    const {username, password, email} = this.state;
+    //make sure new user credentials exist
+    if(!username || !password || !email){
+      return;
+    }
+    //create the new user object to send to server
+    const newUser = {
+      username,
+      password,
+      email
+    };
+    //use the redux create method to create the new user
+    this.props.create(newUser);
+    //route to dashboard
+    this.props.history.push('/dashboard');
+  };
+
 
   render() {
     console.log(this.state)
@@ -50,7 +68,7 @@ class SignUp extends Component {
             <InputField type="text" placeholder="Username" onChange={this.handleUsernameChange} />
             <InputField type="password" placeholder="Password" onChange={this.handlePasswordChange} />
             <InputField type="email" placeholder="Email" onChange={this.handleEmailChange} />
-            <SignUpBtn>Sign Up</SignUpBtn>
+            <SignUpBtn onClick={this.signup}>Sign Up</SignUpBtn>
           </FieldContainer>
         </SignUpWrapper>
       </div>

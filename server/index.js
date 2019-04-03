@@ -90,6 +90,8 @@ passport.use('register', new LocalStrategy({
                 email
             });
         }).then(user => {
+            //remove user password before sending back
+            delete user.password;
             //send user back to client
             done(null, user);
         }).catch(err => {
