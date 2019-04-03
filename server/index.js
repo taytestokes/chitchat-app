@@ -104,7 +104,7 @@ passport.serializeUser(function (user, done) {
 });
 
 passport.deserializeUser(function (id, done) {
-   done(null, id);
+    done(null, id);
 });
 
 

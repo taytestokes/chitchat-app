@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 //Components
 import LoginNav from '../LoginNav/LoginNav';
-import Footer from '../LoginFooter/LoginFooter';
-
 //Styled Components
 import { LoginWrapper, FieldContainer, FieldHeader, InputField, LoginBtn, SignUpBtn, FlashMessage } from './LoginStyles';
 
@@ -50,7 +48,7 @@ class Login extends Component {
         this.setState({
           flashMessageState: false
         });
-      }, 4000);
+      }, 3000);
       //exit the function execution
       return;
     }; 
@@ -60,13 +58,13 @@ class Login extends Component {
       username,
       password
     };
-
+    //use redux login method
     this.props.login(userData);
-    this.props.history.push('/dashboard');
+    //reroute to dash
+    // this.props.history.push('/dashboard');
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <LoginNav />
@@ -86,7 +84,6 @@ class Login extends Component {
             <SignUpBtn to="/signup"><h1>Sign Up</h1></SignUpBtn>
           </FieldContainer>
         </LoginWrapper>
-        <Footer />
       </div>
     )
   }

@@ -6,12 +6,10 @@ import { LandingNavContainer, LandingNavLink, LandingNavImage } from './LandingN
 
 export default function LandingNav() {
   return (
-    <div>
       <LandingNavContainer>
           <LandingNavImage src={logo} />
           <LandingNavLink login to="/login">LOGIN</LandingNavLink>
           <LandingNavLink to="/signup">SIGN UP</LandingNavLink>
       </LandingNavContainer>
-    </div>
   )
 }

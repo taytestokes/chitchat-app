@@ -13,7 +13,7 @@ const theme = {
   secondaryBlack: '#404040',
   primaryBlue: '#3498DB',
   primaryRed: '#EE3E4C',
-  lightGray: '#FAFAFA',
+  lightGray: '#EEEEEE'
 };
 
 class App extends Component {

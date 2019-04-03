@@ -1,0 +1,11 @@
+import styled from 'styled-components';
+
+export const DashboardContainer = styled.div`
+    width: 100vw;
+    height: 100vh;
+    background: ${props => props.theme.lightGray};
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+`
