@@ -1,12 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+
+//Redux Methods
+import { create } from '../../redux/reducers/user_reducer';
 
 //Components
 import LoginNav from '../LoginNav/LoginNav';
 //Syled Components
-import {SignUpWrapper, FieldContainer, FieldHeader, InputField, SignUpBtn} from './SignUpStyles';
+import { SignUpWrapper, FieldContainer, FieldHeader, InputField, SignUpBtn } from './SignUpStyles';
 
-export default class SignUp extends Component {
-  constructor(){
+class SignUp extends Component {
+  constructor() {
     super();
 
     this.state = {
@@ -43,13 +47,19 @@ export default class SignUp extends Component {
         <SignUpWrapper>
           <FieldContainer>
             <FieldHeader>Create Account</FieldHeader>
-            <InputField type="text" placeholder="Username" onChange={this.handleUsernameChange}/>
-            <InputField type="password" placeholder="Password" onChange={this.handlePasswordChange}/>
-            <InputField type="email" placeholder="Email" onChange={this.handleEmailChange}/>
-            <SignUpBtn>Sign Up</SignUpBtn>     
+            <InputField type="text" placeholder="Username" onChange={this.handleUsernameChange} />
+            <InputField type="password" placeholder="Password" onChange={this.handlePasswordChange} />
+            <InputField type="email" placeholder="Email" onChange={this.handleEmailChange} />
+            <SignUpBtn>Sign Up</SignUpBtn>
           </FieldContainer>
         </SignUpWrapper>
       </div>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return state;
+}
+
+export default connect(mapStateToProps, { create })(SignUp);
