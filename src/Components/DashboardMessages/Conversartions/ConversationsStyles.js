@@ -13,7 +13,7 @@ export const ConversationsContainer = styled.div`
 export const ConversationFinder = styled.input`
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
-    width: 90%;
+    width: 85%;
     height: 6%;
     border: none;
     background: ${props => props.theme.lightGray};
