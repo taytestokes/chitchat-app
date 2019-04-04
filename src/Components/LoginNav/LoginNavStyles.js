@@ -9,7 +9,8 @@ export const LoginNavContainer = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    @import url('https://fonts.googleapis.com/css?family=Nunito');    font-family: 'Nunito';
+    @import url('https://fonts.googleapis.com/css?family=Nunito');
+    font-family: 'Nunito';
 `
 
 export const LoginNavImage = styled.img`

@@ -32,11 +32,10 @@ export const DashboardNavLink = styled(NavLink)`
     align-items: center;
     text-decoration: none;
     color: #fafafa;
-    font-size: 30px;
-    &:active {
-        color: ${props => props.theme.primaryBlue};
-    };
+    font-size: 28px;
+    transition: ease-in-out 0.2s;
     &.active {
-        color: ${props => props.theme.primaryBlue};
+        color: ${props => props.theme.primaryRed};
+        background: ${props => props.theme.secondaryBlack};
     }
 `

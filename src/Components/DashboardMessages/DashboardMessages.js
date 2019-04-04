@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
 
+//Components
+import ConversationsContainer from './Conversartions/Conversations';
+
 //Styled Components
-import { DashboardMessagesContainer } from './DashboardMessagesStyles';
+import { MessageDashboard } from './DashboardMessagesStyles';
 
 export default class DashboardMessages extends Component {
     render() {
         return (
-            <DashboardMessagesContainer>
-
-            </DashboardMessagesContainer>
+            <MessageDashboard>
+                <ConversationsContainer />
+            </MessageDashboard>
         )
     }
 }

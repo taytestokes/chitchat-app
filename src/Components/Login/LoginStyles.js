@@ -8,7 +8,8 @@ export const LoginWrapper = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    @import url('https://fonts.googleapis.com/css?family=Nunito');    font-family: 'Nunito';
+    @import url('https://fonts.googleapis.com/css?family=Nunito');
+    font-family: 'Nunito';
 `
 
 export const FieldContainer = styled.div`

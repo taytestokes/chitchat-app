@@ -11,7 +11,7 @@ class DashboardNav extends Component {
     return (
       <DashboardNavContainer>
         <DashboardNavLinksContainer>
-          <DashboardNavLink activeClassName="active" to="/dashboard/messages">
+          <DashboardNavLink activeClassName="active" to={`/dashboard/messages`}>
             <FontAwesomeIcon icon="comment-alt" />
           </DashboardNavLink>
           <DashboardNavLink activeClassName="active" to="/dashboard/users">

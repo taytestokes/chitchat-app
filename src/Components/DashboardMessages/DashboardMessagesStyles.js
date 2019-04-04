@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const DashboardMessagesContainer = styled.div`
-    width: 59vw;
+export const MessageDashboard = styled.div`
+    width: 94vw;
     height: 100vh;
-    background: white;
+    background: ${props => props.theme.lightGray};
 `
