@@ -34,7 +34,7 @@ class Login extends Component {
     });
   };
 
-  handleLogin = () => {
+  handleLogin = (event) => {
     //take the username and password from state
     const { username, password } = this.state;
     //check if both fields are filled
@@ -61,7 +61,7 @@ class Login extends Component {
     //use redux login method
     this.props.login(userData);
     //reroute to dash
-    // this.props.history.push('/dashboard');
+    this.props.history.push('/dashboard');
   };
 
   render() {
