@@ -32,7 +32,7 @@ export const DashboardNavLink = styled(NavLink)`
     align-items: center;
     text-decoration: none;
     color: #fafafa;
-    font-size: 25px;
+    font-size: 30px;
     &:active {
         color: ${props => props.theme.primaryBlue};
     };
