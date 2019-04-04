@@ -40,6 +40,7 @@ export const NewMessageInput = styled.input`
     width: 80%;
     height: 50%;
     border: none;
+    border-bottom: 2px solid ${props => props.theme.lightGray};
     border-radius: 3px 3px 3px 3px;
     font-size: 14px;
     padding-left: 2%;
@@ -51,6 +52,7 @@ export const NewMessageInput = styled.input`
     &:focus {
         background: rgba(0,0,0,0);
         transform: scale(1.05);
-        border: 2px solid ${props => props.theme.lightGray}
+        font-size: 16px;
+        padding-left: 0;
     }
 `
