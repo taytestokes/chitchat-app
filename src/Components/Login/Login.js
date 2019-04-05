@@ -61,7 +61,7 @@ class Login extends Component {
     //use redux login method
     this.props.login(userData);
     //reroute to dash
-    this.props.history.push('/dashboard');
+    this.props.history.push('/dashboard/messages');
   };
 
   render() {

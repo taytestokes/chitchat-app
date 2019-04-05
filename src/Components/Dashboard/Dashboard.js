@@ -20,7 +20,7 @@ class Dashboard extends Component {
       <DashboardContainer>
         <DashboardNav />
         <Switch>
-          <Route path="/dashboard/messages" component={DashboardMessages}/>
+          <Route path="/dashboard/messages" component={DashboardMessages} />
         </Switch>
       </DashboardContainer>
     )

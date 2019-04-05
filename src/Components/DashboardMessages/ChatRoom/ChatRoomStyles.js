@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
 export const RoomContainer = styled.div`
-    width: 63vw;
+    width: 62vw;
     height: 100vh;
-    background: skyblue;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin-left: 0.5%;
 `
 
 export const MessagesContainer = styled.div`
     height: 90%;
     width: 100%;
-    background: #fafafa;
+    background: white;
 `
 
 export const NewMessageContainer = styled.div`
@@ -22,14 +22,17 @@ export const NewMessageContainer = styled.div`
     background: white;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    box-shadow: 4.6px 2px 6px 3px #CCC;
     span {
         color: ${props => props.theme.primaryBlue};
-        font-size: 25px;
-        margin-right: 3%;
+        font-size: 28px;
+        margin-right: 5%;
+        transition: ease-in-out 0.2s;
         &:hover {
             cursor: pointer;
+            transform: scale(1.1);
         }
     }
 `
@@ -46,6 +49,7 @@ export const NewMessageInput = styled.input`
     padding-left: 2%;
     outline: none;
     transition: ease-in-out 0.3s;
+    margin-left: 4%;
     &::placeholder {
         color: #ccc;
     }
