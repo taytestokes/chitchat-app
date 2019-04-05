@@ -115,16 +115,6 @@ app.post('/auth/login', passport.authenticate('login'), authController.login);
 app.post('/auth/register', passport.authenticate('register'), authController.register);
 app.get('/auth/logout', authController.logout);
 
-//dev testing end points
-app.get('/conversations/:id', (req, res) => {
-    const db = req.app.get('db');
-    const { id } = req.params;
-    db.get_conversations([id]).then(response => {
-        res.send(response);
-    })
-});
-
-
 const server = app.listen(4000, () => {
     console.log(`Server is running on port 4000`);
 });
