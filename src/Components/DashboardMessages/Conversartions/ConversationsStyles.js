@@ -10,19 +10,34 @@ export const ConversationsContainer = styled.div`
     align-items: center;
 `
 
+export const ConversationFinderContainer = styled.div`
+    width: 100%;
+    height: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid ${props => props.theme.lightGray};
+`
+
 export const ConversationFinder = styled.input`
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
     width: 85%;
-    height: 6%;
+    height: 50%;
     border: none;
     background: ${props => props.theme.lightGray};
     border-radius: 3px 3px 3px 3px;
-    font-size: 18px;
+    font-size: 15px;
     padding-left: 5%;
     outline: none;
-    margin-top: 5%;
     &::placeholder {
-        color: #ccc;
+        color: '#B9C3DD';
     }
+`
+
+export const ConversationTab = styled.div`
+    width: 100%;
+    height: 15%;
+    background: skyblue;
 `

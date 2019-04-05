@@ -24,7 +24,7 @@ export const NewMessageContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 4.6px 2px 6px 3px #CCC;
+    box-shadow: 4.6px 2px 6px 3px ${props => props.theme.lightGray};
     span {
         color: ${props => props.theme.primaryBlue};
         font-size: 28px;

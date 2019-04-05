@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 
 //Components
 import ConversationsContainer from './Conversartions/Conversations';
@@ -19,8 +18,4 @@ class DashboardMessages extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return state;
-}
-
-export default connect(mapStateToProps)(DashboardMessages);
+export default DashboardMessages;

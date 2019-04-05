@@ -17,7 +17,7 @@ const theme = {
   secondaryBlack: '#202020',
   primaryBlue: '#3498DB',
   primaryRed: '#EE3E4C',
-  lightGray: '#EEEEEE'
+  lightGray: '#EFF1F9'
 };
 
 //Add icons to the font awesome library

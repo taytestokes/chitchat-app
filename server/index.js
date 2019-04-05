@@ -115,6 +115,20 @@ app.post('/auth/login', passport.authenticate('login'), authController.login);
 app.post('/auth/register', passport.authenticate('register'), authController.register);
 app.get('/auth/logout', authController.logout);
 
+//Dashboard Messages Endpoints
+app.get('/user/conversations/:id', (req, res) => {
+    //take the users id from the params
+    const { id } = req.params;
+    //get the db instance
+    const db = req.app.get('db');
+    //find all of the users conversations
+    db.get_conversations([id]).then(userInfo => {
+        res.send(userInfo);
+    }).catch(error => {
+        console.warn(error);
+    });
+});
+
 const server = app.listen(4000, () => {
     console.log(`Server is running on port 4000`);
 });
