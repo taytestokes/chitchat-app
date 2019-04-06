@@ -10,15 +10,11 @@ const LOGIN = 'LOGIN_USER';
 const CREATE_USER = 'CREATE_USER';
 
 //Action Creators
-export function login(userCredentials){
-    //get user
-    const user = axios.post('/auth/login', userCredentials).then(response => {
-        return response.data;
-    });
+export function login(userInfo){
     //return user to reducer
     return {
         type: LOGIN,
-        payload: user
+        payload: userInfo
     };
 };
 
@@ -37,7 +33,7 @@ export function create(userCredentials){
 //User reducer
 export default function userReducer(state = initialState, action){
     switch(action.type){
-        case LOGIN + '_FULFILLED':
+        case LOGIN:
             return Object.assign({}, state, {user: action.payload});
         case CREATE_USER + '_FULFILLED':
             return Object.assign({}, state, {user: action.payload});

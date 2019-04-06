@@ -9,6 +9,6 @@ module.exports = {
 
     logout: (req, res) => {
         req.logOut();
-        res.send('User signed out!')
+        return res.send('User signed out!');
     }
-}
+};

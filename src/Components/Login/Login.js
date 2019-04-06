@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import axios from 'axios';
 //Components
 import LoginNav from '../LoginNav/LoginNav';
 //Styled Components
@@ -15,8 +16,7 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      flashMessageState: false,
-      flashMessage: ''
+      errorMessage: ''
     }
   }
 
@@ -36,34 +36,42 @@ class Login extends Component {
   handleLogin = (event) => {
     //take the username and password from state
     const { username, password } = this.state;
-    //check if both fields are filled
-    if (username.length === 0 || password.length === 0) {
-      this.setState({
-        flashMessage: 'Username and Password are required',
-        flashMessageState: true
-      });
-      //flash the error message for only 3 seconds
-      setTimeout(() => {
-        this.setState({
-          flashMessageState: false
-        });
-      }, 3000);
-      //exit the function execution
-      return;
-    }; 
-
-    //create an object that will hold the data we send
-    const userData = {
+    //create an object that will hold the users credentials
+    const userCredentials = {
       username,
       password
     };
-    //use redux login method
-    this.props.login(userData);
-    //reroute to dash
-    this.props.history.push('/dashboard/messages');
+    //make a POST request to the auth route in server with user credentials
+    axios.post('/auth/login', userCredentials).then(response => {
+      //store the returned user data
+      const user = response.data;
+      //store the user on redux
+      this.props.login(user);
+      //route to the dashboard if the user is set to the redux store
+      this.props.history.push('/dashboard/messages');
+    }).catch(error => {
+      console.log(error.message)
+      //store the error message
+      const err = Object.create(error);
+      //modify the error message based off of the response
+      if(error.message.endsWith('400')){
+        //if username or password is missing
+        err.message = 'Username and Password are required'
+      }else if(error.message.endsWith('401')){
+        //if username or password are incorrect
+        err.message = "Invalid Username or Password"
+      }else {
+        err.message = "Internal Server Error"
+      }
+      //set the error message to local state
+      this.setState({
+        errorMessage: err.message
+      });
+    })
   };
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <LoginNav />
@@ -71,8 +79,8 @@ class Login extends Component {
           <FieldContainer>
             <FieldHeader>Member Login</FieldHeader>
             {
-              this.state.flashMessageState ?
-                <FlashMessage><h1>{this.state.flashMessage}</h1></FlashMessage>
+              this.state.errorMessage ?
+                <FlashMessage><h1>{this.state.errorMessage}</h1></FlashMessage>
                 :
                 null
             }
@@ -92,4 +100,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, {login})(Login)
+export default connect(mapStateToProps, { login })(Login)

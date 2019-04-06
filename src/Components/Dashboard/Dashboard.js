@@ -11,6 +11,7 @@ import { DashboardContainer } from './DashboardStyles';
 
 class Dashboard extends Component {
   render() {
+    console.log(this.props);
     return (
       <DashboardContainer>
         <DashboardNav />

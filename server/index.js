@@ -12,6 +12,7 @@ const massive = require('massive');
 
 //Controllers
 const authController = require('./controllers/authController');
+const messagesController = require('./controllers/messagesController');
 
 //Variables from .ENV
 let {
@@ -45,11 +46,15 @@ passport.use('login', new LocalStrategy(
     function (username, password, done) {
         //store the db instance in a variable
         const db = app.get('db');
+        //check to make sure username and password exist
+        if(username.length === 0 || password.length === 0){
+            return done(null, false, {message: 'Username and Password are required.'})
+        }
         //find the user in the database
         db.users.find({ username }).then(userResults => {
             //if the user is not found, return an error message
             if (userResults.length == 0) {
-                return done(JSON.stringify({ message: 'User does not exist.' }))
+                return done(null, false, { message: 'User does not exist.' })
             };
             //if user is found, store the user
             const user = userResults[0];
@@ -62,7 +67,7 @@ passport.use('login', new LocalStrategy(
             //if the passwords match, remove the password from the user before sending back the user information
             delete user.password;
             //return the user information
-            done(null, user);
+            return done(null, user);
         });
     }
 ));
@@ -81,7 +86,7 @@ passport.use('register', new LocalStrategy({
         //check to see if there is already a user with that username
         db.users.find({ username }).then(userResults => {
             if (userResults.length > 0) {
-                return done(null, false, { message: 'Username is already taken.' })
+                return done(null, false, JSON.stringify({ message: 'Username is already taken.' }));
             }
             //if username is not already in use, create the new user
             return db.users.insert({
@@ -116,18 +121,7 @@ app.post('/auth/register', passport.authenticate('register'), authController.reg
 app.get('/auth/logout', authController.logout);
 
 //Dashboard Messages Endpoints
-app.get('/user/conversations/:id', (req, res) => {
-    //take the users id from the params
-    const { id } = req.params;
-    //get the db instance
-    const db = req.app.get('db');
-    //find all of the users conversations
-    db.get_conversations([id]).then(userInfo => {
-        res.send(userInfo);
-    }).catch(error => {
-        console.warn(error);
-    });
-});
+app.get('/user/conversations/:id', messagesController.getUserConversations);
 
 const server = app.listen(4000, () => {
     console.log(`Server is running on port 4000`);
