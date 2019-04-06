@@ -21,19 +21,13 @@ class Login extends Component {
   }
 
   //Methods
-  handleUsernameChange = (event) => {
+  handleInputChange = (key, event) => {
     this.setState({
-      username: event.target.value
+      [key]: event.target.value
     });
   };
 
-  handlePasswordChange = (event) => {
-    this.setState({
-      password: event.target.value
-    });
-  };
-
-  handleLogin = (event) => {
+  handleLogin = () => {
     //take the username and password from state
     const { username, password } = this.state;
     //create an object that will hold the users credentials
@@ -80,8 +74,8 @@ class Login extends Component {
             {
               this.state.errorMessage ? <FlashMessage><h1>{this.state.errorMessage}</h1></FlashMessage> : null
             }
-            <InputField type="text" placeholder="Username" onChange={event => this.handleUsernameChange(event)} />
-            <InputField type="password" placeholder="Password" onChange={event => this.handlePasswordChange(event)} />
+            <InputField type="text" placeholder="Username" onChange={event => this.handleInputChange('username', event)} />
+            <InputField type="password" placeholder="Password" onChange={event => this.handleInputChange('password', event)} />
             <LoginBtn onClick={this.handleLogin}>Login</LoginBtn>
             <span>or</span>
             <SignUpBtn to="/signup"><h1>Sign Up</h1></SignUpBtn>

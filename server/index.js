@@ -33,8 +33,8 @@ massive(DATABASE_CONNECTION).then(dbInstance => {
 
 //Sessions Configuration
 app.use(sessions({
-    saveUninitialized: false,
-    resave: false,
+    saveUninitialized: true,
+    resave: true,
     secret: "This is my secret for now"
 }));
 
@@ -47,8 +47,8 @@ passport.use('login', new LocalStrategy(
         //store the db instance in a variable
         const db = app.get('db');
         //check to make sure username and password exist
-        if(username.length === 0 || password.length === 0){
-            return done(null, false, {message: 'Username and Password are required.'})
+        if (username.length === 0 || password.length === 0) {
+            return done(null, false, { message: 'Username and Password are required.' })
         }
         //find the user in the database
         db.users.find({ username }).then(userResults => {
@@ -62,7 +62,7 @@ passport.use('login', new LocalStrategy(
             const storedPassword = user.password;
             //if the stored encrypted password doesn't match the password from the client, return an error message
             if (!bcrypt.compareSync(password, storedPassword)) {
-                return done(JSON.stringify({ message: 'Invalid username or password.' }));
+                return done(null, false, { message: 'Invalid username or password.' });
             };
             //if the passwords match, remove the password from the user before sending back the user information
             delete user.password;
@@ -102,9 +102,9 @@ passport.use('register', new LocalStrategy({
         }).catch(err => {
             console.warn(err);
             done(null, false, { message: 'Unkown error, please try again.' });
-        })
+        });
     }
-))
+));
 
 passport.serializeUser(function (user, done) {
     done(null, user.user_id);
@@ -140,5 +140,5 @@ io.on('connection', socket => {
         socket.join(data.id);
     });
 
-    
+
 });

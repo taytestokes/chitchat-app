@@ -20,21 +20,9 @@ class SignUp extends Component {
     }
   }
 
-  handleUsernameChange = (event) => {
+  handleInputChange = (key, event) => {
     this.setState({
-      username: event.target.value
-    });
-  };
-
-  handlePasswordChange = (event) => {
-    this.setState({
-      password: event.target.value
-    });
-  };
-
-  handleEmailChange = (event) => {
-    this.setState({
-      email: event.target.value
+      [key]: event.target.value
     });
   };
 
@@ -65,9 +53,9 @@ class SignUp extends Component {
         <SignUpWrapper>
           <FieldContainer>
             <FieldHeader>Create Account</FieldHeader>
-            <InputField type="text" placeholder="Username" onChange={this.handleUsernameChange} />
-            <InputField type="password" placeholder="Password" onChange={this.handlePasswordChange} />
-            <InputField type="email" placeholder="Email" onChange={this.handleEmailChange} />
+            <InputField type="text" placeholder="Username" onChange={(event) => this.handleInputChange('username', event)} />
+            <InputField type="password" placeholder="Password" onChange={(event) => this.handleInputChange('password', event)} />
+            <InputField type="email" placeholder="Email" onChange={(event) => this.handleInputChange('email', event)} />
             <SignUpBtn onClick={this.signup}>Sign Up</SignUpBtn>
           </FieldContainer>
         </SignUpWrapper>

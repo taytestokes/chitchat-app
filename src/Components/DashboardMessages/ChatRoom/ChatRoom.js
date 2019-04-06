@@ -11,7 +11,8 @@ export default class ChatRoom extends Component {
 
         this.state = {
             input: '',
-            conversationID: 1
+            messages: [],
+            conversationID: null,
         }
     };
 
@@ -32,6 +33,17 @@ export default class ChatRoom extends Component {
             });
         };
     };
+
+    //Leaving off here
+        //Need to write the sql query to get all of the message from the conversation
+
+        //Write the logic in this component to display the messages
+
+        //Styles the messages
+
+        //wrtie out more logic for the socket emits and broadcadsts
+
+        //Reconfigure the logic for creating the user
 
     render() {
         return (
