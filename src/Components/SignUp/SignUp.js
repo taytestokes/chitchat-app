@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios';
 
-//Redux Methods
+//Redux Dispatchers
 import { create } from '../../redux/reducers/user_reducer';
 
 //Components
@@ -54,7 +54,7 @@ class SignUp extends Component {
         err.message = 'Username, Password, and Email are required'
       }else if(error.message.endsWith('401')){
         //if username or password are incorrect
-        err.message = "Username is not available"
+        err.message = "Username is already taken"
       }else {
         err.message = "Internal Server Error"
       }

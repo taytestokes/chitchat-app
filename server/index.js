@@ -9,6 +9,9 @@ const LocalStrategy = require('passport-local');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const massive = require('massive');
+const multer = require('multer');
+const multerS3 = require('multer-s3');
+const aws = require('aws-sdk');
 
 //Controllers
 const authController = require('./controllers/authController');
@@ -16,7 +19,9 @@ const messagesController = require('./controllers/messagesController');
 
 //Variables from .ENV
 let {
-    DATABASE_CONNECTION
+    DATABASE_CONNECTION,
+    AWS_SECRET_ACCESS_KEY,
+    AWS_ACCESS_KEY
 } = process.env;
 
 //Express Initial Setup & Configuration
@@ -86,7 +91,7 @@ passport.use('register', new LocalStrategy({
         //check to see if there is already a user with that username
         db.users.find({ username }).then(userResults => {
             if (userResults.length > 0) {
-                return done(null, false, JSON.stringify({ message: 'Username is already taken.' }));
+                return done(null, false, { message: 'Username is already taken.' });
             }
             //if username is not already in use, create the new user
             return db.users.insert({
@@ -114,11 +119,53 @@ passport.deserializeUser(function (id, done) {
     done(null, id);
 });
 
+//Amazon & Multer Configuration
+aws.config.update({
+    //secret key for s3 bucket
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    //access key for s32 bucket
+    accessKeyId: AWS_ACCESS_KEY,
+    //the buckets region
+    region: 'us-west-2'
+});
+//amazon s3 bucket instance
+const s3 = new aws.S3();
+//multer upload
+const upload = multer({
+    storage: multerS3({
+        s3: s3,
+        bucket: 'chitchat-app',
+        acl: 'public-read',
+        metadata: function(req, file, cb){
+            cb(null, {fieldName: file.fieldname});
+        },
+        key: function(req, file, cb){
+            cb(null, 'image');
+        }
+    })
+});
+
+const singleUpload = upload.single('image');
+
+
 
 //Auth Endpoints
 app.post('/auth/login', passport.authenticate('login'), authController.login);
 app.post('/auth/register', passport.authenticate('register'), authController.register);
 app.get('/auth/logout', authController.logout);
+
+//Image Upload Endpoint
+app.post('/aws/upload', (req, res) => {
+    singleUpload(req, res, function(err, some){
+        //check for error when uploading the image
+        if(err){
+
+            return res.send({errors: {title: 'Image Upload Error', detail: err.message}});
+        }
+        //if success
+        return res.send({imageUrl: req.file.location});
+    });
+});
 
 //Dashboard Messages Endpoints
 app.get('/user/conversations/:id', messagesController.getUserConversations);
