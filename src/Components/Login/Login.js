@@ -50,7 +50,6 @@ class Login extends Component {
       //route to the dashboard if the user is set to the redux store
       this.props.history.push('/dashboard/messages');
     }).catch(error => {
-      console.log(error.message)
       //store the error message
       const err = Object.create(error);
       //modify the error message based off of the response
@@ -79,10 +78,7 @@ class Login extends Component {
           <FieldContainer>
             <FieldHeader>Member Login</FieldHeader>
             {
-              this.state.errorMessage ?
-                <FlashMessage><h1>{this.state.errorMessage}</h1></FlashMessage>
-                :
-                null
+              this.state.errorMessage ? <FlashMessage><h1>{this.state.errorMessage}</h1></FlashMessage> : null
             }
             <InputField type="text" placeholder="Username" onChange={event => this.handleUsernameChange(event)} />
             <InputField type="password" placeholder="Password" onChange={event => this.handlePasswordChange(event)} />

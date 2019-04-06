@@ -123,9 +123,22 @@ app.get('/auth/logout', authController.logout);
 //Dashboard Messages Endpoints
 app.get('/user/conversations/:id', messagesController.getUserConversations);
 
+//Server Setup
 const server = app.listen(4000, () => {
     console.log(`Server is running on port 4000`);
 });
 
-//SOCKET SETUP
+//Socket.io Setup
 const io = socket(server);
+
+//Socket.io Endpoints
+io.on('connection', socket => {
+
+    //join the socket room for the conversation
+    socket.on('join conversation', data => {
+        console.log('conversation joined:', data.id);
+        socket.join(data.id);
+    });
+
+    
+});
