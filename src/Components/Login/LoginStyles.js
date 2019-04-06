@@ -89,7 +89,7 @@ export const SignUpBtn = styled(NavLink)`
 
 export const FlashMessage = styled.div`
     width: 90%;
-    height: 11%;
+    height: 8%;
     background: #Ef9A9A;
     border: 2px solid #ef5350;
     border-radius: 3px 3px 3px 3px;
