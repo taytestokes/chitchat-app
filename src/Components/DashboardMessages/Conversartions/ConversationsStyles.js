@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 export const ConversationsContainer = styled.div`
     width: 33vw;
@@ -17,7 +18,7 @@ export const ConversationFinderContainer = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid ${props => props.theme.lightGray};
+    border-bottom: 1.5px solid ${props => props.theme.lightGray};
 `
 
 export const ConversationFinder = styled.input`
@@ -36,8 +37,11 @@ export const ConversationFinder = styled.input`
     }
 `
 
-export const ConversationTab = styled.div`
+export const ConversationTab = styled(NavLink)`
     width: 100%;
     height: 15%;
-    background: skyblue;
+    border-bottom: 1.5px solid ${props => props.theme.lightGray};
+    &.active{
+        
+    }
 `

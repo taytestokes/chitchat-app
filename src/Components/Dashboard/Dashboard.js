@@ -10,12 +10,7 @@ import DashboardMessages from '../DashboardMessages/DashboardMessages';
 import { DashboardContainer } from './DashboardStyles';
 
 class Dashboard extends Component {
-  constructor() {
-    super();
-
-  }
   render() {
-    console.log(this.props)
     return (
       <DashboardContainer>
         <DashboardNav />
@@ -24,10 +19,10 @@ class Dashboard extends Component {
         </Switch>
       </DashboardContainer>
     )
-  }
-}
+  };
+};
 
-function mapStateToProps(state) {
+const mapStateToProps = state => {
   return state;
 };
 

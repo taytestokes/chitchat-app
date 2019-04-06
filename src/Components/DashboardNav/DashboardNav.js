@@ -7,7 +7,6 @@ import { DashboardNavContainer, DashboardNavLinksContainer, DashboardNavLink } f
 
 class DashboardNav extends Component {
   render() {
-    console.log(this.props);
     return (
       <DashboardNavContainer>
         <DashboardNavLinksContainer>
