@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 
 //Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCommentAlt, faUsers, faSearch, faPaperPlane, faUserCog } from '@fortawesome/free-solid-svg-icons';
+import { faCommentAlt, faUsers, faUser, faSearch, faPaperPlane, faUserCog } from '@fortawesome/free-solid-svg-icons';
 
 //Routes
 import routes from './routes';
@@ -21,7 +21,7 @@ const theme = {
 };
 
 //Add icons to the font awesome library
-library.add(faCommentAlt, faUsers, faSearch, faPaperPlane, faUserCog);
+library.add(faCommentAlt, faUsers, faUser, faSearch, faPaperPlane, faUserCog);
 
 class App extends Component {
   render() {

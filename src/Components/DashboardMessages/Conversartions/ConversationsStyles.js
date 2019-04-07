@@ -30,7 +30,7 @@ export const ConversationFinder = styled.input`
     background: ${props => props.theme.lightGray};
     border-radius: 3px 3px 3px 3px;
     font-size: 15px;
-    padding-left: 5%;
+    padding-left: 2%;
     outline: none;
     &::placeholder {
         color: '#B9C3DD';
