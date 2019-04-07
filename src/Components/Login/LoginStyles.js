@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 
 export const LoginWrapper = styled.div`
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
     display: flex;
     flex-direction: row;
     align-items: center;

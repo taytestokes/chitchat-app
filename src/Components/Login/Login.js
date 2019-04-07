@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios';
-//Components
-import LoginNav from '../LoginNav/LoginNav';
+
 //Styled Components
 import { LoginWrapper, FieldContainer, FieldHeader, InputField, LoginBtn, SignUpBtn, FlashMessage } from './LoginStyles';
 
@@ -64,10 +63,7 @@ class Login extends Component {
   };
 
   render() {
-    console.log(this.props)
     return (
-      <div>
-        <LoginNav />
         <LoginWrapper>
           <FieldContainer>
             <FieldHeader>Member Login</FieldHeader>
@@ -81,7 +77,6 @@ class Login extends Component {
             <SignUpBtn to="/signup"><h1>Sign Up</h1></SignUpBtn>
           </FieldContainer>
         </LoginWrapper>
-      </div>
     )
   }
 }

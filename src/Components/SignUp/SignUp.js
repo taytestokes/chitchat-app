@@ -42,7 +42,7 @@ class SignUp extends Component {
       //store the user to redux state
       this.props.create(user);
       //then route to dashboard
-      this.props.history.push('/signup/steptwo');
+      this.props.history.push('/dashboard/messages');
     }).catch(error => {
       //store the error message
       const err = Object.create(error);

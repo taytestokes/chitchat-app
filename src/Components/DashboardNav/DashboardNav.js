@@ -16,6 +16,9 @@ class DashboardNav extends Component {
           <DashboardNavLink activeClassName="active" to="/dashboard/users">
             <FontAwesomeIcon icon="users" />
           </DashboardNavLink>
+          <DashboardNavLink activeClassName="active" to="/dashboard/settings">
+            <FontAwesomeIcon icon="user-cog" />
+          </DashboardNavLink>
         </DashboardNavLinksContainer>
       </DashboardNavContainer>
     )

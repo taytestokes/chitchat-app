@@ -16,6 +16,7 @@ const aws = require('aws-sdk');
 //Controllers
 const authController = require('./controllers/authController');
 const messagesController = require('./controllers/messagesController');
+const usersController = require('./controllers/usersController');
 
 //Variables from .ENV
 let {
@@ -42,6 +43,36 @@ app.use(sessions({
     resave: true,
     secret: "This is my secret for now"
 }));
+
+//Amazon & Multer Configuration
+aws.config.update({
+    //secret key for s3 bucket
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    //access key for s32 bucket
+    accessKeyId: AWS_ACCESS_KEY,
+    //the buckets region
+    region: 'us-west-2'
+});
+
+//amazon s3 bucket instance
+const s3 = new aws.S3();
+
+const upload = multer({
+    //configure where to store the images, in this case an s3 bucket
+    storage: multerS3({
+        s3: s3,
+        bucket: 'chitchat-app',
+        acl: 'public-read',
+        metadata: function(req, file, cb){
+            cb(null, {fieldName: file.fieldname});
+        },
+        key: function(req, file, cb){
+            cb(null, req.user.username);
+        }
+    })
+});
+
+const singleUpload = upload.single('image');
 
 //Passport Configuration For Authentication
 app.use(passport.initialize());
@@ -97,7 +128,7 @@ passport.use('register', new LocalStrategy({
             return db.users.insert({
                 username,
                 password: hashedPassword,
-                email
+                email,
             });
         }).then(user => {
             //remove user password before sending back
@@ -112,65 +143,23 @@ passport.use('register', new LocalStrategy({
 ));
 
 passport.serializeUser(function (user, done) {
-    done(null, user.user_id);
+    done(null, user);
 });
 
 passport.deserializeUser(function (id, done) {
     done(null, id);
 });
 
-//Amazon & Multer Configuration
-aws.config.update({
-    //secret key for s3 bucket
-    secretAccessKey: AWS_SECRET_ACCESS_KEY,
-    //access key for s32 bucket
-    accessKeyId: AWS_ACCESS_KEY,
-    //the buckets region
-    region: 'us-west-2'
-});
-
-//amazon s3 bucket instance
-const s3 = new aws.S3();
-
-const upload = multer({
-    //configure where to store the images, in this case an s3 bucket
-    storage: multerS3({
-        s3: s3,
-        bucket: 'chitchat-app',
-        acl: 'public-read',
-        metadata: function(req, file, cb){
-            cb(null, {fieldName: file.fieldname});
-        },
-        key: function(req, file, cb){
-            cb(null, 'profile image');
-        }
-    })
-});
-
-const singleUpload = upload.single('image');
-
-
-
 //Auth Endpoints
 app.post('/auth/login', passport.authenticate('login'), authController.login);
 app.post('/auth/register', passport.authenticate('register'), authController.register);
 app.get('/auth/logout', authController.logout);
 
-//Image Upload Endpoint
-app.post('/aws/upload', (req, res) => {
-    singleUpload(req, res, function(err, some){
-        //check for error when uploading the image
-        if(err){
-
-            return res.send({errors: {title: 'Image Upload Error', detail: err.message}});
-        }
-        //if success
-        return res.send({imageUrl: req.file.location});
-    });
-});
-
 //Dashboard Messages Endpoints
 app.get('/user/conversations/:id', messagesController.getUserConversations);
+
+//Dashboard Users Endpoints
+app.get('/users', usersController.getAllUsers);
 
 //Server Setup
 const server = app.listen(4000, () => {
