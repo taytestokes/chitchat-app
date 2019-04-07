@@ -128,10 +128,12 @@ aws.config.update({
     //the buckets region
     region: 'us-west-2'
 });
+
 //amazon s3 bucket instance
 const s3 = new aws.S3();
-//multer upload
+
 const upload = multer({
+    //configure where to store the images, in this case an s3 bucket
     storage: multerS3({
         s3: s3,
         bucket: 'chitchat-app',
@@ -140,7 +142,7 @@ const upload = multer({
             cb(null, {fieldName: file.fieldname});
         },
         key: function(req, file, cb){
-            cb(null, 'image');
+            cb(null, 'profile image');
         }
     })
 });

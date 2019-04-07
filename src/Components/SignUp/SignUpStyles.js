@@ -1,69 +1,72 @@
 import styled from 'styled-components';
 
-export const SignUpWrapper = styled.div`
+export const SignUpContainer = styled.div`
     width: 100vw;
-    height: 84vh;
+    height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    @import url('https://fonts.googleapis.com/css?family=Nunito');    font-family: 'Nunito';
+    justify-content: center;
+    @import url('https://fonts.googleapis.com/css?family=Nunito');
+    font-family: 'Nunito';
 `
-
-export const FieldContainer = styled.div`
-    width: 35%;
-    height: 80%;
+export const SignUpForm = styled.div`
+    width: 45%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    span {
-        font-size: 20px;
-        color: ${props => props.theme.primaryBlack};
-        margin: 3% 0;
-    }
 `
 
-export const FieldHeader = styled.h3`
+export const SignUpFormHeader = styled.h1`
     font-size: 40px;
     color: ${props => props.theme.primaryBlack};
-    margin-bottom: 5%;
+    margin-top: 10%;
 `
 
-export const InputField = styled.input`
-    width: 90%;
-    height: 11%;
+export const UsernameInput = styled.input.attrs({
+    type: 'text',
+    placeholder: 'Username'
+    })`
+    width: 75%;
+    height: 10%;
     border: 1px solid #CCC;
     border-radius: 3px 3px 3px 3px;
     font-size: 18px;
-    padding-left: 2%;
+    padding-left: 1%;
     outline: none;
-    margin-top: 3%;
+    margin-top: 5%;
 `
-
-export const LoginBtn = styled.button`
-    width: 60%;
+export const PasswordInput = styled.input.attrs({
+    type: 'password',
+    placeholder: 'Password'
+    })`
+    width: 75%;
     height: 10%;
-    background-color: ${props => props.theme.primaryRed};
-    border: 2px solid ${props => props.theme.primaryRed};
+    border: 1px solid #CCC;
     border-radius: 3px 3px 3px 3px;
-    color: white;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 20px;
+    font-size: 18px;
+    padding-left: 1%;
     outline: none;
-    margin-top: 10%;
-    transition: ease-in-out 0.2s;
-    &:hover {
-        cursor: pointer;
-        color: ${props => props.theme.primaryRed};
-        background: rgba(0,0,0,0);
-    }
+    margin-top: 2%;
 `
 
+export const EmailInput = styled.input.attrs({
+    type: 'email',
+    placeholder: 'Email'
+    })`
+    width: 75%;
+    height: 10%;
+    border: 1px solid #CCC;
+    border-radius: 3px 3px 3px 3px;
+    font-size: 18px;
+    padding-left: 1%;
+    outline: none;
+    margin-top: 2%;
+`
 export const SignUpBtn = styled.button`
-    width: 60%;
+    width: 50%;
     height: 10%;
     background-color: ${props => props.theme.primaryBlue};
     border: 2px solid ${props => props.theme.primaryBlue};
@@ -74,7 +77,7 @@ export const SignUpBtn = styled.button`
     display: inline-block;
     font-size: 20px;
     outline: none;
-    margin-top: 10%;
+    margin-top: 5%;
     transition: ease-in-out 0.2s;
     &:hover {
         cursor: pointer;
@@ -89,7 +92,7 @@ export const ErrorMessage = styled.div`
     background: #Ef9A9A;
     border: 2px solid #ef5350;
     border-radius: 3px 3px 3px 3px;
-    margin-top: 3%;
+    margin-top: 5%;
     display: flex;
     flex-direction: column;
     justify-content: center;
