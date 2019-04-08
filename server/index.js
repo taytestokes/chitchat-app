@@ -157,9 +157,11 @@ app.get('/auth/logout', authController.logout);
 
 //Dashboard Messages Endpoints
 app.get('/user/conversations/:id', messagesController.getUserConversations);
+app.post('/new/conversation', messagesController.createConversation);
 
 //Dashboard Users Endpoints
 app.get('/users', usersController.getAllUsers);
+
 
 //Server Setup
 const server = app.listen(4000, () => {

@@ -11,4 +11,11 @@ module.exports = {
             console.warn(error);
         });
     },
+
+    createConversation: (req, res) => {
+        console.log(req.body);
+        //get the db instance
+        const db = req.app.get('db');
+
+    },
 }

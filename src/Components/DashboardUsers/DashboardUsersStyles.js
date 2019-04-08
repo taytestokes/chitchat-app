@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const DashboardUsersContainer = styled.div`
     width: 94vw;
@@ -22,13 +23,14 @@ export const UsersHeader = styled.div`
     align-items: center;
     /* border-bottom: 1px solid ${props => props.theme.lightGray}; */
     box-shadow: 3px 1px 5px ${props => props.theme.lightGray};
+    z-index: 2;
     `
 
 export const FilterUsers = styled.input.attrs({
     type: 'text',
     placeholder: 'Search for users'
 
-    })`
+})`
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
     width: 25%;
@@ -65,7 +67,7 @@ export const UserSubHeader = styled.div`
 
 export const UsersContainer = styled.div`
     width: 85%;
-    height: 85vh;
+    height: 90vh;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -97,7 +99,7 @@ export const UserCard = styled.div`
 `
 
 export const MessageButton = styled.button`
-    width: 60%;
+    width: 50%;
     height: 10%;
     background-color: ${props => props.theme.green};
     border: 2px solid ${props => props.theme.green};
@@ -108,7 +110,6 @@ export const MessageButton = styled.button`
     display: inline-block;
     font-size: 20px;
     outline: none;
-    margin-top: 10%;
     transition: ease-in-out 0.2s;
     &:hover {
         cursor: pointer;
