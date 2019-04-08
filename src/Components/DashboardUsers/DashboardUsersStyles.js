@@ -45,3 +45,74 @@ export const FilterUsers = styled.input.attrs({
         color: '#B9C3DD';
     }
 `
+
+export const UserSubHeader = styled.div`
+    width: 80%;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+    font-size: 14px;
+    font-weight: bold;
+    padding-left: 2%;
+    color: #8F92A0;
+    h1 {
+        margin-left: 1%;
+        font-size: 12px;
+    }
+`
+
+export const UsersContainer = styled.div`
+    width: 85%;
+    height: 85vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    overflow: scroll;
+    scroll-behavior: smooth;
+    padding-left: 3%;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`
+
+export const UserCard = styled.div`
+    width: 20%;
+    height: 55%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin: 2%;
+    box-shadow: 3px 1px 5px ${props => props.theme.lightGray};
+    border-radius: 2px 2px 2px 2px;
+    transition: ease-in-out 0.2s;
+    &:hover {
+        margin-top: 1.5%;
+    }
+`
+
+export const MessageButton = styled.button`
+    width: 60%;
+    height: 10%;
+    background-color: ${props => props.theme.green};
+    border: 2px solid ${props => props.theme.green};
+    border-radius: 3px 3px 3px 3px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    outline: none;
+    margin-top: 10%;
+    transition: ease-in-out 0.2s;
+    &:hover {
+        cursor: pointer;
+        color: ${props => props.theme.green};
+        background: rgba(0,0,0,0);
+    }
+`

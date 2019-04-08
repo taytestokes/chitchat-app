@@ -13,11 +13,12 @@ import 'reset-css';
 
 //Theme & Global Styles
 const theme = {
-  primaryBlack: '#191919',
-  secondaryBlack: '#202020',
+  primaryBlack: '#232323',
+  secondaryBlack: '#141414',
   primaryBlue: '#3498DB',
   primaryRed: '#EE3E4C',
-  lightGray: '#EFF1F9'
+  lightGray: '#EFF1F9',
+  green: '#44AF69'
 };
 
 //Add icons to the font awesome library

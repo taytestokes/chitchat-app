@@ -31,11 +31,10 @@ export const DashboardNavLink = styled(NavLink)`
     justify-content: center;
     align-items: center;
     text-decoration: none;
-    color: #fafafa;
+    color: ${props => props.theme.secondaryBlack};
     font-size: 28px;
-    transition: ease-in-out 0.2s;
+    transition: ease-in 0.2s;
     &.active {
-        color: ${props => props.theme.primaryRed};
-        background: ${props => props.theme.secondaryBlack};
+        color: white;
     }
 `
