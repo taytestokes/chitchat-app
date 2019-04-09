@@ -13,9 +13,15 @@ module.exports = {
     },
 
     createConversation: (req, res) => {
-        console.log(req.body);
+        //store the users from the request
+        const { newUser, user } = req.body;
         //get the db instance
         const db = req.app.get('db');
-
+        //create a new conversation
+        db.create_conversation([user.user_id, newUser.user_id]).then(dbResponse => {
+            res.send(`Conversation with ${newUser.username} & ${user.username} was created!`)
+        }).catch(error => {
+            res.send(error.message);
+        })
     },
 }

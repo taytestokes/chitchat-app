@@ -1,5 +1,6 @@
-CREATE TABLE Conversations (
+CREATE TABLE conversations (
     conversation_id SERIAL PRIMARY KEY,
-    name TEXT,
+    conversation_users INT REFERENCES conversation_users(id)
+        ON DELETE CASCADE,
     created_at DATE
 );
