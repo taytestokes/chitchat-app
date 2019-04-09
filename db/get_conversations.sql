@@ -1,9 +1,9 @@
-SELECT
+SELECT 
     *
 FROM conversations
-WHERE
-    conversation_id IN (SELECT
-    DISTINCT(conversation_id)
-FROM messages
-WHERE
-    user_id = $1);
+    WHERE conversation_users IN (
+        SELECT
+        DISTINCT(id) FROM conversation_users
+            WHERE user_one = $1 
+            OR user_two = $1
+    );

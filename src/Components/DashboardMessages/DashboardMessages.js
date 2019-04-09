@@ -33,6 +33,7 @@ class DashboardMessages extends Component {
     };
 
     render() {
+        console.log(this.state.userConversations)
         return (
             <MessageDashboard>
                 <ConversationsContainer userConversations={this.state.userConversations} getUsersConversations={this.getUsersConversations}/>
