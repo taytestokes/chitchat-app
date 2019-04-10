@@ -6,18 +6,24 @@ import io from 'socket.io-client';
 import { RoomContainer, MessagesContainer, NewMessageContainer, NewMessageInput } from './ChatRoomStyles';
 
 export default class ChatRoom extends Component {
-    constructor(){
-        super()
+    constructor(props) {
+        super(props)
 
         this.state = {
             input: '',
             messages: [],
-            conversationID: null,
+            conversationID: props.conversationID,
         }
     };
 
     //Lifecycle Methods
-    componentDidMount(){
+    componentDidMount() {
+        //take the converations id off of props
+        const { conversationID } = this.props;
+        //set the conversation id based off the id in the url
+        this.setState({
+            conversationID
+        });
         //socket connection
         this.socket = io('/');
         this.joinConversation();
@@ -26,7 +32,7 @@ export default class ChatRoom extends Component {
     //Methods
     joinConversation = () => {
         //check if the conversation id is available
-        if(this.state.conversationID){
+        if (this.state.conversationID) {
             //emit a socket event to connect to the conversation
             this.socket.emit('join conversation', {
                 id: this.state.conversationID
@@ -34,24 +40,14 @@ export default class ChatRoom extends Component {
         };
     };
 
-    //Leaving off here
-        //Need to write the sql query to get all of the message from the conversation
-
-        //Write the logic in this component to display the messages
-
-        //Styles the messages
-
-        //wrtie out more logic for the socket emits and broadcadsts
-
-        //Reconfigure the logic for creating the user
-
     render() {
+        console.log(this.state);
         return (
             <RoomContainer>
                 <MessagesContainer />
                 <NewMessageContainer>
-                    <NewMessageInput placeholder="Type a message.."/>
-                    <span><FontAwesomeIcon icon="paper-plane" className="paperplane"/></span>
+                    <NewMessageInput placeholder="Type a message.." />
+                    <span><FontAwesomeIcon icon="paper-plane" className="paperplane" /></span>
                 </NewMessageContainer>
             </RoomContainer>
         )

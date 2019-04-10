@@ -15,7 +15,8 @@ class DashboardMessages extends Component {
         super();
 
         this.state = {
-            userConversations: []
+            userConversations: [],
+            conversationID: null
         }
     }
 
@@ -32,12 +33,20 @@ class DashboardMessages extends Component {
         });
     };
 
+    getConversationID = (id) => {
+        //get the id of the conversation selected
+        this.setState({
+            //change the conversation id on state
+            conversationID: id
+        });
+    }
+
     render() {
-        console.log(this.state.userConversations)
+        console.log(this.props)
         return (
             <MessageDashboard>
-                <ConversationsContainer userConversations={this.state.userConversations} getUsersConversations={this.getUsersConversations}/>
-                <ChatRoom />
+                <ConversationsContainer userConversations={this.state.userConversations} getUsersConversations={this.getUsersConversations} getConversationID={this.getConversationID}/>
+                <ChatRoom conversationID={this.state.conversationID}/>
             </MessageDashboard>
         )
     }

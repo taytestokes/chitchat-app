@@ -13,7 +13,7 @@ class Conversations extends Component {
         //map through the user conversations on props and return a conversation tab displayed in JSX
         const mappedUserConversations = this.props.userConversations.map((conversation, index) => (
             //links to the conversation
-            <ConversationTab key={index} to={`/dashboard/messages/${conversation.conversation_id}`} activeClassName="active">
+            <ConversationTab key={index} to={`/dashboard/messages/${conversation.conversation_id}`} onClick={() => this.props.getConversationID(conversation.conversation_id)} activeClassName="active">
                 {conversation.name}
             </ConversationTab>
         ));

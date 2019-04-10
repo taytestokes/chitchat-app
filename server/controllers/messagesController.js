@@ -6,7 +6,6 @@ module.exports = {
         const db = req.app.get('db');
         //find all of the users conversations
         db.get_conversations([id]).then(userInfo => {
-            console.log(userInfo);
             res.send(userInfo);
         }).catch(error => {
             console.warn(error);
@@ -20,7 +19,6 @@ module.exports = {
         const db = req.app.get('db');
         //create a new conversation
         db.create_conversation([user.user_id, newUser.user_id]).then(dbResponse => {
-            console.log(dbResponse)
             res.send(`Conversation with ${newUser.username} & ${user.username} was created!`)
         }).catch(error => {
             res.send(error.message);
