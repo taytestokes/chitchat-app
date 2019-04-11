@@ -21,7 +21,6 @@ export const UsersHeader = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    /* border-bottom: 1px solid ${props => props.theme.lightGray}; */
     box-shadow: 3px 1px 5px ${props => props.theme.lightGray};
     z-index: 2;
     `

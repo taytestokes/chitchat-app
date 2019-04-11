@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import io from 'socket.io-client';
 
 //Styled Components
-import { RoomContainer, MessagesContainer, NewMessageContainer, NewMessageInput } from './ChatRoomStyles';
+import { RoomContainer, MessagesContainer, NewMessageContainer, MessageContainerHeader, NewMessageInput } from './ChatRoomStyles';
 
 export default class ChatRoom extends Component {
     constructor(props) {
@@ -40,11 +40,18 @@ export default class ChatRoom extends Component {
         };
     };
 
+    //LEAVING OFF HERE
+        //-- put the conversation id on props instead?
+
     render() {
         console.log(this.state);
         return (
             <RoomContainer>
-                <MessagesContainer />
+                <MessagesContainer>
+                    <MessageContainerHeader>
+                        
+                    </MessageContainerHeader>
+                </MessagesContainer>
                 <NewMessageContainer>
                     <NewMessageInput placeholder="Type a message.." />
                     <span><FontAwesomeIcon icon="paper-plane" className="paperplane" /></span>

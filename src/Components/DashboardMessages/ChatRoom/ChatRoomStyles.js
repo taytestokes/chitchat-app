@@ -7,13 +7,19 @@ export const RoomContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-left: 0.5%;
 `
 
 export const MessagesContainer = styled.div`
     height: 90%;
     width: 100%;
+`
+
+export const MessageContainerHeader = styled.div`
+    width: 100%;
+    height: 10.7%;
     background: white;
+    box-shadow: 3px 1px 5px ${props => props.theme.lightGray};
+    z-index: 2;
 `
 
 export const NewMessageContainer = styled.div`
