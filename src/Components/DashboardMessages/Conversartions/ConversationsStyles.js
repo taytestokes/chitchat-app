@@ -69,6 +69,6 @@ export const ConversationTab = styled(NavLink)`
         box-shadow: 3px 1px 5px ${props => props.theme.lightGray};
         margin-left: 7%;
         border-left: 5px solid ${props => props.theme.green};
-        width: 88%;
+        width: 87%;
     };
 `

@@ -63,10 +63,10 @@ const upload = multer({
         s3: s3,
         bucket: 'chitchat-app',
         acl: 'public-read',
-        metadata: function(req, file, cb){
-            cb(null, {fieldName: file.fieldname});
+        metadata: function (req, file, cb) {
+            cb(null, { fieldName: file.fieldname });
         },
-        key: function(req, file, cb){
+        key: function (req, file, cb) {
             cb(null, req.user.username);
         }
     })
@@ -173,12 +173,10 @@ const io = socket(server);
 
 //Socket.io Endpoints
 io.on('connection', socket => {
+    console.log('Connected to Socket.io');
 
-    //join the socket room for the conversation
-    socket.on('join conversation', data => {
-        console.log('conversation joined:', data.id);
-        socket.join(data.id);
-    });
-
-
+    socket.on('join room', data => {
+        console.log(data);
+        socket.join(data.roomId);
+    })
 });

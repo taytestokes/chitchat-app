@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import io from 'socket.io-client';
 
 //Components
 import DashboardNav from '../DashboardNav/DashboardNav';
@@ -13,7 +13,6 @@ import { DashboardContainer } from './DashboardStyles';
 
 class Dashboard extends Component {
   render() {
-    console.log(this.props.user)
     return (
       <DashboardContainer>
         <DashboardNav />
@@ -26,8 +25,4 @@ class Dashboard extends Component {
   };
 };
 
-const mapStateToProps = state => {
-  return state;
-};
-
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;
