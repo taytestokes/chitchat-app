@@ -49,6 +49,7 @@ class Conversations extends Component {
            roomId
         });
     };
+    
     //will handle updating the room id and will join the socket room
     handleRoomJoin = (roomId) => {
         this.updateRoomId(roomId);

@@ -175,8 +175,26 @@ const io = socket(server);
 io.on('connection', socket => {
     console.log('Connected to Socket.io');
 
+    //join the socket room based off of the conversation
     socket.on('join room', data => {
-        console.log(data);
+        console.log('joined room:', data.roomId);
         socket.join(data.roomId);
-    })
+    });
+
+    //send a new message to this room
+    socket.on('message sent', data => {
+        //destruct the information of the message from the data obj
+        console.log(data);
+        const { roomId, user_id, body } = data;
+        //store the db instance
+        const db = app.get('db');
+        //create a new message for the db
+        
+
+    });
+
+    //disconnect the user
+    socket.on('disconnect', () => {
+        console.log('User disconnected');
+    });
 });
