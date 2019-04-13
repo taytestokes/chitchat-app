@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { Component } from 'react'; 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
+import axios from 'axios';
 
 //Styled Components
 import { RoomContainer, MessagesContainer, NewMessageContainer, MessageContainerHeader, NewMessageInput } from './ChatRoomStyles';
@@ -18,24 +19,38 @@ class ChatRoom extends Component {
 
     //Lifecycle Methods
     componentDidMount() {
-        //get socket
+
+        // -- Socket Event Listenersn
         this.socket = io();
+        //update conversation messages when a new messgae is sent
+        this.socket.on('update messages', data => {
+            //update local state with the messages
+            this.updateMessagesOnState(data);
+        });
+    };
 
-        //socket event listeners
-
+    componentDidUpdate(previousProps) {
+        //take the room id from redux state
+        const { roomId } = this.props.conversationReducer;
+        //check to see if the roomId on redux state is different than the previous props
+        if(roomId !== previousProps.conversationReducer.roomId){
+            //get the conversation message when component updates
+            this.getConversationMessages(roomId);
+        };
+        
     }
 
-    componentWillUnmount(){
+    componentWillUnmount() {
         //disconnect from the socket
         this.socket.disconnect();
-    }
+    };
 
     //Socket Methods
     sendSocketMessage = () => {
         //take conversation id off of redux state
         const { roomId } = this.props.conversationReducer;
         //take the user id off of redux state
-        const { user_id } = this.props.userReducer.user;      
+        const { user_id } = this.props.userReducer.user;
         //store the data in a message obj to send through socket
         const message = {
             roomId,
@@ -50,6 +65,12 @@ class ChatRoom extends Component {
         });
     };
 
+    updateMessagesOnState = (messages) => {
+        this.setState({
+            messages
+        });
+    };
+
     //Local Methods
     handleChange = (key, event) => {
         this.setState({
@@ -57,8 +78,21 @@ class ChatRoom extends Component {
         });
     };
 
+    getConversationMessages = (roomId) => {
+        //make an http request to server to get the messages for the conversation
+        axios.get(`/conversation/messages/${roomId}`).then(response => {
+            //set the local state with the data recieved from the server
+            this.setState({
+                messages: response.data
+            });
+        }).catch(error => {
+            //if error, catch the message
+            console.log(error.message);
+        })
+    }
+
     render() {
-        console.log(this.state);
+        console.log(this.state);        
         return (
             <RoomContainer>
                 <MessagesContainer>
@@ -67,8 +101,8 @@ class ChatRoom extends Component {
                     </MessageContainerHeader>
                 </MessagesContainer>
                 <NewMessageContainer>
-                    <NewMessageInput value={this.state.input} onChange={(event) => this.handleChange('input', event)}/>
-                    <span><FontAwesomeIcon icon="paper-plane" className="paperplane" onClick={this.sendSocketMessage}/></span>
+                    <NewMessageInput value={this.state.input} onChange={(event) => this.handleChange('input', event)} />
+                    <span><FontAwesomeIcon icon="paper-plane" className="paperplane" onClick={this.sendSocketMessage} /></span>
                 </NewMessageContainer>
             </RoomContainer>
         )

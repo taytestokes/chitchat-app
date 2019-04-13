@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import io from 'socket.io-client';
 
 //Components
 import DashboardNav from '../DashboardNav/DashboardNav';

@@ -49,7 +49,7 @@ class Conversations extends Component {
            roomId
         });
     };
-    
+
     //will handle updating the room id and will join the socket room
     handleRoomJoin = (roomId) => {
         this.updateRoomId(roomId);
@@ -58,7 +58,6 @@ class Conversations extends Component {
 
 
     render() {
-        console.log(this.props)
         //map through the user conversations on props and return a conversation tab displayed in JSX
         const mappedUserConversations = this.state.userConversations.map((conversation, index) => (
             //links to the conversation

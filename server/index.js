@@ -158,6 +158,7 @@ app.get('/auth/logout', authController.logout);
 //Dashboard Messages Endpoints
 app.get('/user/conversations/:id', messagesController.getUserConversations);
 app.post('/new/conversation', messagesController.createConversation);
+app.get('/conversation/messages/:id', messagesController.getConversationMessages); 
 
 //Dashboard Users Endpoints
 app.get('/users', usersController.getAllUsers);
@@ -190,8 +191,14 @@ io.on('connection', socket => {
         //store the db instance
         const db = app.get('db');
         //create a new message for the db
-        db.create_new_message([roomId, user_id, body, date]).then(dbResponse => {
-            console.log(dbResponse);
+        db.create_new_message([roomId, user_id, body, date]).then(() => {
+            console.log('New message created!');
+        }).then(() => {
+            //query the data base and return the messages related to the conversation
+            db.get_conversation_messages([roomId]).then(dbResponse => {
+                //emit the dbResponse to the conversation
+                io.to(roomId).emit('update messages', dbResponse);
+            });
         }).catch(error => {
             console.log(error.message);
         });

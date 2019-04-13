@@ -24,4 +24,18 @@ module.exports = {
             res.send(error.message);
         })
     },
+
+    getConversationMessages: (req, res) => {
+        //take the conversation id from params
+        const { id } = req.params;
+        //get the db instance
+        const db = req.app.get('db');
+        //get the conversation meessages based of the room id
+        db.get_conversation_messages([id]).then(dbResponse => {
+            //send the db response to the client
+            res.status(200).send(dbResponse);
+        }).catch(error => {
+            console.log(error.message);
+        });
+    }
 }
