@@ -94,9 +94,14 @@ class ChatRoom extends Component {
     render() {
         //map through the messages on state to return the message as JSX
         const mappedMessages = this.state.messages.map((message, index) => {
+            //take user id from props
+            const { user_id } = this.props.userReducer.user;
+            //define custom style for id the messgae is from the user or not
+            const style = user_id != message.user_id ? {marginRight: 'auto', backgroundColor: '#EFF1F9', color: '#232323'} : {}
+
             return (
                 <Message key={message.message_id}>
-                    <h1>{message.body}</h1>
+                    <h1 style={style}>{message.body}</h1>
                 </Message>
             )
         });

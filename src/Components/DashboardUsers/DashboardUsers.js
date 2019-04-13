@@ -33,7 +33,7 @@ class DashboardUsers extends Component {
 
     messageNewUser = (newUser) => {
         //store the current user logged in
-        const user = this.props.user
+        const user = this.props.userReducer.user;
         //store the senders and receivers info
         const data = {
             newUser,
@@ -50,6 +50,7 @@ class DashboardUsers extends Component {
         const mappedUsers = this.state.users.map((user, index) => {
             return (
                 <UserCard key={index}>
+                    {user.username}
                     <MessageButton onClick={() => this.messageNewUser(user)}>Message</MessageButton>
                 </UserCard>
             )

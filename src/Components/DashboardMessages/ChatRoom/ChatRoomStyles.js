@@ -31,7 +31,7 @@ export const MessageContainerBody = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -57,8 +57,7 @@ export const Message = styled.div`
         background: ${props => props.theme.primaryBlue};
         color: white;
         border-radius: 5px 5px 5px 5px;
-        font-size: 18px;
-        font-weight: bold;
+        font-size: 16px;
         margin: 0 2%;
         padding: 10px;
     };
