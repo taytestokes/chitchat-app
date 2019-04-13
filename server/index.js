@@ -184,12 +184,17 @@ io.on('connection', socket => {
     //send a new message to this room
     socket.on('message sent', data => {
         //destruct the information of the message from the data obj
-        console.log(data);
         const { roomId, user_id, body } = data;
+        //get the current time stamp of the message
+        const date = new Date().toUTCString();
         //store the db instance
         const db = app.get('db');
         //create a new message for the db
-        
+        db.create_new_message([roomId, user_id, body, date]).then(dbResponse => {
+            console.log(dbResponse);
+        }).catch(error => {
+            console.log(error.message);
+        });
 
     });
 
