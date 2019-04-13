@@ -52,14 +52,16 @@ export const Message = styled.div`
     justify-content: flex-end;
     align-items: center;
     h1 {
-        width: auto;
+        min-width: auto;
         height: auto;
         background: ${props => props.theme.primaryBlue};
         color: white;
         border-radius: 5px 5px 5px 5px;
         font-size: 16px;
-        margin: 0 2%;
+        margin: 0 1.5%;
         padding: 10px;
+        max-width: 80%;
+        word-wrap: break-word;
     };
 `
 

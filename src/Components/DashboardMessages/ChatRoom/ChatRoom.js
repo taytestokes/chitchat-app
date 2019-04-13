@@ -40,11 +40,6 @@ class ChatRoom extends Component {
 
     }
 
-    componentWillUnmount() {
-        //disconnect from the socket
-        this.socket.disconnect();
-    };
-
     //Socket Methods
     sendSocketMessage = () => {
         //take conversation id off of redux state

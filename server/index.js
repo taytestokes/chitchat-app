@@ -196,8 +196,9 @@ io.on('connection', socket => {
         }).then(() => {
             //query the data base and return the messages related to the conversation
             db.get_conversation_messages([roomId]).then(dbResponse => {
+                console.log(dbResponse);
                 //emit the dbResponse to the conversation
-                io.to(roomId).emit('update messages', dbResponse);
+                io.emit('update messages', dbResponse);
             });
         }).catch(error => {
             console.log(error.message);
