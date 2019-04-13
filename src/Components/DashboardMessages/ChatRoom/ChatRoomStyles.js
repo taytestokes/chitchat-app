@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const RoomContainer = styled.div`
-    width: 62vw;
+    width: 61vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -12,6 +12,10 @@ export const RoomContainer = styled.div`
 export const MessagesContainer = styled.div`
     height: 90%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
 `
 
 export const MessageContainerHeader = styled.div`
@@ -20,6 +24,44 @@ export const MessageContainerHeader = styled.div`
     background: white;
     box-shadow: 3px 1px 5px ${props => props.theme.lightGray};
     z-index: 2;
+`
+
+export const MessageContainerBody = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+`
+
+export const Message = styled.div`
+    @import url('https://fonts.googleapis.com/css?family=Nunito');
+    font-family: 'Nunito';
+    width: 100%;
+    height: auto;
+    margin: 2% 1%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    h1 {
+        width: auto;
+        height: auto;
+        background: ${props => props.theme.primaryBlue};
+        color: white;
+        border-radius: 5px 5px 5px 5px;
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0 2%;
+        padding: 10px;
+    };
 `
 
 export const NewMessageContainer = styled.div`
@@ -32,7 +74,7 @@ export const NewMessageContainer = styled.div`
     align-items: center;
     box-shadow: 4.6px 2px 6px 3px ${props => props.theme.lightGray};
     span {
-        color: ${props => props.theme.primaryBlue};
+        color: ${props => props.theme.green};
         font-size: 28px;
         margin-right: 5%;
         transition: ease-in-out 0.2s;

@@ -1,11 +1,11 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 import io from 'socket.io-client';
 import axios from 'axios';
 
 //Styled Components
-import { RoomContainer, MessagesContainer, NewMessageContainer, MessageContainerHeader, NewMessageInput } from './ChatRoomStyles';
+import { RoomContainer, MessagesContainer, MessageContainerBody, Message, NewMessageContainer, MessageContainerHeader, NewMessageInput } from './ChatRoomStyles';
 
 class ChatRoom extends Component {
     constructor() {
@@ -33,11 +33,11 @@ class ChatRoom extends Component {
         //take the room id from redux state
         const { roomId } = this.props.conversationReducer;
         //check to see if the roomId on redux state is different than the previous props
-        if(roomId !== previousProps.conversationReducer.roomId){
+        if (roomId !== previousProps.conversationReducer.roomId) {
             //get the conversation message when component updates
             this.getConversationMessages(roomId);
         };
-        
+
     }
 
     componentWillUnmount() {
@@ -92,13 +92,25 @@ class ChatRoom extends Component {
     }
 
     render() {
-        console.log(this.state);        
+        //map through the messages on state to return the message as JSX
+        const mappedMessages = this.state.messages.map((message, index) => {
+            return (
+                <Message key={message.message_id}>
+                    <h1>{message.body}</h1>
+                </Message>
+            )
+        });
+
+
         return (
             <RoomContainer>
-                <MessagesContainer>
-                    <MessageContainerHeader>
+                <MessageContainerHeader>
 
-                    </MessageContainerHeader>
+                </MessageContainerHeader>
+                <MessagesContainer>
+                    <MessageContainerBody>
+                        {mappedMessages}
+                    </MessageContainerBody>
                 </MessagesContainer>
                 <NewMessageContainer>
                     <NewMessageInput value={this.state.input} onChange={(event) => this.handleChange('input', event)} />
