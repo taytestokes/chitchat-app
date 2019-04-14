@@ -12,12 +12,15 @@ class DashboardNav extends Component {
         <DashboardNavLinksContainer>
           <DashboardNavLink activeClassName="active" to={`/dashboard/messages`}>
             <FontAwesomeIcon icon="comment-alt" />
+            <h1>Messages</h1>
           </DashboardNavLink>
           <DashboardNavLink activeClassName="active" to="/dashboard/users">
             <FontAwesomeIcon icon="users" />
+            <h1>Explore</h1>
           </DashboardNavLink>
           <DashboardNavLink activeClassName="active" to="/dashboard/settings">
             <FontAwesomeIcon icon="user-cog" />
+            <h1>Settings</h1>
           </DashboardNavLink>
         </DashboardNavLinksContainer>
       </DashboardNavContainer>

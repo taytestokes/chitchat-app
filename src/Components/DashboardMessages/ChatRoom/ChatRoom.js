@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 
 //Styled Components
-import { RoomContainer, MessagesContainer, MessageContainerBody, Message, NewMessageContainer, MessageContainerHeader, NewMessageInput } from './ChatRoomStyles';
+import { RoomContainer, MessagesContainer, MessageContainerBody, Message, NewMessageContainer, MessageContainerHeader, NewMessageInput, Typing } from './ChatRoomStyles';
 
 class ChatRoom extends Component {
     constructor() {
@@ -14,18 +14,32 @@ class ChatRoom extends Component {
         this.state = {
             input: '',
             messages: [],
+            typing: false
         }
     };
 
     //Lifecycle Methods
     componentDidMount() {
-
         // -- Socket Event Listenersn
         this.socket = io();
+
         //update conversation messages when a new messgae is sent
         this.socket.on('update messages', data => {
             //update local state with the messages
             this.updateMessagesOnState(data);
+        });
+
+        //emit the typing effect if a user is typing
+        this.socket.on('user typing', data => {
+            //change typing to state to true to show a user is typing
+            this.setState({
+                typing: true
+            });
+
+            //change the state to false after 3 seconds of typing
+            setTimeout(this.setState({
+                typing: false
+            }), 3000);
         });
     };
 
@@ -60,6 +74,13 @@ class ChatRoom extends Component {
         });
     };
 
+    userTyping = () => {
+        //take conversation id off of redux state
+        const { roomId } = this.props.conversationReducer;
+        //emit an event to the server that a user is typing
+        this.socket.emit('typing', roomId);
+    }
+
     updateMessagesOnState = (messages) => {
         this.setState({
             messages
@@ -71,6 +92,16 @@ class ChatRoom extends Component {
         this.setState({
             [key]: event.target.value
         });
+        //fire user is typing to show that a user is typing
+        this.userTyping();
+    };
+
+    handleKeyPress = (event) => {
+        //check to see if the key is enter
+        if (event.key === 'Enter') {
+            //send the new message
+            this.sendSocketMessage();
+        };
     };
 
     getConversationMessages = (roomId) => {
@@ -92,7 +123,7 @@ class ChatRoom extends Component {
             //take user id from props
             const { user_id } = this.props.userReducer.user;
             //define custom style for id the messgae is from the user or not
-            const style = user_id != message.user_id ? {marginRight: 'auto', backgroundColor: '#EFF1F9', color: '#232323'} : {}
+            const style = user_id != message.user_id ? { marginRight: 'auto', backgroundColor: '#EFF1F9', color: '#232323' } : {}
 
             return (
                 <Message key={message.message_id}>
@@ -113,7 +144,7 @@ class ChatRoom extends Component {
                     </MessageContainerBody>
                 </MessagesContainer>
                 <NewMessageContainer>
-                    <NewMessageInput value={this.state.input} onChange={(event) => this.handleChange('input', event)} />
+                    <NewMessageInput value={this.state.input} onChange={(event) => this.handleChange('input', event)} onKeyPress={(event) => this.handleKeyPress(event)} />
                     <span><FontAwesomeIcon icon="paper-plane" className="paperplane" onClick={this.sendSocketMessage} /></span>
                 </NewMessageContainer>
             </RoomContainer>

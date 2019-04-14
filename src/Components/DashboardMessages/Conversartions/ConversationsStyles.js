@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const ConversationsContainer = styled.div`
-    width: 33vw;
+    width: 28vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -18,57 +18,53 @@ export const ConversationFinderContainer = styled.div`
     background: white;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    box-shadow: 3px 1px 5px ${props => props.theme.lightGray};
+    border-bottom: 2px solid ${props => props.theme.lightGray};
+    font-size: 24px;
+    color: #B9C3DD;
     z-index: 2;
+    font-size: 15px;
 `
 
-export const ConversationFinder = styled.input`
-    width: 35%;
+export const ConversationFinder = styled.input.attrs({
+    placeholder: 'Search your inbox..'
+})`
+    width: 70%;
     height: 50%;
     border: none;
-    background: ${props => props.theme.lightGray};
-    border-radius: 3px 3px 3px 3px;
-    font-size: 15px;
-    padding-left: 2%;
+    margin-left: 3%;
+    font-size: 18px;
     outline: none;
+    transition: ease 0.2s;
     &::placeholder {
-        color: '#B9C3DD';
+        color: #B9C3DD;
+        font-size: 18px;
     }
 `
 
 export const InboxContainer = styled.div`
     width: 100%;
     height: 90vh;
+    background: white;
     display: block;
     overflow: scroll;
     scroll-behavior: smooth;
-    padding-top: 5%;
     &::-webkit-scrollbar {
         display: none;
     }
 `
 
 export const ConversationTab = styled(NavLink)`
-    width: 90%;
+    width: 99%;
     height: 12%;
     display: flex;
     background: white;
-    border-radius: 3px 3px 3px 3px;
     transition: ease-in-out 0.3s;
-    margin: 2% 5%;
-    box-shadow: 3px 1px 5px ${props => props.theme.lightGray};
+    border-bottom: 1px solid ${props => props.theme.lightGray};
     &:hover {
         cursor: pointer;
         background: '#FAFAFA';
         transform: scale(1.01);
-    };
-    &.active{
-        transform: scale(1.05);
-        box-shadow: 3px 1px 5px ${props => props.theme.lightGray};
-        margin-left: 7%;
-        border-left: 5px solid ${props => props.theme.green};
-        width: 87%;
     };
 `

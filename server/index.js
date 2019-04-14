@@ -203,8 +203,13 @@ io.on('connection', socket => {
         }).catch(error => {
             console.log(error.message);
         });
-
     });
+
+    //show a user is typing
+    socket.on('typing', roomId => {
+        //emit a message that the user is typing
+        socket.broadcast.emit('user typing', roomId);
+    })
 
     //disconnect the user
     socket.on('disconnect', () => {

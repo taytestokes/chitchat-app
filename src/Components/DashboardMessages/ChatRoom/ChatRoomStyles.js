@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const RoomContainer = styled.div`
-    width: 61vw;
+    width: 60.5vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -20,9 +20,9 @@ export const MessagesContainer = styled.div`
 
 export const MessageContainerHeader = styled.div`
     width: 100%;
-    height: 10.7%;
+    height: 11.1%;
     background: white;
-    box-shadow: 3px 1px 5px ${props => props.theme.lightGray};
+    border-bottom: 2px solid ${props => props.theme.lightGray};
     z-index: 2;
 `
 
@@ -33,8 +33,7 @@ export const MessageContainerBody = styled.div`
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
-    overflow-y: scroll;
-    overflow-x: hidden;
+    overflow: scroll;
     scroll-behavior: smooth;
     &::-webkit-scrollbar {
         display: none;
@@ -57,12 +56,18 @@ export const Message = styled.div`
         background: ${props => props.theme.primaryBlue};
         color: white;
         border-radius: 5px 5px 5px 5px;
-        font-size: 16px;
+        font-size: 18px;
         margin: 0 1.5%;
         padding: 10px;
         max-width: 80%;
         word-wrap: break-word;
     };
+`
+
+export const Typing = styled.div`
+    width: 100%;
+    height: 15%;
+    background: red;
 `
 
 export const NewMessageContainer = styled.div`
@@ -73,7 +78,7 @@ export const NewMessageContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 4.6px 2px 6px 3px ${props => props.theme.lightGray};
+    box-shadow: 4.6px 2px 2.5px 3px ${props => props.theme.lightGray};
     span {
         color: ${props => props.theme.green};
         font-size: 28px;
@@ -86,7 +91,9 @@ export const NewMessageContainer = styled.div`
     }
 `
 
-export const NewMessageInput = styled.input`
+export const NewMessageInput = styled.input.attrs({
+    placeholder: 'Type a new message..'
+})`
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
     width: 80%;
