@@ -51,6 +51,10 @@ export const Message = styled.div`
     justify-content: flex-end;
     align-items: center;
     h1 {
+        color: '#232323';
+        font-size: 12px;
+    };
+    h2 {
         min-width: auto;
         height: auto;
         background: ${props => props.theme.primaryBlue};
@@ -62,12 +66,6 @@ export const Message = styled.div`
         max-width: 80%;
         word-wrap: break-word;
     };
-`
-
-export const Typing = styled.div`
-    width: 100%;
-    height: 15%;
-    background: red;
 `
 
 export const NewMessageContainer = styled.div`

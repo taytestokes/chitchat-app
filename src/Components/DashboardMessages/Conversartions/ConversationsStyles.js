@@ -56,9 +56,12 @@ export const InboxContainer = styled.div`
 `
 
 export const ConversationTab = styled(NavLink)`
-    width: 99%;
+    width: 99.9%;
     height: 12%;
     display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
     background: white;
     transition: ease-in-out 0.3s;
     border-bottom: 1px solid ${props => props.theme.lightGray};

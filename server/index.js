@@ -187,11 +187,23 @@ io.on('connection', socket => {
         //destruct the information of the message from the data obj
         const { roomId, user_id, body } = data;
         //get the current time stamp of the message
-        const date = new Date().toUTCString();
+        const date = new Date();
+        const hours = date.getHours();
+        //check to see if it is a single value
+        if(parseInt(hours) < 10){
+            hours = '0' + hours;
+        };
+        const minutes = date.getMinutes();
+        //check to see if it is a single value
+        if(parseInt(minutes) < 10){
+            minutes = '0' + minutes;
+        };
+        //create the new time stamp
+        const timestamp = `${hours}:${minutes}`;
         //store the db instance
         const db = app.get('db');
         //create a new message for the db
-        db.create_new_message([roomId, user_id, body, date]).then(() => {
+        db.create_new_message([roomId, user_id, body, timestamp]).then(() => {
             console.log('New message created!');
         }).then(() => {
             //query the data base and return the messages related to the conversation

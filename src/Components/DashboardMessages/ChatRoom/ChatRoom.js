@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 
 //Styled Components
-import { RoomContainer, MessagesContainer, MessageContainerBody, Message, NewMessageContainer, MessageContainerHeader, NewMessageInput, Typing } from './ChatRoomStyles';
+import { RoomContainer, MessagesContainer, MessageContainerBody, Message, NewMessageContainer, MessageContainerHeader, NewMessageInput } from './ChatRoomStyles';
 
 class ChatRoom extends Component {
     constructor() {
@@ -123,11 +123,13 @@ class ChatRoom extends Component {
             //take user id from props
             const { user_id } = this.props.userReducer.user;
             //define custom style for id the messgae is from the user or not
-            const style = user_id != message.user_id ? { marginRight: 'auto', backgroundColor: '#EFF1F9', color: '#232323' } : {}
-
+            const messageStyle = user_id != message.user_id ? { marginRight: 'auto', backgroundColor: '#EFF1F9', color: '#232323' } : {};
+            
+            
             return (
                 <Message key={message.message_id}>
-                    <h1 style={style}>{message.body}</h1>
+                    <h1>{message.created_at}</h1>
+                    <h2 style={messageStyle}>{message.body}</h2>
                 </Message>
             )
         });
