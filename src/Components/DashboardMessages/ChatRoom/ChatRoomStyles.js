@@ -53,6 +53,8 @@ export const Message = styled.div`
     h1 {
         color: #B9C3DD;
         font-size: 12px;
+        align-self: flex-start;
+        margin-top: 5px;
     };
     h2 {
         min-width: auto;

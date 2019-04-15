@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 
 //Styled Components
-import { DashboardNavContainer, DashboardNavLinksContainer, DashboardNavLink } from './DashboardNavStyles';
+import { DashboardNavContainer, DashboardNavLinksContainer, DashboardNavLink, LogoutContainer } from './DashboardNavStyles';
 
 class DashboardNav extends Component {
   render() {
@@ -23,6 +23,10 @@ class DashboardNav extends Component {
             <h1>Settings</h1>
           </DashboardNavLink>
         </DashboardNavLinksContainer>
+        <LogoutContainer to="/">
+          <FontAwesomeIcon icon="sign-out-alt"/>
+          <h1>Logout</h1>
+        </LogoutContainer>
       </DashboardNavContainer>
     )
   }

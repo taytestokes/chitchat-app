@@ -10,7 +10,7 @@ export const ConversationsContainer = styled.div`
     overflow: scroll;
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
-` 
+`
 
 export const ConversationFinderContainer = styled.div`
     width: 100%;
