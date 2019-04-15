@@ -188,12 +188,12 @@ io.on('connection', socket => {
         const { roomId, user_id, body } = data;
         //get the current time stamp of the message
         const date = new Date();
-        const hours = date.getHours();
+        let hours = date.getHours();
         //check to see if it is a single value
         if(parseInt(hours) < 10){
             hours = '0' + hours;
         };
-        const minutes = date.getMinutes();
+        let minutes = date.getMinutes();
         //check to see if it is a single value
         if(parseInt(minutes) < 10){
             minutes = '0' + minutes;

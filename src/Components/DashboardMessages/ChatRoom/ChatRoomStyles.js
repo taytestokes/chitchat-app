@@ -51,7 +51,7 @@ export const Message = styled.div`
     justify-content: flex-end;
     align-items: center;
     h1 {
-        color: '#232323';
+        color: #B9C3DD;
         font-size: 12px;
     };
     h2 {

@@ -119,16 +119,19 @@ class ChatRoom extends Component {
 
     render() {
         //map through the messages on state to return the message as JSX
-        const mappedMessages = this.state.messages.map((message, index) => {
+        const mappedMessages = this.state.messages.map( message => {
             //take user id from props
             const { user_id } = this.props.userReducer.user;
             //define custom style for id the messgae is from the user or not
-            const messageStyle = user_id != message.user_id ? { marginRight: 'auto', backgroundColor: '#EFF1F9', color: '#232323' } : {};
-            
+            const messageStyle = user_id !== message.user_id ? { backgroundColor: '#EFF1F9', color: '#232323' } : {};
+            //change the display for the message if the author isn't you
+            const messageContainerStyle = user_id !== message.user_id ? { flexDirection: 'row-reverse' } : {};
+            //change the display for the timestamp
+            const timestampStyle = user_id !== message.user_id ? {marginRight: 'auto'} : {};
             
             return (
-                <Message key={message.message_id}>
-                    <h1>{message.created_at}</h1>
+                <Message key={message.message_id} style={messageContainerStyle}>
+                    <h1 style={timestampStyle}>{message.created_at}</h1>
                     <h2 style={messageStyle}>{message.body}</h2>
                 </Message>
             )
