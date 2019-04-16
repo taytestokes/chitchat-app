@@ -4,14 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 
 //Styled Components
-import { DashboardUsersContainer, UsersHeader, FilterUsers, UserSubHeader, UsersContainer, UserCard, MessageButton } from './DashboardUsersStyles';
+import { DashboardUsersContainer, UsersHeader, FilterUsers, UserSubHeader, UsersContainer, UserCard, MessageButton, MessageModalContainer, MessageModal, ModalHeader, CancelModalBtn, ModalMessageInput, SendMessageModalBtn } from './DashboardUsersStyles';
 
 class DashboardUsers extends Component {
     constructor() {
         super();
 
         this.state = {
-            users: []
+            users: [],
+            showMessageModel: false
         }
     }
 
@@ -45,13 +46,38 @@ class DashboardUsers extends Component {
         });
     };
 
+    toggleMessageModel = () => {
+        this.setState({
+            showMessageModel: !this.state.showMessageModel
+        })
+    }
+
     render() {
+        console.log(this.state);
         //map over the users to display them as cards
         const mappedUsers = this.state.users.map((user, index) => {
             return (
                 <UserCard key={index}>
                     {user.username}
-                    <MessageButton onClick={() => this.messageNewUser(user)}>Message</MessageButton>
+                    <MessageButton onClick={this.toggleMessageModel}>Message</MessageButton>
+                    {
+                        this.state.showMessageModel ?
+                        <MessageModalContainer>
+                            <MessageModal>
+                                <ModalHeader>
+                                    <h1>New message to: {user.username}</h1>
+                                    <CancelModalBtn>Cancel</CancelModalBtn>
+                                </ModalHeader>
+                                <ModalMessageInput />
+                                <SendMessageModalBtn>
+                                    Send
+                                    <FontAwesomeIcon icon="envelope"/>
+                                </SendMessageModalBtn>
+                            </MessageModal>
+                        </MessageModalContainer>
+                        :
+                        null
+                    }
                 </UserCard>
             )
         })

@@ -31,13 +31,14 @@ class Conversations extends Component {
         const { user } = this.props.userReducer;
         //ajax request to server for users conversations
         axios.get(`/user/conversations/${user.user_id}`).then(response => {
+            console.log(response.data)
             //store the conversations on local state
             this.setState({
                 userConversations: response.data
             });
         });
     };
-    
+
     //Socket Methods
     updateRoomId = (roomId) => {
         //call redux method to update room id

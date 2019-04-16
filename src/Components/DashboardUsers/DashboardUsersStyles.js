@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const DashboardUsersContainer = styled.div`
+    position: relative;
     width: 94vw;
     height: 100%;
     background: #FAFAFA;
@@ -73,7 +74,6 @@ export const UsersContainer = styled.div`
     flex-wrap: wrap;
     overflow: scroll;
     scroll-behavior: smooth;
-    padding-left: 3%;
     &::-webkit-scrollbar {
         display: none;
     }
@@ -109,6 +109,106 @@ export const MessageButton = styled.button`
     font-size: 20px;
     outline: none;
     transition: ease-in-out 0.2s;
+    &:hover {
+        cursor: pointer;
+        color: ${props => props.theme.green};
+        background: rgba(0,0,0,0);
+    }
+`
+
+export const MessageModalContainer = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.2);
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+`
+
+export const MessageModal = styled.div`
+    width: 45%;
+    height: 65%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+`
+
+export const ModalHeader = styled.div`
+    width: 100%;
+    height: 15%;
+    border-bottom: 2px solid ${props => props.theme.lightGray};
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    h1{
+        margin-left: 10%;
+        font-size: 16px;
+        color: #D3D3D3;
+        &:hover{
+            cursor: default;
+        }
+    }
+`
+
+export const CancelModalBtn = styled.button`
+    width: 15%;
+    height: 35%;
+    border: 1px solid ${props => props.theme.primaryBlue};
+    outline: none;
+    color: ${props => props.theme.primaryBlue};
+    font-size: 16px;
+    margin-right: 10%;
+    &:hover {
+        background: ${props => props.theme.primaryBlue};
+        color: white;
+        cursor: pointer;
+    }
+`
+
+export const ModalMessageInput = styled.textarea.attrs({
+    placeholder: 'Type a new message...'
+})`
+    width: 80%;
+    height: 60%;
+    border: 1px solid ${props => props.theme.lightGray};
+    border-radius: 2px 2px 2px 2px;
+    outline: none;
+    margin-top: 5%;
+    font-size: 16px;
+    padding-left: 2%;
+    padding-top: 2%;
+    &::placeholder{
+        font-size: 16px;
+        color: #D3D3D3;
+    }
+`
+
+export const SendMessageModalBtn = styled.button`
+    width: 20%;
+    height: 6%;
+    background-color: ${props => props.theme.green};
+    border: 2px solid ${props => props.theme.green};
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    outline: none;
+    margin-right: auto;
+    margin-left: 9%;
+    margin-top: 5%;
+    transition: ease-in-out 0.2s;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
     &:hover {
         cursor: pointer;
         color: ${props => props.theme.green};
