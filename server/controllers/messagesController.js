@@ -37,5 +37,21 @@ module.exports = {
         }).catch(error => {
             console.log(error.message);
         });
-    }
+    },
+
+    getConversationLastMessage: (req, res) => {
+        //destructure the conversation id from params
+        const { id } = req.params;
+        //get the db insatnce
+        const db = req.app.get('db');
+        //get the conversations last message
+        db.get_last_conversation_message([id]).then(dbResponse => {
+            console.log(dbResponse);
+            //send the conversations last message
+            res.status(200).send(dbResponse[0]);
+        }).catch(error => {
+            //log the error if it fails
+            console.log(error.message);
+        });
+    },
 }

@@ -37,7 +37,7 @@ class Conversations extends Component {
             });
         });
     };
-
+    
     //Socket Methods
     updateRoomId = (roomId) => {
         //call redux method to update room id
@@ -47,7 +47,7 @@ class Conversations extends Component {
     joinSocketRoom = (roomId) => {
         //emit to the sockets to join the room
         this.socket.emit('join room', {
-           roomId
+            roomId
         });
     };
 
@@ -60,22 +60,23 @@ class Conversations extends Component {
 
     render() {
         //map through the user conversations on props and return a conversation tab displayed in JSX
-        const mappedUserConversations = this.state.userConversations.map((conversation, index) => (
-            //links to the conversation
-            <ConversationTab
-                key={index}
-                to={`/dashboard/messages/${conversation.conversation_id}`} activeClassName="active"
-                onClick={() => this.handleRoomJoin(conversation.conversation_id)}
-            >
-                {conversation.conversation_id}
-            </ConversationTab>
-        ));
+        const mappedUserConversations = this.state.userConversations.map((conversation, index) => {
+            return (
+                <ConversationTab
+                    key={index}
+                    to={`/dashboard/messages/${conversation.conversation_id}`} activeClassName="active"
+                    onClick={() => this.handleRoomJoin(conversation.conversation_id)}
+                >
+                    {conversation.conversation_id}
+                </ConversationTab>
+            )
+        });
 
         return (
             <ConversationsContainer>
                 <ConversationFinderContainer>
-                    <FontAwesomeIcon icon="search"/>
-                    <ConversationFinder/>
+                    <FontAwesomeIcon icon="search" />
+                    <ConversationFinder />
                 </ConversationFinderContainer>
                 <InboxContainer>
                     {mappedUserConversations}
@@ -88,4 +89,4 @@ class Conversations extends Component {
 //map redux state to props
 const mapStateToProps = state => state;
 
-export default connect(mapStateToProps, {updateRoomId})(Conversations);
+export default connect(mapStateToProps, { updateRoomId })(Conversations);

@@ -38,6 +38,9 @@ export const DashboardNavLink = styled(NavLink)`
         color: white;
         background: #333333;
     }
+    &:hover {
+        color: white;
+    }
     h1 {
         margin-left: 8%;
         text-align: center;
@@ -56,6 +59,7 @@ export const LogoutContainer = styled(Link)`
     font-weight: bold;
     color: #4A4A4A;
     text-decoration: none;
+    transition: ease-in-out 0.1s;
     h1 {
         margin-left: 8%;
     };

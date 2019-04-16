@@ -157,8 +157,9 @@ app.get('/auth/logout', authController.logout);
 
 //Dashboard Messages Endpoints
 app.get('/user/conversations/:id', messagesController.getUserConversations);
+app.get('/conversation/messages/:id', messagesController.getConversationMessages);
+app.get('/conversation/last/message/:id', messagesController.getConversationLastMessage);
 app.post('/new/conversation', messagesController.createConversation);
-app.get('/conversation/messages/:id', messagesController.getConversationMessages); 
 
 //Dashboard Users Endpoints
 app.get('/users', usersController.getAllUsers);
@@ -208,7 +209,6 @@ io.on('connection', socket => {
         }).then(() => {
             //query the data base and return the messages related to the conversation
             db.get_conversation_messages([roomId]).then(dbResponse => {
-                console.log(dbResponse);
                 //emit the dbResponse to the conversation
                 io.emit('update messages', dbResponse);
             });

@@ -56,6 +56,10 @@ class ChatRoom extends Component {
 
     //Socket Methods
     sendSocketMessage = () => {
+        //check to make sure there is a message typed
+        if(this.state.input === ''){
+            return;
+        }
         //take conversation id off of redux state
         const { roomId } = this.props.conversationReducer;
         //take the user id off of redux state
