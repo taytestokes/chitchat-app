@@ -1,18 +1,16 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 
 //Styled Components
-import { DashboardUsersContainer, UsersHeader, FilterUsers, UserSubHeader, UsersContainer, UserCard, MessageButton, MessageModalContainer, MessageModal, ModalHeader, CancelModalBtn, ModalMessageInput, SendMessageModalBtn } from './DashboardUsersStyles';
+import { DashboardUsersContainer, UsersHeader, UsersContainer, UserCard, MessageButton } from './DashboardUsersStyles';
 
 class DashboardUsers extends Component {
     constructor() {
         super();
 
         this.state = {
-            users: [],
-            showMessageModel: false
+            users: []
         }
     }
 
@@ -46,55 +44,25 @@ class DashboardUsers extends Component {
         });
     };
 
-    toggleMessageModel = () => {
-        this.setState({
-            showMessageModel: !this.state.showMessageModel
-        })
-    }
-
     render() {
-        console.log(this.state);
+
         //map over the users to display them as cards
-        const mappedUsers = this.state.users.map((user, index) => {
+        const mappedUsers = this.state.users.map(user => {
             return (
-                <UserCard key={index}>
+                <UserCard key={user.user_id}>
                     {user.username}
-                    <MessageButton onClick={this.toggleMessageModel}>Message</MessageButton>
-                    {
-                        this.state.showMessageModel ?
-                        <MessageModalContainer>
-                            <MessageModal>
-                                <ModalHeader>
-                                    <h1>New message to: {user.username}</h1>
-                                    <CancelModalBtn>Cancel</CancelModalBtn>
-                                </ModalHeader>
-                                <ModalMessageInput />
-                                <SendMessageModalBtn>
-                                    Send
-                                    <FontAwesomeIcon icon="envelope"/>
-                                </SendMessageModalBtn>
-                            </MessageModal>
-                        </MessageModalContainer>
-                        :
-                        null
-                    }
+                    <MessageButton onClick={() => this.messageNewUser(user)}>
+                        Message
+                    </MessageButton>
                 </UserCard>
             )
         })
 
-        //How many users exist
-        const userCount = this.state.users.length;
-
         return (
             <DashboardUsersContainer>
                 <UsersHeader>
-                    <FilterUsers />
                 </UsersHeader>
                 <UsersContainer>
-                    <UserSubHeader>
-                        <FontAwesomeIcon icon="user" />
-                        <h1>{userCount} USERS</h1>
-                    </UserSubHeader>
                     {mappedUsers}
                 </UsersContainer>
             </DashboardUsersContainer>

@@ -15,10 +15,10 @@ import 'reset-css';
 const theme = {
   primaryBlack: '#232323',
   secondaryBlack: '#141414',
-  primaryBlue: '#3498DB',
+  primaryBlue: '#2b60e4',
   primaryRed: '#EE3E4C',
-  lightGray: '#EFF1F9',
-  green: '#3CD85A'
+  lightGray: '#D3D3D3',
+  green: '#20E89A'
 };
 
 //Add icons to the font awesome library
