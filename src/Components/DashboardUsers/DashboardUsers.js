@@ -1,9 +1,18 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 
 //Styled Components
-import { DashboardUsersContainer, UsersHeader, UsersContainer, UserCard, MessageButton } from './DashboardUsersStyles';
+import { DashboardUsersContainer,
+         UsersHeader,
+         UsersContainer,
+         UserCard, 
+         MessageButton, 
+         UserSubHeader,  
+         NextBtn,
+         PrevBtn
+        } from './DashboardUsersStyles';
 
 class DashboardUsers extends Component {
     constructor() {
@@ -81,10 +90,7 @@ class DashboardUsers extends Component {
 
     render() {
         //destructure from state
-        const { users, usersPerPage, currentPage } = this.state;
-        //logic for the pagination effect
-        const indexOfLastUser = currentPage * usersPerPage;
-        const indexOfFirstUser = indexOfLastUser - usersPerPage;
+        const { users } = this.state;
         //map over the users to display them as cards
         const mappedUsers = users.map(user => {
             return (
@@ -100,9 +106,16 @@ class DashboardUsers extends Component {
         return (
             <DashboardUsersContainer>
                 <UsersHeader>
-                    <button onClick={this.prevPage}>Prev</button>
-                    <button onClick={this.nextPage}>Next</button>
+
                 </UsersHeader>
+                <UserSubHeader>
+                    <PrevBtn onClick={this.prevPage}>
+                        <FontAwesomeIcon icon="chevron-left"/>
+                    </PrevBtn>
+                    <NextBtn onClick={this.nextPage}>
+                        <FontAwesomeIcon icon="chevron-right"/>
+                    </NextBtn>
+                </UserSubHeader>
                 <UsersContainer>
                     {mappedUsers}
                 </UsersContainer>
