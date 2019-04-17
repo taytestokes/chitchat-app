@@ -24,11 +24,6 @@ export const UsersHeader = styled.div`
     z-index: 2;
 `
 
-export const SearchInput = styled.div`
-    width: 15%;
-    height: 45%;
-`
-
 export const UsersContainer = styled.div`
     width: 90%;
     height: 77vh;
@@ -50,6 +45,46 @@ export const UserSubHeader = styled.div`
     align-items: center;
 `
 
+export const SearchInput = styled.input.attrs({
+    placeholder: 'Search for a user..'
+})`
+    width: 19.5%;
+    height: 43%;
+    background: white;
+    border: 1px solid ${props => props.theme.lightGray};
+    outline: none;
+    border-radius: 2px 2px 2px 2px;
+    margin-left: 5%;
+    font-size: 16px;
+    padding-left: 0.5%;
+    &::placeholder {
+        color: #B9C3DD;
+    }
+`
+
+export const SearchBtn = styled.button`
+    width: 3%;
+    height: 45%;
+    background: ${props => props.theme.primaryBlue};
+    color: white;
+    border: 2px solid ${props => props.theme.primaryBlue};
+    border-radius: 3px 3px 3px 3px;
+    outline: none;
+    font-size: 20px;
+    margin-right: auto;
+    margin-left: 1%;
+    transition: ease 0.1s;
+    &:hover {
+        cursor: pointer;
+        background: #477bff;
+        border: 2px solid #477bff;
+    };
+    &:active {
+        background: rgba(0,0,0,0);
+        color: ${props => props.theme.primaryBlue};
+    };
+`
+
 export const NextBtn = styled.button`
     width: 3%;
     height: 45%;
@@ -63,12 +98,13 @@ export const NextBtn = styled.button`
     transition: ease 0.2s;
     &:hover {
         cursor: pointer;
+        background: #477bff;
+        border: 2px solid #477bff;
     };
     &:active {
         background: rgba(0,0,0,0);
         color: ${props => props.theme.primaryBlue};
     };
-    
 `
 
 export const PrevBtn = styled.button`
@@ -84,6 +120,8 @@ export const PrevBtn = styled.button`
     transition: ease 0.2s;
     &:hover {
         cursor: pointer;
+        background: #477bff;
+        border: 2px solid #477bff;
     };
     &:active {
         background: rgba(0,0,0,0);
@@ -92,7 +130,7 @@ export const PrevBtn = styled.button`
 `
 
 export const UserCard = styled.div`
-    width: 24%;
+    width: 22%;
     height: 45%;
     background: white;
     display: flex;

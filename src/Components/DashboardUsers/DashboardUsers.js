@@ -11,7 +11,9 @@ import { DashboardUsersContainer,
          MessageButton, 
          UserSubHeader,  
          NextBtn,
-         PrevBtn
+         PrevBtn,
+         SearchInput,
+         SearchBtn
         } from './DashboardUsersStyles';
 
 class DashboardUsers extends Component {
@@ -109,6 +111,10 @@ class DashboardUsers extends Component {
 
                 </UsersHeader>
                 <UserSubHeader>
+                    <SearchInput />
+                    <SearchBtn>
+                        <FontAwesomeIcon icon="search"/>
+                    </SearchBtn>
                     <PrevBtn onClick={this.prevPage}>
                         <FontAwesomeIcon icon="chevron-left"/>
                     </PrevBtn>
