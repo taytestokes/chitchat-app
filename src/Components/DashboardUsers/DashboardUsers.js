@@ -10,24 +10,41 @@ class DashboardUsers extends Component {
         super();
 
         this.state = {
-            users: []
-        }
+            users: [],
+            // usersPerPage: 8, // This can be implemented later if desired
+            currentPage: 1,
+            nextPage: null,
+            previousPage: null,
+        };
     }
 
     //Lifecycle Methods
-    componentDidMount() {
+    componentWillMount() {
         this.getUsers();
     }
 
     //Methods
-    getUsers = () => {
+    getUsers = (pageNumber = this.state.currentPage) => {
         //get all of the users that are != to the user logged in
-        axios.get('/users').then(response => {
-            //store the users to local state
-            this.setState({
-                users: response.data
-            })
-        });
+        axios
+            .get(`/users?page=${pageNumber}`)
+            .then(response => {
+                const {
+                    result,
+                    pageNumber,
+                    nextPage,
+                    previousPage,
+                    total,
+                } = response.data;
+                //store the users to local state
+                this.setState({
+                    nextPage,
+                    previousPage,
+                    total,
+                    users: result,
+                    currentPage: pageNumber,
+                });
+            });
     };
 
     messageNewUser = (newUser) => {
@@ -44,10 +61,32 @@ class DashboardUsers extends Component {
         });
     };
 
-    render() {
+    nextPage = () => {
+        //destructure from state
+        const { nextPage } = this.state;
+        //check to see if end of users
+        if (nextPage != null) {
+            this.getUsers(nextPage);
+        }
+    };
 
+    prevPage = () => {
+        //destructure previous page from state
+        const { previousPage } = this.state;
+        //check to see if start of users
+        if (previousPage != null) {
+            this.getUsers(previousPage);
+        }
+    };
+
+    render() {
+        //destructure from state
+        const { users, usersPerPage, currentPage } = this.state;
+        //logic for the pagination effect
+        const indexOfLastUser = currentPage * usersPerPage;
+        const indexOfFirstUser = indexOfLastUser - usersPerPage;
         //map over the users to display them as cards
-        const mappedUsers = this.state.users.map(user => {
+        const mappedUsers = users.map(user => {
             return (
                 <UserCard key={user.user_id}>
                     {user.username}
@@ -56,11 +95,13 @@ class DashboardUsers extends Component {
                     </MessageButton>
                 </UserCard>
             )
-        })
+        });
 
         return (
             <DashboardUsersContainer>
                 <UsersHeader>
+                    <button onClick={this.prevPage}>Prev</button>
+                    <button onClick={this.nextPage}>Next</button>
                 </UsersHeader>
                 <UsersContainer>
                     {mappedUsers}
