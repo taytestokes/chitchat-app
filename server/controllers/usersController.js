@@ -32,5 +32,5 @@ module.exports = {
                     previousPage: page > 1 ? page - 1 : null,
                 });
             });
-    }
+    },
 };

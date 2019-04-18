@@ -10,6 +10,7 @@ export const ConversationsContainer = styled.div`
     overflow: scroll;
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
+    border-right: 1px solid ${props => props.theme.lightGray};
 `
 
 export const ConversationFinderContainer = styled.div`
@@ -20,7 +21,7 @@ export const ConversationFinderContainer = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border-bottom: 2px solid ${props => props.theme.lightGray};
+    border-bottom: 1px solid ${props => props.theme.lightGray};
     font-size: 24px;
     color: #B9C3DD;
     z-index: 2;

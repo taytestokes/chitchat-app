@@ -4,11 +4,12 @@ import { NavLink, Link } from 'react-router-dom';
 export const DashboardNavContainer = styled.div`
     width: 12vw;
     height: 100vh;
-    background: ${props => props.theme.primaryBlack};
+    background: white;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    border-right: 1px solid ${props => props.theme.lightGray};
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
 `
@@ -23,27 +24,32 @@ export const DashboardNavLinksContainer = styled.div`
 `
 
 export const DashboardNavLink = styled(NavLink)`
-    width: 100%;
+    width: 80%;
     height: 25%;
+    border-radius: 4px 0 0 4px;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 30%;
     text-decoration: none;
-    color: #4A4A4A;
-    font-size: 16px;
+    color: #A9A9A9;
+    font-size: 14px;
     font-weight: bold;
+    margin-left: auto;
+    border-right: 5px solid white;
+    padding-left: 6%;
     &.active {
-        color: white;
-        background: #333333;
-    }
-    &:hover {
-        color: white;
+        color: ${props => props.theme.primaryBlue};
+        background: #2b60e415;
+        border-right: 5px solid ${props => props.theme.primaryBlue};
+        h1 {
+            color: black;
+        }
     }
     h1 {
-        margin-left: 8%;
         text-align: center;
+        margin-left: 8%;
+        letter-spacing: 0.5px;
     }
 `
 

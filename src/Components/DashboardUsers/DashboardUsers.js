@@ -4,17 +4,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
 
 //Styled Components
-import { DashboardUsersContainer,
-         UsersHeader,
-         UsersContainer,
-         UserCard, 
-         MessageButton, 
-         UserSubHeader,  
-         NextBtn,
-         PrevBtn,
-         SearchInput,
-         SearchBtn
-        } from './DashboardUsersStyles';
+import {
+    DashboardUsersContainer,
+    UsersHeader,
+    UsersContainer,
+    UserCard,
+    MessageButton,
+    UserSubHeader,
+    NextBtn,
+    PrevBtn,
+    SearchInput,
+    SearchBtn
+} from './DashboardUsersStyles';
 
 class DashboardUsers extends Component {
     constructor() {
@@ -26,6 +27,7 @@ class DashboardUsers extends Component {
             currentPage: 1,
             nextPage: null,
             previousPage: null,
+            searchInput: ''
         };
     }
 
@@ -72,6 +74,8 @@ class DashboardUsers extends Component {
         });
     };
 
+    // --- Pagination
+
     nextPage = () => {
         //destructure from state
         const { nextPage } = this.state;
@@ -105,21 +109,23 @@ class DashboardUsers extends Component {
             )
         });
 
+
+
         return (
             <DashboardUsersContainer>
                 <UsersHeader>
-
+                    
                 </UsersHeader>
                 <UserSubHeader>
                     <SearchInput />
                     <SearchBtn>
-                        <FontAwesomeIcon icon="search"/>
+                        <FontAwesomeIcon icon="search" />
                     </SearchBtn>
                     <PrevBtn onClick={this.prevPage}>
-                        <FontAwesomeIcon icon="chevron-left"/>
+                        <FontAwesomeIcon icon="chevron-left" />
                     </PrevBtn>
                     <NextBtn onClick={this.nextPage}>
-                        <FontAwesomeIcon icon="chevron-right"/>
+                        <FontAwesomeIcon icon="chevron-right" />
                     </NextBtn>
                 </UserSubHeader>
                 <UsersContainer>

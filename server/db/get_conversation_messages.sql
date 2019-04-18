@@ -4,4 +4,5 @@ SELECT * FROM messages
             FROM conversations
         WHERE
             conversation_id = $1
-    );
+    )
+ORDER BY message_id DESC;

@@ -22,18 +22,17 @@ export const MessageContainerHeader = styled.div`
     width: 100%;
     height: 11.1%;
     background: white;
-    border-bottom: 2px solid ${props => props.theme.lightGray};
-    z-index: 2;
+    border-bottom: 1px solid ${props => props.theme.lightGray};
+    z-index: 3;
 `
 
 export const MessageContainerBody = styled.div`
-    width: 100%;
+    width: 95%;
     height: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-    overflow: scroll;
+    flex-direction: column-reverse;
+    overflow-y: scroll;
+    overflow-x: hidden;
     scroll-behavior: smooth;
     &::-webkit-scrollbar {
         display: none;
@@ -78,7 +77,7 @@ export const NewMessageContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 4.6px 2px 2.5px 3px ${props => props.theme.lightGray};
+    border-top: 1px solid ${props => props.theme.lightGray};
     span {
         color: ${props => props.theme.green};
         font-size: 28px;
@@ -99,7 +98,7 @@ export const NewMessageInput = styled.input.attrs({
     width: 80%;
     height: 50%;
     border: none;
-    border-bottom: 2px solid ${props => props.theme.lightGray};
+    border-bottom: 1px solid ${props => props.theme.lightGray};
     border-radius: 3px 3px 3px 3px;
     font-size: 14px;
     padding-left: 2%;

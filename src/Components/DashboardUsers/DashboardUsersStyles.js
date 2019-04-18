@@ -73,7 +73,7 @@ export const SearchBtn = styled.button`
     font-size: 20px;
     margin-right: auto;
     margin-left: 1%;
-    transition: ease 0.1s;
+    transition: ease 0.2s;
     &:hover {
         cursor: pointer;
         background: #477bff;
