@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
+import logo from '../../assets/logo.png';
 
 export const DashboardNavContainer = styled.div`
     width: 12vw;
@@ -7,11 +8,19 @@ export const DashboardNavContainer = styled.div`
     background: white;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     border-right: 1px solid ${props => props.theme.lightGray};
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
+`
+
+export const NavLogo = styled.img.attrs({
+    src: logo
+})`
+    height: 8%;
+    width: 40%;
+    margin: 10% auto;
 `
 
 export const DashboardNavLinksContainer = styled.div`
@@ -21,10 +30,11 @@ export const DashboardNavLinksContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 20%;
 `
 
 export const DashboardNavLink = styled(NavLink)`
-    width: 80%;
+    width: 75%;
     height: 25%;
     border-radius: 4px 0 0 4px;
     display: flex;
@@ -38,6 +48,7 @@ export const DashboardNavLink = styled(NavLink)`
     margin-left: auto;
     border-right: 5px solid white;
     padding-left: 6%;
+    transition: ease 0.2s;
     &.active {
         color: ${props => props.theme.primaryBlue};
         background: #2b60e415;
@@ -45,6 +56,7 @@ export const DashboardNavLink = styled(NavLink)`
         h1 {
             color: black;
         }
+        width: 80%;
     }
     h1 {
         text-align: center;
@@ -66,11 +78,12 @@ export const LogoutContainer = styled(Link)`
     color: #4A4A4A;
     text-decoration: none;
     transition: ease-in-out 0.1s;
+    margin-top: auto;
     h1 {
         margin-left: 8%;
     };
     &:hover {
         cursor: pointer;
-        color: white;
+        color: ${props => props.theme.green};
     }
 `
