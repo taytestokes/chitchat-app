@@ -3,7 +3,25 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 
 //Styled Components
-import { LoginWrapper, FieldContainer, FieldHeader, InputField, LoginBtn, SignUpBtn, FlashMessage } from './LoginStyles';
+import {
+  LoginContainer,
+  LeftContainer,
+  RightContainer,
+  PlaneOne,
+  PlaneTwo,
+  LoginFormContainer,
+  LoginFormHeader,
+  LoginFormSubHeader,
+  LoginUsernameInput,
+  LoginPasswordInput,
+  LoginBtn,
+  LoginWrapper,
+  FieldContainer,
+  FieldHeader,
+  InputField,
+  SignUpBtn,
+  FlashMessage
+} from './LoginStyles';
 
 //Redux Actions
 import { login } from '../../redux/reducers/user_reducer';
@@ -46,13 +64,13 @@ class Login extends Component {
       //store the error message
       const err = Object.create(error);
       //modify the error message based off of the response
-      if(error.message.endsWith('400')){
+      if (error.message.endsWith('400')) {
         //if username or password is missing
         err.message = 'Username and Password are required'
-      }else if(error.message.endsWith('401')){
+      } else if (error.message.endsWith('401')) {
         //if username or password are incorrect
         err.message = "Invalid Username or Password"
-      }else {
+      } else {
         err.message = "Internal Server Error"
       }
       //set the error message to local state
@@ -64,19 +82,21 @@ class Login extends Component {
 
   render() {
     return (
-        <LoginWrapper>
-          <FieldContainer>
-            <FieldHeader>Member Login</FieldHeader>
-            {
-              this.state.errorMessage ? <FlashMessage><h1>{this.state.errorMessage}</h1></FlashMessage> : null
-            }
-            <InputField type="text" placeholder="Username" onChange={event => this.handleInputChange('username', event)} />
-            <InputField type="password" placeholder="Password" onChange={event => this.handleInputChange('password', event)} />
-            <LoginBtn onClick={this.handleLogin}>Login</LoginBtn>
-            <span>or</span>
-            <SignUpBtn to="/signup"><h1>Sign Up</h1></SignUpBtn>
-          </FieldContainer>
-        </LoginWrapper>
+      <LoginContainer>
+        <LeftContainer>
+          <PlaneOne />
+          <PlaneTwo />
+        </LeftContainer>
+        <RightContainer>
+          <LoginFormContainer>
+            <LoginFormHeader>Sign in to ChitChat</LoginFormHeader>
+            <LoginFormSubHeader>Enter your details to continue</LoginFormSubHeader>
+            <LoginUsernameInput onChange={(event) => this.handleInputChange('username', event)}/>
+            <LoginPasswordInput onChange={(event) => this.handleInputChange('password', event)}/>
+            <LoginBtn onClick={this.handleLogin}>Sign In</LoginBtn>
+          </LoginFormContainer>
+        </RightContainer>
+      </LoginContainer>
     )
   }
 }
@@ -86,3 +106,19 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, { login })(Login)
+
+
+
+{/* < LoginWrapper >
+<FieldContainer>
+  <FieldHeader>Member Login</FieldHeader>
+  {
+    this.state.errorMessage ? <FlashMessage><h1>{this.state.errorMessage}</h1></FlashMessage> : null
+  }
+  <InputField type="text" placeholder="Username" onChange={event => this.handleInputChange('username', event)} />
+  <InputField type="password" placeholder="Password" onChange={event => this.handleInputChange('password', event)} />
+  <LoginBtn onClick={this.handleLogin}>Login</LoginBtn>
+  <span>or</span>
+  <SignUpBtn to="/signup"><h1>Sign Up</h1></SignUpBtn>
+</FieldContainer>
+      </LoginWrapper > */}

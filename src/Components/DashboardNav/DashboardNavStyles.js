@@ -30,7 +30,7 @@ export const DashboardNavLinksContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    margin-top: 20%;
+    margin-top: 10%;
 `
 
 export const DashboardNavLink = styled(NavLink)`
