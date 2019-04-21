@@ -26,7 +26,7 @@ import {
 } from './LoginStyles';
 
 //Redux Actions
-import { login } from '../../redux/reducers/user_reducer';
+import { login, create } from '../../redux/reducers/user_reducer';
 
 class Login extends Component {
   constructor() {
@@ -53,8 +53,11 @@ class Login extends Component {
   };
 
   changeForm = () => {
+    //will change the what form we are seeing, either login or signup and resets the previous state
     this.setState({
-      loginForm: !this.state.loginForm
+      loginForm: !this.state.loginForm,
+      username: '',
+      password: ''
     })
   };
 
@@ -68,6 +71,7 @@ class Login extends Component {
     };
     //make a POST request to the auth route in server with user credentials
     axios.post('/auth/login', userCredentials).then(response => {
+      console.log(response);
       //store the returned user data
       const user = response.data;
       //store the user on redux
@@ -112,6 +116,7 @@ class Login extends Component {
       //then route to dashboard
       this.props.history.push('/dashboard/messages');
     }).catch(error => {
+      console.log(error);
       //store the error message
       const err = Object.create(error);
       //modify the error message based off of the response
@@ -176,7 +181,7 @@ class Login extends Component {
 
 
   render() {
-    console.log(this.state.img);
+    console.log(this.state);
     return (
       <LoginContainer>
         <LeftContainer>
@@ -201,10 +206,10 @@ class Login extends Component {
               <SignupFormContainer>
                 <SignupFormHeader>Create new account</SignupFormHeader>
                 <SignupFormSubHeader>Enter the details for your new account</SignupFormSubHeader>
-                <SignupUsernameInput />
-                <SignupPasswordInput />
-                <SignupEmailInput />
-                <SignupBtn>Sign Up</SignupBtn>
+                <SignupUsernameInput onChange={(event) => this.handleInputChange('username', event)}/>
+                <SignupPasswordInput onChange={(event) => this.handleInputChange('password', event)}/>
+                <SignupEmailInput onChange={(event) => this.handleInputChange('email', event)}/>
+                <SignupBtn onClick={this.handleSignup}>Sign Up</SignupBtn>
                 <SignUpWrapper signup>
                   <h3>Changed your mind?</h3>
                   <span onClick={this.changeForm}>Cancel</span>
@@ -221,4 +226,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { login })(Login);
+export default connect(mapStateToProps, { login, create })(Login);

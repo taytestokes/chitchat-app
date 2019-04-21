@@ -15,17 +15,6 @@ const slideUp = keyframes`
     }
 `
 
-const slideDown = keyframes`
-    0% {
-        margin-top: -150vh;
-        opacity: .25;
-    }
-    100% {
-        margin-top: 0;
-        opacity: 1;
-    }
-`
-
 //Styled Components
 
 export const LoginContainer = styled.div`

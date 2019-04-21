@@ -109,7 +109,7 @@ passport.use('register', new LocalStrategy({
             //send user back to client
             done(null, user);
         }).catch(err => {
-            console.warn(err);
+            console.warn(err)
             done(null, false, { message: 'Unkown error, please try again.' });
         });
     }
