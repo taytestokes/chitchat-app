@@ -7,18 +7,45 @@ import DashboardMessages from '../DashboardMessages/DashboardMessages';
 import DashboardUsers from '../DashboardUsers/DashboardUsers';
 
 //Styled Components
-import { DashboardContainer } from './DashboardStyles';
+import { DashboardContainer, LoadingContainer, LoadingImage } from './DashboardStyles';
 
 class Dashboard extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      loading: true
+    }
+  }
+
+  //Lifecycle Methods
+  componentDidMount() {
+    //will provide a loading animation
+    setTimeout(() => {
+      this.setState({
+        loading: false
+      })
+    }, 2000);
+  }
+
   render() {
     return (
-      <DashboardContainer>
-        <DashboardNav />
-        <Switch>
-          <Route path="/dashboard/messages" component={DashboardMessages} />
-          <Route path="/dashboard/users" component={DashboardUsers} />
-        </Switch>
-      </DashboardContainer>
+      <div>
+        {
+          this.state.loading ?
+            <LoadingContainer>
+              <LoadingImage />
+            </LoadingContainer>
+            :
+            <DashboardContainer>
+              <DashboardNav />
+              <Switch>
+                <Route path="/dashboard/messages" component={DashboardMessages} />
+                <Route path="/dashboard/users" component={DashboardUsers} />
+              </Switch>
+            </DashboardContainer>
+        }
+      </div>
     )
   };
 };
