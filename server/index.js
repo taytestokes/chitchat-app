@@ -151,7 +151,6 @@ const S3 = new AWS.S3();
 
 //AWS Endpoints
 app.post('/api/s3', (req, res) => {
-    console.log(req.body)
     //body will contain the string that is the photo
     const { photo } = req.body;
     // the photo string needs to be converted into a 'base 64' string for s3 to understand how to read the image
@@ -170,7 +169,7 @@ app.post('/api/s3', (req, res) => {
         let response, code;
         //check to see if err, and handle the data
         if (err) {
-            console.log(err)
+            console.warn(err)
             response = err;
             code = 500;
         } else {
