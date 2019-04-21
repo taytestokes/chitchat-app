@@ -15,12 +15,8 @@ import {
   LoginUsernameInput,
   LoginPasswordInput,
   LoginBtn,
-  LoginWrapper,
-  FieldContainer,
-  FieldHeader,
-  InputField,
-  SignUpBtn,
-  FlashMessage
+  SignUpWrapper,
+  SignUpLink,
 } from './LoginStyles';
 
 //Redux Actions
@@ -33,7 +29,11 @@ class Login extends Component {
     this.state = {
       username: '',
       password: '',
-      errorMessage: ''
+      errorMessage: '',
+      file: '',
+      fileName: '',
+      fileType: '',
+      img: ''
     }
   }
 
@@ -80,10 +80,58 @@ class Login extends Component {
     })
   };
 
+
+  handlePhoto = event => {
+    //this will make a generic file reader that can convert files into strings and allows us to upload it a server
+    const reader = new FileReader();
+    //the file is located here
+    const file = event.target.files[0];
+    console.log(file)
+    //this is an event handler that will not actually execute until line 100 executes
+    reader.onload = photo => {
+      //the 'photo' param is the processed image
+      this.setState({
+        file: photo.target.result,
+        fileName: file.name,
+        fileType: file.type,
+        img: '',
+      });
+    }
+    //take the file from the input field and proccess it as a dataurl (a special way to interpret files)
+    reader.readAsDataURL(file);
+  }
+
+  sendPhoto = () => {
+    //destructure the image from state
+    const {file, fileName, fileType, img} = this.state;
+     //the img obj to send to server
+     const image = {
+       photo: {
+        file,
+        fileName,
+        fileType,
+        img
+       }
+     };
+    //make a post req to the server
+    axios.post('/api/s3', image).then(response => {
+      console.log(response);
+      this.setState({
+        img: response.data.Location
+      })
+    }).catch(err => console.log(err.message))
+  }
+
+
+
   render() {
+    console.log(this.state.img);
     return (
       <LoginContainer>
         <LeftContainer>
+          <img src={this.state.img}/>
+          <input type='file' onChange={this.handlePhoto}/>
+          <button onClick={this.sendPhoto}>Send photo</button>
           <PlaneOne />
           <PlaneTwo />
         </LeftContainer>
@@ -91,9 +139,13 @@ class Login extends Component {
           <LoginFormContainer>
             <LoginFormHeader>Sign in to ChitChat</LoginFormHeader>
             <LoginFormSubHeader>Enter your details to continue</LoginFormSubHeader>
-            <LoginUsernameInput onChange={(event) => this.handleInputChange('username', event)}/>
-            <LoginPasswordInput onChange={(event) => this.handleInputChange('password', event)}/>
+            <LoginUsernameInput onChange={(event) => this.handleInputChange('username', event)} />
+            <LoginPasswordInput onChange={(event) => this.handleInputChange('password', event)} />
             <LoginBtn onClick={this.handleLogin}>Sign In</LoginBtn>
+            <SignUpWrapper>
+              <h3>Don't have an account?</h3>
+              <SignUpLink to="/signup">Sign Up</SignUpLink>
+            </SignUpWrapper>
           </LoginFormContainer>
         </RightContainer>
       </LoginContainer>
@@ -105,20 +157,4 @@ function mapStateToProps(state) {
   return state;
 }
 
-export default connect(mapStateToProps, { login })(Login)
-
-
-
-{/* < LoginWrapper >
-<FieldContainer>
-  <FieldHeader>Member Login</FieldHeader>
-  {
-    this.state.errorMessage ? <FlashMessage><h1>{this.state.errorMessage}</h1></FlashMessage> : null
-  }
-  <InputField type="text" placeholder="Username" onChange={event => this.handleInputChange('username', event)} />
-  <InputField type="password" placeholder="Password" onChange={event => this.handleInputChange('password', event)} />
-  <LoginBtn onClick={this.handleLogin}>Login</LoginBtn>
-  <span>or</span>
-  <SignUpBtn to="/signup"><h1>Sign Up</h1></SignUpBtn>
-</FieldContainer>
-      </LoginWrapper > */}
+export default connect(mapStateToProps, { login })(Login);

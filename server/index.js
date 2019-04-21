@@ -9,9 +9,7 @@ const LocalStrategy = require('passport-local');
 const bcrypt = require('bcrypt');
 const cookieParser = require('cookie-parser');
 const massive = require('massive');
-const multer = require('multer');
-const multerS3 = require('multer-s3');
-const aws = require('aws-sdk');
+const AWS = require('aws-sdk');
 
 //Controllers
 const authController = require('./controllers/authController');
@@ -22,14 +20,19 @@ const usersController = require('./controllers/usersController');
 let {
     DATABASE_CONNECTION,
     AWS_SECRET_ACCESS_KEY,
-    AWS_ACCESS_KEY
+    AWS_ACCESS_KEY,
+    AWS_REGION,
+    AWS_BUCKET
 } = process.env;
 
 //Express Initial Setup & Configuration
 const app = express();
-app.use(bodyParser.json());
 app.use(cors());
 app.use(cookieParser());
+//since file upload is such a large string, body-parser is not equipped to handle it
+//this will allow uploads through the body
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
 //Massive Configuration
 massive(DATABASE_CONNECTION).then(dbInstance => {
@@ -43,36 +46,6 @@ app.use(sessions({
     resave: true,
     secret: "This is my secret for now"
 }));
-
-//Amazon & Multer Configuration
-aws.config.update({
-    //secret key for s3 bucket
-    secretAccessKey: AWS_SECRET_ACCESS_KEY,
-    //access key for s32 bucket
-    accessKeyId: AWS_ACCESS_KEY,
-    //the buckets region
-    region: 'us-west-2'
-});
-
-//amazon s3 bucket instance
-const s3 = new aws.S3();
-
-const upload = multer({
-    //configure where to store the images, in this case an s3 bucket
-    storage: multerS3({
-        s3: s3,
-        bucket: 'chitchat-app',
-        acl: 'public-read',
-        metadata: function (req, file, cb) {
-            cb(null, { fieldName: file.fieldname });
-        },
-        key: function (req, file, cb) {
-            cb(null, req.user.username);
-        }
-    })
-});
-
-const singleUpload = upload.single('image');
 
 //Passport Configuration For Authentication
 app.use(passport.initialize());
@@ -164,6 +137,51 @@ app.post('/new/conversation', messagesController.createConversation);
 //Dashboard Users Endpoints
 app.get('/users', usersController.getAllUsers);
 
+//Setup configuration for AWS
+AWS.config.update({
+    //secret key for s3 bucket
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+    //access key for s32 bucket
+    accessKeyId: AWS_ACCESS_KEY,
+    //the buckets region
+    region: AWS_REGION
+});
+//create an interface to interact with s3
+const S3 = new AWS.S3();
+
+//AWS Endpoints
+app.post('/api/s3', (req, res) => {
+    console.log(req.body)
+    //body will contain the string that is the photo
+    const { photo } = req.body;
+    // the photo string needs to be converted into a 'base 64' string for s3 to understand how to read the image
+    const buf = new Buffer.from(photo.file.replace(/^data:image\/\w+;base64,/, ''), 'base64');
+    //this is the object to send to S3 with information about the photo, and the the photo itself
+    const params = {
+        Bucket: AWS_BUCKET,
+        Body: buf,
+        Key: photo.fileName,
+        ContentType: photo.fileType,
+        ACL: 'public-read',
+    };
+    //using the S3 object created above, pass it the image to upload and the function to execute when the image uploads
+    S3.upload(params, (err, data) => {
+        //declare empty variable to re-assign based on error
+        let response, code;
+        //check to see if err, and handle the data
+        if (err) {
+            console.log(err)
+            response = err;
+            code = 500;
+        } else {
+            response = data;
+            code = 200;
+        }
+        //if upload was successful send data, if not send the error
+        res.status(code).send(response);
+    })
+})
+
 
 //Server Setup
 const server = app.listen(4000, () => {
@@ -191,12 +209,12 @@ io.on('connection', socket => {
         const date = new Date();
         let hours = date.getHours();
         //check to see if it is a single value
-        if(parseInt(hours) < 10){
+        if (parseInt(hours) < 10) {
             hours = '0' + hours;
         };
         let minutes = date.getMinutes();
         //check to see if it is a single value
-        if(parseInt(minutes) < 10){
+        if (parseInt(minutes) < 10) {
             minutes = '0' + minutes;
         };
         //create the new time stamp
