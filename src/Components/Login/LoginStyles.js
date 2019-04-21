@@ -1,6 +1,32 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import logo from '../../assets/logo.png';
 import plane from '../../assets/plane.png'
+
+//Animations 
+const slideUp = keyframes`
+    0% {
+        opacity: .25;
+        transform: scaleX(.1);
+        margin-left: 100vw;
+    }
+    100% {
+        opacity: 1;
+        transform: scaleX(1);
+    }
+`
+
+const slideDown = keyframes`
+    0% {
+        margin-top: -150vh;
+        opacity: .25;
+    }
+    100% {
+        margin-top: 0;
+        opacity: 1;
+    }
+`
+
+//Styled Components
 
 export const LoginContainer = styled.div`
     @import url('https://fonts.googleapis.com/css?family=Nunito');
@@ -57,6 +83,7 @@ export const LoginFormContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: left;
+    animation: ${slideUp} .5s;
 `
 
 export const LoginFormHeader = styled.h1`
@@ -131,7 +158,7 @@ export const LoginBtn = styled.button`
 export const SignUpWrapper = styled.div`
     width: 75%;
     height: 10%;
-    margin-top: 20%;
+    margin-top: ${props => props.signup ? '5%' : '23%'};
     font-size: 14px;
     color: #f1f3f6;
     display: flex;
@@ -146,7 +173,7 @@ export const SignUpWrapper = styled.div`
             cursor: pointer;
         }
     }
-` 
+`
 
 /* Signup Form Container */
 export const SignupFormContainer = styled.div`
@@ -156,6 +183,7 @@ export const SignupFormContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: left;
+    animation: ${slideUp} .5s;
 `
 
 export const SignupFormHeader = styled.h1`

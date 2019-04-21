@@ -205,7 +205,7 @@ class Login extends Component {
                 <SignupPasswordInput />
                 <SignupEmailInput />
                 <SignupBtn>Sign Up</SignupBtn>
-                <SignUpWrapper>
+                <SignUpWrapper signup>
                   <h3>Changed your mind?</h3>
                   <span onClick={this.changeForm}>Cancel</span>
                 </SignUpWrapper>
