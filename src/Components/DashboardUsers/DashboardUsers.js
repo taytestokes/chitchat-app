@@ -9,6 +9,7 @@ import {
     UsersHeader,
     UsersContainer,
     UserCard,
+    UserCardInfo,
     MessageButton,
     UserSubHeader,
     NextBtn,
@@ -99,12 +100,19 @@ class DashboardUsers extends Component {
         const { users } = this.state;
         //map over the users to display them as cards
         const mappedUsers = users.map(user => {
+            console.log(user)
             return (
                 <UserCard key={user.user_id}>
-                    {user.username}
-                    <MessageButton onClick={() => this.messageNewUser(user)}>
-                        Message
-                    </MessageButton>
+                    <img src={user.pic_url} />
+                    <UserCardInfo>
+                        <div>
+                            <h1>{user.username}</h1>
+                            <h2>{user.email}</h2>
+                        </div>
+                        <MessageButton onClick={() => this.messageNewUser(user)}>
+                            <FontAwesomeIcon icon="paper-plane"/>
+                        </MessageButton>
+                    </UserCardInfo>
                 </UserCard>
             )
         });
@@ -114,7 +122,7 @@ class DashboardUsers extends Component {
         return (
             <DashboardUsersContainer>
                 <UsersHeader>
-                    
+
                 </UsersHeader>
                 <UserSubHeader>
                     <SearchInput />
