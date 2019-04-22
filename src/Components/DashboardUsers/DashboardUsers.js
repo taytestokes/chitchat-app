@@ -71,7 +71,8 @@ class DashboardUsers extends Component {
         }
         //http request to server to create a new conversation in db
         axios.post('/new/conversation', data).then(response => {
-            console.log(response.data);
+            console.log(response.data)
+            // this.props.history.push(`/dashbaord/messages/${}`)
         });
     };
 

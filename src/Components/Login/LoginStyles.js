@@ -15,7 +15,27 @@ const slideUp = keyframes`
     }
 `
 
+const loading = keyframes`
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+`
+
 //Styled Components
+
+export const LoadingCircle = styled.div`
+    width: 45px;
+    height: 45px;
+    border: 3px solid #D3D3D350;
+    border-top: 3px solid white;
+    border-radius: 50%;
+    margin-top: 15%;
+    margin-left: 30%;
+    animation: ${loading} 1s linear infinite;
+`
 
 export const LoginContainer = styled.div`
     @import url('https://fonts.googleapis.com/css?family=Nunito');

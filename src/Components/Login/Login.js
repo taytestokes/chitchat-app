@@ -22,7 +22,8 @@ import {
   SignupUsernameInput,
   SignupPasswordInput,
   SignupEmailInput,
-  SignupBtn
+  SignupBtn,
+  LoadingCircle
 } from './LoginStyles';
 
 //Redux Actions
@@ -37,6 +38,7 @@ class Login extends Component {
       password: '',
       email: '',
       loginForm: true,
+      loading: false,
       errorMessage: '',
       file: '',
       fileName: '',
@@ -62,6 +64,10 @@ class Login extends Component {
   };
 
   handleLogin = () => {
+    //change state to show loading animation
+    this.setState({
+      loading: !this.state.loading
+    });
     //take the username and password from state
     const { username, password } = this.state;
     //create an object that will hold the users credentials
@@ -79,6 +85,10 @@ class Login extends Component {
       //route to the dashboard if the user is set to the redux store
       this.props.history.push('/dashboard/messages');
     }).catch(error => {
+      //change the state to stop loaidng animation
+      this.setState({
+        loading: !this.state.loading
+      });
       //store the error message
       const err = Object.create(error);
       //modify the error message based off of the response
@@ -99,6 +109,10 @@ class Login extends Component {
   };
 
   handleSignup = () => {
+    //change state to get a loading animation
+    this.setState({
+      loading: !this.state.loading
+    });
     //take the username, password, and email off of state
     const { username, password, email } = this.state;
     //create the new user object to send to server
@@ -116,7 +130,10 @@ class Login extends Component {
       //then route to dashboard
       this.props.history.push('/dashboard/messages');
     }).catch(error => {
-      console.log(error);
+      //stop the loading animation
+      this.setState({
+        loading: !this.state.loading
+      });
       //store the error message
       const err = Object.create(error);
       //modify the error message based off of the response
@@ -195,7 +212,12 @@ class Login extends Component {
                 <LoginFormSubHeader>Enter your details to continue</LoginFormSubHeader>
                 <LoginUsernameInput onChange={(event) => this.handleInputChange('username', event)} />
                 <LoginPasswordInput onChange={(event) => this.handleInputChange('password', event)} />
-                <LoginBtn onClick={this.handleLogin}>Sign In</LoginBtn>
+                {
+                  this.state.loading ?
+                    <LoadingCircle />
+                  :
+                    <LoginBtn onClick={this.handleLogin}>Sign In</LoginBtn>
+                }
                 <SignUpWrapper>
                   <h3>Don't have an account?</h3>
                   <span onClick={this.changeForm}>Sign Up</span>
@@ -208,7 +230,12 @@ class Login extends Component {
                 <SignupUsernameInput onChange={(event) => this.handleInputChange('username', event)}/>
                 <SignupPasswordInput onChange={(event) => this.handleInputChange('password', event)}/>
                 <SignupEmailInput onChange={(event) => this.handleInputChange('email', event)}/>
-                <SignupBtn onClick={this.handleSignup}>Sign Up</SignupBtn>
+                {
+                  this.state.loading ?
+                    <LoadingCircle />
+                  :
+                  <SignupBtn onClick={this.handleSignup}>Sign Up</SignupBtn>
+                }
                 <SignUpWrapper signup>
                   <h3>Changed your mind?</h3>
                   <span onClick={this.changeForm}>Cancel</span>
