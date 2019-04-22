@@ -181,7 +181,6 @@ class Login extends Component {
 
 
   render() {
-    console.log(this.state);
     return (
       <LoginContainer>
         <LeftContainer>

@@ -22,7 +22,8 @@ let {
     AWS_SECRET_ACCESS_KEY,
     AWS_ACCESS_KEY,
     AWS_REGION,
-    AWS_BUCKET
+    AWS_BUCKET,
+    DEFAULT_PIC
 } = process.env;
 
 //Express Initial Setup & Configuration
@@ -102,6 +103,7 @@ passport.use('register', new LocalStrategy({
                 username,
                 password: hashedPassword,
                 email,
+                pic_url: DEFAULT_PIC
             });
         }).then(user => {
             //remove user password before sending back

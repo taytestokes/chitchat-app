@@ -4,19 +4,24 @@ import plane from '../../assets/plane.png';
 //Animations
 const bounce = keyframes`
     0% {
-        transform: scale(1)
+        transform: scale(1);
+        opacity: .2;
     }
     25% {
-        transform: scale(1.1)
+        transform: scale(1.1);
+        opacity: 1;
     }
     50% {
-        transform: scale(1)
+        transform: scale(1);
+        opacity: .2;
     }
     75% {
-        transform: scale(1.1)
+        transform: scale(1.1);
+        opacity: 1;
     }
     100% {
         transform: scale(1);
+        opacity: .2;
     }
 `
 
@@ -46,7 +51,7 @@ export const LoadingImage = styled.div`
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    width: 8%;
-    height: 18%;
-    animation: ${bounce} 2s infinite;
+    width: 5%;
+    height: 20%;
+    animation: ${bounce} 3.5s infinite;
 `
