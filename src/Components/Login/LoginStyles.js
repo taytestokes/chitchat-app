@@ -27,8 +27,8 @@ const loading = keyframes`
 //Styled Components
 
 export const LoadingCircle = styled.div`
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border: 3px solid #D3D3D350;
     border-top: 3px solid white;
     border-radius: 50%;
@@ -113,7 +113,7 @@ export const LoginUsernameInput = styled.input.attrs({
     width: 90%;
     height: 8%;
     background: transparent;
-    color: #232323;
+    color: white;
     border: none;
     border-bottom: 2px solid white;
     font-size: 18px;
@@ -131,7 +131,7 @@ export const LoginPasswordInput = styled.input.attrs({
     width: 90%;
     height: 8%;
     background: transparent;
-    color: #232323;
+    color: white;
     border: none;
     border-bottom: 2px solid white;
     font-size: 18px;

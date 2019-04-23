@@ -66,16 +66,16 @@ export const DashboardNavLink = styled(NavLink)`
 `
 
 export const LogoutContainer = styled(Link)`
+    width: 75%;
     height: 10%;
-    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
     padding-left: 30%;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
-    color: #4A4A4A;
+    color: #A9A9A9;
     text-decoration: none;
     transition: ease-in-out 0.1s;
     margin-top: auto;

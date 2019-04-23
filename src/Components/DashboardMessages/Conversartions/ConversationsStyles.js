@@ -19,35 +19,41 @@ export const ConversationFinderContainer = styled.div`
     background: white;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     border-bottom: 1px solid ${props => props.theme.lightGray};
-    font-size: 24px;
     color: #B9C3DD;
     z-index: 2;
     font-size: 15px;
-`
-
-export const ConversationFinder = styled.input.attrs({
-    placeholder: 'Search your inbox..'
-})`
-    width: 70%;
-    height: 50%;
-    border: none;
-    margin-left: 3%;
-    font-size: 18px;
-    outline: none;
-    transition: ease 0.2s;
-    &::placeholder {
-        color: #B9C3DD;
+    h1 {
         font-size: 18px;
+        color: #232323;
+        margin-left: 5%;
+        font-weight: bold;
+        width: 30%;
+    }
+    span {
+        height: 40%;
+        width: 10%;
+        border-radius: 2px 2px 2px 2px;
+        background: ${props => props.theme.green};
+        color: white;
+        margin-left: auto;
+        margin-right: 5%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        &:hover {
+            cursor: pointer;
+        }
     }
 `
 
 export const InboxContainer = styled.div`
     width: 100%;
     height: 90vh;
-    background: white;
+    background: #F1F3F750;
     display: block;
     overflow: scroll;
     scroll-behavior: smooth;
@@ -57,21 +63,17 @@ export const InboxContainer = styled.div`
 `
 
 export const ConversationTab = styled(NavLink)`
-    width: 99%;
+    width: 100%;
     height: 12%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    background: white;
     transition: ease-in-out 0.3s;
-    border-bottom: 1px solid ${props => props.theme.lightGray};
-    border-right: 5px solid white;
     &:hover {
         cursor: pointer;
-        background: '#FAFAFA';
     };
     &.active {
-        border-right: 5px solid ${props => props.theme.green};
+        background: #92969D15;
     };
 `

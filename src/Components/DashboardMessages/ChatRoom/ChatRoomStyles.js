@@ -1,6 +1,18 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+//Animations
+const spin = keyframes`
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+`
 
 export const RoomContainer = styled.div`
+    @import url('https://fonts.googleapis.com/css?family=Nunito');
+    font-family: 'Nunito';
     width: 60.5vw;
     height: 100vh;
     display: flex;
@@ -26,6 +38,54 @@ export const MessageContainerHeader = styled.div`
     z-index: 3;
 `
 
+export const MessageContainerHeaderUser = styled.div`
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        margin-left: 5%;
+        border: 1px solid ${props => props.theme.lightGray};
+    }
+    span {
+        margin-left: auto;
+        margin-right: 3%;
+        margin-top: 1.5%;
+        font-size: 24px;
+        color: ${props => props.theme.lightGray};
+        &:hover {
+            cursor: pointer;
+        }
+    }
+`
+
+export const HeaderUser = styled.div`
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    h1 {
+        font-size: 16px;
+        color: #232323;
+        margin-top: 1%;
+        margin-left: 5%;
+        font-weight: bold;
+    }
+    h2 {
+        font-size: 14px;
+        color: ${props => props.theme.lightGray};
+        margin-top: 3%;
+        margin-left: 5%;
+    }
+`
+
 export const MessageContainerBody = styled.div`
     width: 95%;
     height: 100%;
@@ -40,8 +100,6 @@ export const MessageContainerBody = styled.div`
 `
 
 export const Message = styled.div`
-    @import url('https://fonts.googleapis.com/css?family=Nunito');
-    font-family: 'Nunito';
     width: 100%;
     height: auto;
     margin: 2% 1%;

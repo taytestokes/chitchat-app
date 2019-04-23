@@ -7,7 +7,7 @@ import io from 'socket.io-client';
 import { updateRoomId } from '../../../redux/reducers/conversation_reducer';
 
 //Styled Components
-import { ConversationsContainer, ConversationFinderContainer, ConversationFinder, InboxContainer, ConversationTab } from './ConversationsStyles';
+import { ConversationsContainer, ConversationFinderContainer, InboxContainer, ConversationTab } from './ConversationsStyles';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Conversations extends Component {
@@ -77,8 +77,10 @@ class Conversations extends Component {
         return (
             <ConversationsContainer>
                 <ConversationFinderContainer>
-                    <FontAwesomeIcon icon="search" />
-                    <ConversationFinder />
+                    <h1>Message Inbox</h1>
+                    <span>
+                        <FontAwesomeIcon icon="search" />
+                    </span>
                 </ConversationFinderContainer>
                 <InboxContainer>
                     {mappedUserConversations}

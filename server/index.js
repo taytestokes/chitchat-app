@@ -134,7 +134,9 @@ app.get('/auth/logout', authController.logout);
 app.get('/user/conversations/:id', messagesController.getUserConversations);
 app.get('/conversation/messages/:id', messagesController.getConversationMessages);
 app.get('/conversation/last/message/:id', messagesController.getConversationLastMessage);
+app.get('/conversation/:id/users', messagesController.getConversationUsers);
 app.post('/new/conversation', messagesController.createConversation);
+
 
 //Dashboard Users Endpoints
 app.get('/users', usersController.getAllUsers);

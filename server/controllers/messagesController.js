@@ -54,4 +54,18 @@ module.exports = {
             console.log(error.message);
         });
     },
+
+    getConversationUsers: (req, res) => {
+        //destructure the conversation id from params
+        const { id } = req.params;
+        //get the db instance
+        const db = req.app.get('db');
+        db.get_conversation_users([id]).then(dbResponse => {
+            //send the response from the db
+            res.status(200).send(dbResponse);
+        }).catch(err => {
+            //if err
+            console.warn(err.message);
+        })
+    }
 }

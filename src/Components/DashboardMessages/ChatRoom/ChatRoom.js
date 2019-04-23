@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 
 //Styled Components
-import { RoomContainer, MessagesContainer, MessageContainerBody, Message, NewMessageContainer, MessageContainerHeader, NewMessageInput } from './ChatRoomStyles';
+import { RoomContainer, MessagesContainer, MessageContainerBody, Message, NewMessageContainer, MessageContainerHeader, NewMessageInput, MessageContainerHeaderUser, HeaderUser } from './ChatRoomStyles';
 
 class ChatRoom extends Component {
     constructor() {
@@ -14,13 +14,13 @@ class ChatRoom extends Component {
         this.state = {
             input: '',
             messages: [],
-            typing: false
+            users: []
         }
     };
 
     //Lifecycle Methods
     componentDidMount() {
-        // -- Socket Event Listenersn
+        // -- Socket Event Listeners
         this.socket = io();
 
         //update conversation messages when a new messgae is sent
@@ -50,6 +50,7 @@ class ChatRoom extends Component {
         if (roomId !== previousProps.conversationReducer.roomId) {
             //get the conversation message when component updates
             this.getConversationMessages(roomId);
+            this.getConversationUsers(roomId);
         };
 
     }
@@ -57,7 +58,7 @@ class ChatRoom extends Component {
     //Socket Methods
     sendSocketMessage = () => {
         //check to make sure there is a message typed
-        if(this.state.input === ''){
+        if (this.state.input === '') {
             return;
         }
         //take conversation id off of redux state
@@ -78,13 +79,6 @@ class ChatRoom extends Component {
         });
     };
 
-    userTyping = () => {
-        //take conversation id off of redux state
-        const { roomId } = this.props.conversationReducer;
-        //emit an event to the server that a user is typing
-        this.socket.emit('typing', roomId);
-    }
-
     updateMessagesOnState = (messages) => {
         this.setState({
             messages
@@ -96,11 +90,9 @@ class ChatRoom extends Component {
         this.setState({
             [key]: event.target.value
         });
-        //fire user is typing to show that a user is typing
-        this.userTyping();
     };
 
-    handleKeyPress = (event) => {
+    handleKeyPress = event => {
         //check to see if the key is enter
         if (event.key === 'Enter') {
             //send the new message
@@ -108,7 +100,7 @@ class ChatRoom extends Component {
         };
     };
 
-    getConversationMessages = (roomId) => {
+    getConversationMessages = roomId => {
         //make an http request to server to get the messages for the conversation
         axios.get(`/conversation/messages/${roomId}`).then(response => {
             //set the local state with the data recieved from the server
@@ -119,11 +111,22 @@ class ChatRoom extends Component {
             //if error, catch the message
             console.log(error.message);
         })
-    }
+    };
+
+    getConversationUsers = roomId => {
+        axios.get(`/conversation/${roomId}/users`).then(response => {
+            //set the users array on local state to the response of the db
+            this.setState({
+                users: response.data
+            });
+        }).catch(err => {
+            console.log(err.message);
+        });
+    };
 
     render() {
         //map through the messages on state to return the message as JSX
-        const mappedMessages = this.state.messages.map( message => {
+        const mappedMessages = this.state.messages.map(message => {
             //take user id from props
             const { user_id } = this.props.userReducer.user;
             //define custom style for id the messgae is from the user or not
@@ -131,8 +134,8 @@ class ChatRoom extends Component {
             //change the display for the message if the author isn't you
             const messageContainerStyle = user_id !== message.user_id ? { flexDirection: 'row-reverse' } : {};
             //change the display for the timestamp
-            const timestampStyle = user_id !== message.user_id ? {marginRight: 'auto'} : {};
-            
+            const timestampStyle = user_id !== message.user_id ? { marginRight: 'auto' } : {};
+
             return (
                 <Message key={message.message_id} style={messageContainerStyle}>
                     <h1 style={timestampStyle}>{message.created_at}</h1>
@@ -141,11 +144,32 @@ class ChatRoom extends Component {
             )
         });
 
+        //filter through the users array on state to display the info about the user you're talking to
+        const filteredUser = this.state.users.filter(user => {
+            //take the logged in user if off of redux state
+            const { user_id } = this.props.userReducer.user;
+            //return the user that is not the one currently logged in
+            return user.user_id != user_id;
+        }).map(mappedUser => {
+            //map through the filtered user and display jsx with information
+            return (
+                <MessageContainerHeaderUser>
+                    <img src={mappedUser.pic_url} />
+                    <HeaderUser>
+                        <h1>{mappedUser.username}</h1>
+                        <h2>{mappedUser.email}</h2>
+                    </HeaderUser>
+                    <span>
+                        <FontAwesomeIcon icon="ellipsis-v"/>
+                    </span>
+                </MessageContainerHeaderUser>
+            )
+        })
 
         return (
             <RoomContainer>
                 <MessageContainerHeader>
-
+                    {filteredUser}
                 </MessageContainerHeader>
                 <MessagesContainer>
                     <MessageContainerBody>
