@@ -2,20 +2,22 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import axios from 'axios';
 import io from 'socket.io-client';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 //Dispatchers from redux
 import { updateRoomId } from '../../../redux/reducers/conversation_reducer';
 
 //Styled Components
 import { ConversationsContainer, ConversationFinderContainer, InboxContainer, ConversationTab } from './ConversationsStyles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class Conversations extends Component {
     constructor() {
         super();
 
         this.state = {
-            userConversations: []
+            userConversations: [],
+            popup: false
         }
     }
 
@@ -36,6 +38,12 @@ class Conversations extends Component {
             this.setState({
                 userConversations: response.data
             });
+        });
+    };
+
+    handlePopUp = () => {
+        this.setState({
+            popup: !this.state.popup
         });
     };
 
@@ -78,9 +86,6 @@ class Conversations extends Component {
             <ConversationsContainer>
                 <ConversationFinderContainer>
                     <h1>Message Inbox</h1>
-                    <span>
-                        <FontAwesomeIcon icon="search" />
-                    </span>
                 </ConversationFinderContainer>
                 <InboxContainer>
                     {mappedUserConversations}

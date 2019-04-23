@@ -13,12 +13,14 @@ const spin = keyframes`
 export const RoomContainer = styled.div`
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
-    width: 60.5vw;
+    width: 60vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    background: white;
+    margin-left: .5vw;
 `
 
 export const MessagesContainer = styled.div`
@@ -34,8 +36,8 @@ export const MessageContainerHeader = styled.div`
     width: 100%;
     height: 11.1%;
     background: white;
-    border-bottom: 1px solid ${props => props.theme.lightGray};
     z-index: 3;
+    border-bottom: 1px solid ${props => props.theme.lightGray};
 `
 
 export const MessageContainerHeaderUser = styled.div`
@@ -57,7 +59,7 @@ export const MessageContainerHeaderUser = styled.div`
         margin-right: 3%;
         margin-top: 1.5%;
         font-size: 24px;
-        color: ${props => props.theme.lightGray};
+        color: #CCC;
         &:hover {
             cursor: pointer;
         }
@@ -80,7 +82,7 @@ export const HeaderUser = styled.div`
     }
     h2 {
         font-size: 14px;
-        color: ${props => props.theme.lightGray};
+        color: #CCC;
         margin-top: 3%;
         margin-left: 5%;
     }
@@ -135,6 +137,7 @@ export const NewMessageContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 -5px 10px -5px #f1f1f1;
     border-top: 1px solid ${props => props.theme.lightGray};
     span {
         color: ${props => props.theme.green};
@@ -156,15 +159,14 @@ export const NewMessageInput = styled.input.attrs({
     width: 80%;
     height: 50%;
     border: none;
-    border-bottom: 1px solid ${props => props.theme.lightGray};
     border-radius: 3px 3px 3px 3px;
-    font-size: 14px;
-    padding-left: 2%;
+    font-size: 16px;
     outline: none;
     transition: ease-in-out 0.3s;
     margin-left: 4%;
     &::placeholder {
         color: #ccc;
+        font-weight: bold;
     }
     &:focus {
         background: rgba(0,0,0,0);

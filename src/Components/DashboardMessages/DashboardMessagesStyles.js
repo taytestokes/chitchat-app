@@ -7,4 +7,5 @@ export const MessageDashboard = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
+    background: #F1F3F7;
 `
