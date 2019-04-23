@@ -10,9 +10,20 @@ const spin = keyframes`
     }
 `
 
+const slide = keyframes`
+     0% {
+        opacity: 0.1;
+        right: -100vw;
+    }
+    100% {
+        right: 0;
+    }
+`
+
 export const RoomContainer = styled.div`
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
+    position: relative;
     width: 60vw;
     height: 100vh;
     display: flex;
@@ -21,6 +32,7 @@ export const RoomContainer = styled.div`
     align-items: center;
     background: white;
     margin-left: .5vw;
+    animation: ${slide} 0.3s linear;
 `
 
 export const MessagesContainer = styled.div`
