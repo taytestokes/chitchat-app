@@ -17,7 +17,6 @@ class Conversations extends Component {
 
         this.state = {
             userConversations: [],
-            popup: false
         }
     }
 
@@ -33,18 +32,11 @@ class Conversations extends Component {
         const { user } = this.props.userReducer;
         //ajax request to server for users conversations
         axios.get(`/user/conversations/${user.user_id}`).then(response => {
-            console.log(response.data)
             //store the conversations on local state
             this.setState({
                 userConversations: response.data
             });
         })
-    };
-
-    handlePopUp = () => {
-        this.setState({
-            popup: !this.state.popup
-        });
     };
 
     //Socket Methods
@@ -71,13 +63,13 @@ class Conversations extends Component {
         //map through the user conversations on props and return a conversation tab displayed in JSX
         const mappedUserConversations = this.state.userConversations.map((conversation, index) => {
             //take the conversaiton id from the conversation obj
-            const { conversation_id } = conversation;
             return (
                 <ConversationTab
                     key={index}
-                    to={`/dashboard/messages/${conversation_id}`} activeClassName="active"
-                    onClick={() => this.handleRoomJoin(conversation_id)}>
-                
+                    to={`/dashboard/messages/${conversation.id}`} activeClassName="active"
+                    onClick={() => this.handleRoomJoin(conversation.id)}
+                    >
+                    {conversation.id}
                 </ConversationTab>
             )
         });

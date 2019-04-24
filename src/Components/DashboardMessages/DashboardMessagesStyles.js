@@ -22,5 +22,5 @@ export const PlaceHolder = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 75px;
-    color: #d3d3d3;
+    color: #d3d3d350;
 `

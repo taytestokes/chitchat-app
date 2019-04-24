@@ -99,10 +99,14 @@ class DashboardUsers extends Component {
         const mappedUsers = users.map(user => {
             return (
                 <UserCard key={user.user_id}>
-                    <span><img src={user.picture} alt="profile"/></span>
+                    <span><img src={user.picture} alt="profile" /></span>
                     <span>{user.username}</span>
                     <span>{user.email}</span>
-                    <span><MessageButton><FontAwesomeIcon icon="paper-plane"/></MessageButton></span>
+                    <span>
+                        <MessageButton onClick={() => this.messageNewUser(user)}>
+                            <FontAwesomeIcon icon="paper-plane" />
+                        </MessageButton>
+                    </span>
                 </UserCard>
             )
         });
@@ -113,8 +117,8 @@ class DashboardUsers extends Component {
             <DashboardUsersContainer>
                 <UsersHeader>
                     <h1>All Users</h1>
-                    <PrevBtn><FontAwesomeIcon icon="chevron-left"/></PrevBtn>
-                    <NextBtn><FontAwesomeIcon icon="chevron-right"/></NextBtn>
+                    <PrevBtn onClick={this.prevPage}><FontAwesomeIcon icon="chevron-left" /></PrevBtn>
+                    <NextBtn onClick={this.nextPage}><FontAwesomeIcon icon="chevron-right" /></NextBtn>
                 </UsersHeader>
                 <UsersContainer>
                     <UserContainerHeader>

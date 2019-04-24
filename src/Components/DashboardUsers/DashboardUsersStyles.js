@@ -37,19 +37,19 @@ export const UsersContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    background: white;
+    background: transparent;
     margin-top: 3%;
-    border: 1px solid ${props => props.theme.lightGray};
 `
 
 export const UserContainerHeader = styled.div`
     width: 100%;
-    height: 10%;
+    height: 8%;
+    background: white;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid ${props => props.theme.lightGray};
+    border: 1px solid ${props => props.theme.lightGray};
     span {
         font-size: 14px;
         color: #232323;
@@ -58,7 +58,7 @@ export const UserContainerHeader = styled.div`
 
 export const NextBtn = styled.button`
     width: 3%;
-    height: 45%;
+    height: 40%;
     background: ${props => props.theme.primaryBlue};
     color: white;
     border: 2px solid ${props => props.theme.primaryBlue};
@@ -80,7 +80,7 @@ export const NextBtn = styled.button`
 
 export const PrevBtn = styled.button`
     width: 3%;
-    height: 45%;
+    height: 40%;
     background: ${props => props.theme.primaryBlue};
     color: white;
     border: 2px solid ${props => props.theme.primaryBlue};
@@ -103,13 +103,18 @@ export const PrevBtn = styled.button`
 
 export const UserCard = styled.div`
     width: 100%;
-    height: 10%;
+    height: 13%;
     background: white;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
     border-bottom: 1px solid ${props => props.theme.lightGray};
+    border-left: 1px solid ${props => props.theme.lightGray};
+    border-right: 1px solid ${props => props.theme.lightGray};
+    &:hover {
+        background: #F8F8F825;
+    }
     img {
         width: 35px;
         height: 35px;
@@ -144,6 +149,5 @@ export const MessageButton = styled.button`
     &:hover {
         cursor: pointer;
         color: ${props => props.theme.primaryBlue};
-        /* background: ${props => props.theme.green}; */
     }
 `

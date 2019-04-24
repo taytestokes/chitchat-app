@@ -103,6 +103,7 @@ class ChatRoom extends Component {
     getConversationMessages = roomId => {
         //make an http request to server to get the messages for the conversation
         axios.get(`/conversation/messages/${roomId}`).then(response => {
+            console.log(response)
             //set the local state with the data recieved from the server
             this.setState({
                 messages: response.data

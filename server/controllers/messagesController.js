@@ -19,6 +19,7 @@ module.exports = {
         const db = req.app.get('db');
         //create a new conversation
         db.create_conversation([user.user_id, newUser.user_id]).then(dbResponse => {
+            consolelog(dbResponse);
             res.send(`Conversation with ${newUser.username} & ${user.username} was created!`)
         }).catch(error => {
             res.send(error.message);
@@ -32,6 +33,7 @@ module.exports = {
         const db = req.app.get('db');
         //get the conversation meessages based of the room id
         db.get_conversation_messages([id]).then(dbResponse => {
+            console.log(dbResponse)
             //send the db response to the client
             res.status(200).send(dbResponse);
         }).catch(error => {

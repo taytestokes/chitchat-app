@@ -1,8 +1,8 @@
 SELECT 
     *
 FROM conversations
-    WHERE conversation_users IN (
+    WHERE id IN (
         SELECT
         DISTINCT(id) FROM conversation_users
-            WHERE user_id = $1;
+            WHERE user_id = $1
     );
