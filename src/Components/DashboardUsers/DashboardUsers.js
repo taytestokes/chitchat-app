@@ -8,14 +8,11 @@ import {
     DashboardUsersContainer,
     UsersHeader,
     UsersContainer,
+    UserContainerHeader,
     UserCard,
-    UserCardInfo,
     MessageButton,
-    UserSubHeader,
     NextBtn,
-    PrevBtn,
-    SearchInput,
-    SearchBtn
+    PrevBtn
 } from './DashboardUsersStyles';
 
 class DashboardUsers extends Component {
@@ -27,8 +24,7 @@ class DashboardUsers extends Component {
             // usersPerPage: 8, // This can be implemented later if desired
             currentPage: 1,
             nextPage: null,
-            previousPage: null,
-            searchInput: ''
+            previousPage: null
         };
     }
 
@@ -76,7 +72,7 @@ class DashboardUsers extends Component {
         });
     };
 
-    // --- Pagination
+    // --- Pagination Skips
 
     nextPage = () => {
         //destructure from state
@@ -101,19 +97,12 @@ class DashboardUsers extends Component {
         const { users } = this.state;
         //map over the users to display them as cards
         const mappedUsers = users.map(user => {
-            console.log(user)
             return (
                 <UserCard key={user.user_id}>
-                    <img src={user.picture} alt="profile"/>
-                    <UserCardInfo>
-                        <div>
-                            <h1>{user.username}</h1>
-                            <h2>{user.email}</h2>
-                        </div>
-                        <MessageButton onClick={() => this.messageNewUser(user)}>
-                            <FontAwesomeIcon icon="paper-plane"/>
-                        </MessageButton>
-                    </UserCardInfo>
+                    <span><img src={user.picture} alt="profile"/></span>
+                    <span>{user.username}</span>
+                    <span>{user.email}</span>
+                    <span><MessageButton><FontAwesomeIcon icon="paper-plane"/></MessageButton></span>
                 </UserCard>
             )
         });
@@ -123,21 +112,17 @@ class DashboardUsers extends Component {
         return (
             <DashboardUsersContainer>
                 <UsersHeader>
-
+                    <h1>All Users</h1>
+                    <PrevBtn><FontAwesomeIcon icon="chevron-left"/></PrevBtn>
+                    <NextBtn><FontAwesomeIcon icon="chevron-right"/></NextBtn>
                 </UsersHeader>
-                <UserSubHeader>
-                    <SearchInput />
-                    <SearchBtn>
-                        <FontAwesomeIcon icon="search" />
-                    </SearchBtn>
-                    <PrevBtn onClick={this.prevPage}>
-                        <FontAwesomeIcon icon="chevron-left" />
-                    </PrevBtn>
-                    <NextBtn onClick={this.nextPage}>
-                        <FontAwesomeIcon icon="chevron-right" />
-                    </NextBtn>
-                </UserSubHeader>
                 <UsersContainer>
+                    <UserContainerHeader>
+                        <span>Picture</span>
+                        <span>Username</span>
+                        <span>Email</span>
+                        <span>Message</span>
+                    </UserContainerHeader>
                     {mappedUsers}
                 </UsersContainer>
             </DashboardUsersContainer>
