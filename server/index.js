@@ -103,7 +103,7 @@ passport.use('register', new LocalStrategy({
                 username,
                 password: hashedPassword,
                 email,
-                pic_url: DEFAULT_PIC
+                picture: DEFAULT_PIC
             });
         }).then(user => {
             //remove user password before sending back

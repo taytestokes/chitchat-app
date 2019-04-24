@@ -38,7 +38,7 @@ class Conversations extends Component {
             this.setState({
                 userConversations: response.data
             });
-        });
+        })
     };
 
     handlePopUp = () => {
@@ -68,16 +68,16 @@ class Conversations extends Component {
 
 
     render() {
-        console.log(this.props)
         //map through the user conversations on props and return a conversation tab displayed in JSX
         const mappedUserConversations = this.state.userConversations.map((conversation, index) => {
+            //take the conversaiton id from the conversation obj
+            const { conversation_id } = conversation;
             return (
                 <ConversationTab
                     key={index}
-                    to={`/dashboard/messages/${conversation.conversation_id}`} activeClassName="active"
-                    onClick={() => this.handleRoomJoin(conversation.conversation_id)}
-                >
-                    {conversation.conversation_id}
+                    to={`/dashboard/messages/${conversation_id}`} activeClassName="active"
+                    onClick={() => this.handleRoomJoin(conversation_id)}>
+                
                 </ConversationTab>
             )
         });

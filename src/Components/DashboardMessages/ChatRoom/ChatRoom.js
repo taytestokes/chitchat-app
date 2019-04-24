@@ -149,12 +149,12 @@ class ChatRoom extends Component {
             //take the logged in user if off of redux state
             const { user_id } = this.props.userReducer.user;
             //return the user that is not the one currently logged in
-            return user.user_id != user_id;
+            return user.user_id !== user_id;
         }).map(mappedUser => {
             //map through the filtered user and display jsx with information
             return (
                 <MessageContainerHeaderUser>
-                    <img src={mappedUser.pic_url} />
+                    <img src={mappedUser.picture} />
                     <HeaderUser>
                         <h1>{mappedUser.username}</h1>
                         <h2>{mappedUser.email}</h2>

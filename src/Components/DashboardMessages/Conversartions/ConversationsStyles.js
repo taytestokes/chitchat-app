@@ -45,7 +45,7 @@ export const InboxContainer = styled.div`
 `
 
 export const ConversationTab = styled(NavLink)`
-    width: 98%;
+    width: 99%;
     height: 15%;
     margin-left: auto;
     background: white;
@@ -55,12 +55,12 @@ export const ConversationTab = styled(NavLink)`
     align-items: center;
     transition: ease-in-out 0.3s;
     border-bottom: 1px solid #EFF1F9;
-    border-right: 8px solid transparent;
+    border-right: 5px solid transparent;
     z-index: 3;
     &:hover {
         cursor: pointer;
     };
     &.active {
-        border-right: 8px solid ${props => props.theme.primaryBlue};
+        border-right: 5px solid ${props => props.theme.primaryBlue};
     };
 `

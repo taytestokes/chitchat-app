@@ -1,8 +1,8 @@
 SELECT * FROM messages
     WHERE conversation_id = (
-        SELECT conversation_id
+        SELECT id
             FROM conversations
         WHERE
-            conversation_id = $1
+            id = $1
     )
 ORDER BY message_id DESC;

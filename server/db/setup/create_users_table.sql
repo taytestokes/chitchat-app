@@ -3,5 +3,5 @@ CREATE TABLE Users (
     username TEXT,
     password TEXT,
     email TEXT,
-    pic_url TEXT
+    picture TEXT
 );

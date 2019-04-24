@@ -104,7 +104,7 @@ class DashboardUsers extends Component {
             console.log(user)
             return (
                 <UserCard key={user.user_id}>
-                    <img src={user.pic_url} />
+                    <img src={user.picture} alt="profile"/>
                     <UserCardInfo>
                         <div>
                             <h1>{user.username}</h1>
