@@ -62,14 +62,15 @@ class Conversations extends Component {
     render() {
         //map through the user conversations on props and return a conversation tab displayed in JSX
         const mappedUserConversations = this.state.userConversations.map((conversation, index) => {
+            console.log(conversation)
             //take the conversaiton id from the conversation obj
             return (
                 <ConversationTab
                     key={index}
-                    to={`/dashboard/messages/${conversation.id}`} activeClassName="active"
-                    onClick={() => this.handleRoomJoin(conversation.id)}
+                    to={`/dashboard/messages/${conversation.conversation_id}`} activeClassName="active"
+                    onClick={() => this.handleRoomJoin(conversation.conversation_id)}
                     >
-                    {conversation.id}
+                    {conversation.conversation_id}
                 </ConversationTab>
             )
         });

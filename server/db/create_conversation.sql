@@ -9,4 +9,5 @@ INSERT INTO conversation_users
     (conversation_id, user_id)
 VALUES
     ((SELECT id FROM conversation_users_insert), $1),
-    ((SELECT id FROM conversation_users_insert), $2);
+    ((SELECT id FROM conversation_users_insert), $2)
+RETURNING id;

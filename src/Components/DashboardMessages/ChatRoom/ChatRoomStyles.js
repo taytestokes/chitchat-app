@@ -50,44 +50,21 @@ export const MessageContainerHeaderUser = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    img {
-        width: 45px;
-        height: 45px;
-        border-radius: 50%;
-        margin-left: 5%;
-        border: 1px solid ${props => props.theme.lightGray};
+    h1 {
+        font-size: 20px;
+        color: #232323;
+        letter-spacing: 0.5px;
+        margin-left: 3%;
+        font-weight: bold;
     }
     span {
         margin-left: auto;
         margin-right: 3%;
-        margin-top: 1.5%;
         font-size: 24px;
         color: #CCC;
         &:hover {
             cursor: pointer;
         }
-    }
-`
-
-export const HeaderUser = styled.div`
-    width: 30%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: left;
-    h1 {
-        font-size: 16px;
-        color: #232323;
-        margin-top: 1%;
-        margin-left: 5%;
-        font-weight: bold;
-    }
-    h2 {
-        font-size: 14px;
-        color: #CCC;
-        margin-top: 3%;
-        margin-left: 5%;
     }
 `
 

@@ -67,8 +67,16 @@ class DashboardUsers extends Component {
         }
         //http request to server to create a new conversation in db
         axios.post('/new/conversation', data).then(response => {
-            console.log(response.data)
-            // this.props.history.push(`/dashbaord/messages/${}`)
+            //log the success message
+            console.log(response.data);
+            //destruct the room id from the response
+            const { roomId } = response.data;
+            //if it's successfull, link to the conversation
+            this.props.history.push(`/dashboard/messages/${roomId}`)
+
+        }).catch(err => {
+            //if err, log the err
+            console.log(err.message);
         });
     };
 

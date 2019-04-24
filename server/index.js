@@ -134,8 +134,8 @@ app.get('/auth/logout', authController.logout);
 //Dashboard Messages Endpoints
 app.get('/user/conversations/:id', messagesController.getUserConversations);
 app.get('/conversation/messages/:id', messagesController.getConversationMessages);
-app.get('/conversation/last/message/:id', messagesController.getConversationLastMessage);
 app.get('/conversation/:id/users', messagesController.getConversationUsers);
+app.get('/conversation/info/:id', messagesController.getConversationInfo)
 app.post('/new/conversation', messagesController.createConversation);
 
 
@@ -209,6 +209,7 @@ io.on('connection', socket => {
     socket.on('message sent', data => {
         //destruct the information of the message from the data obj
         const { roomId, user_id, body } = data;
+        console.log(roomId);
         //get the current time stamp of the message
         const date = new Date();
         let hours = date.getHours();

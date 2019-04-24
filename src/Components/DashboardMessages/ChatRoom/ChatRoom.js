@@ -5,7 +5,7 @@ import io from 'socket.io-client';
 import axios from 'axios';
 
 //Styled Components
-import { RoomContainer, MessagesContainer, MessageContainerBody, Message, NewMessageContainer, MessageContainerHeader, NewMessageInput, MessageContainerHeaderUser, HeaderUser } from './ChatRoomStyles';
+import { RoomContainer, MessagesContainer, MessageContainerBody, Message, NewMessageContainer, MessageContainerHeader, NewMessageInput, MessageContainerHeaderUser } from './ChatRoomStyles';
 
 class ChatRoom extends Component {
     constructor() {
@@ -14,12 +14,20 @@ class ChatRoom extends Component {
         this.state = {
             input: '',
             messages: [],
-            users: []
+            users: [],
+            conversationInfo: {}
         }
     };
 
     //Lifecycle Methods
     componentDidMount() {
+        //take the room id from redux state
+        const { roomId } = this.props.conversationReducer;
+        // -- Requests To Get Info From DB
+        this.getConversationMessages(roomId);
+        this.getConversationUsers(roomId);
+        this.getConversationInfo(roomId);
+
         // -- Socket Event Listeners
         this.socket = io();
 
@@ -51,11 +59,12 @@ class ChatRoom extends Component {
             //get the conversation message when component updates
             this.getConversationMessages(roomId);
             this.getConversationUsers(roomId);
+            this.getConversationInfo(roomId);
         };
 
     }
 
-    //Socket Methods
+    // --- Socket Methods
     sendSocketMessage = () => {
         //check to make sure there is a message typed
         if (this.state.input === '') {
@@ -85,7 +94,7 @@ class ChatRoom extends Component {
         });
     };
 
-    //Local Methods
+    // --- Local Methods
     handleChange = (key, event) => {
         this.setState({
             [key]: event.target.value
@@ -103,7 +112,6 @@ class ChatRoom extends Component {
     getConversationMessages = roomId => {
         //make an http request to server to get the messages for the conversation
         axios.get(`/conversation/messages/${roomId}`).then(response => {
-            console.log(response)
             //set the local state with the data recieved from the server
             this.setState({
                 messages: response.data
@@ -125,9 +133,25 @@ class ChatRoom extends Component {
         });
     };
 
+    getConversationInfo = roomId => {
+        //make a requeast to get information about the room
+        axios.get(`/conversation/info/${roomId}`).then(response => {
+            //set the room information to local state
+            this.setState({
+                conversationInfo: response.data
+            });
+        }).catch(err => {
+            //if there is an error, log the message
+            console.log(err.message);
+        })
+    };
+
     render() {
+        //destructure from state
+        const { messages, conversationInfo } = this.state;
+
         //map through the messages on state to return the message as JSX
-        const mappedMessages = this.state.messages.map(message => {
+        const mappedMessages = messages.map(message => {
             //take user id from props
             const { user_id } = this.props.userReducer.user;
             //define custom style for id the messgae is from the user or not
@@ -145,32 +169,15 @@ class ChatRoom extends Component {
             )
         });
 
-        //filter through the users array on state to display the info about the user you're talking to
-        const filteredUser = this.state.users.filter(user => {
-            //take the logged in user if off of redux state
-            const { user_id } = this.props.userReducer.user;
-            //return the user that is not the one currently logged in
-            return user.user_id !== user_id;
-        }).map(mappedUser => {
-            //map through the filtered user and display jsx with information
-            return (
-                <MessageContainerHeaderUser>
-                    <img src={mappedUser.picture} alt="user"/>
-                    <HeaderUser>
-                        <h1>{mappedUser.username}</h1>
-                        <h2>{mappedUser.email}</h2>
-                    </HeaderUser>
-                    <span>
-                        <FontAwesomeIcon icon="ellipsis-v"/>
-                    </span>
-                </MessageContainerHeaderUser>
-            )
-        })
-
         return (
             <RoomContainer>
                 <MessageContainerHeader>
-                    {filteredUser}
+                    <MessageContainerHeaderUser>
+                        <h1>{conversationInfo.conversation_name}</h1>
+                        <span>
+                            <FontAwesomeIcon icon="ellipsis-v" />
+                        </span>
+                    </MessageContainerHeaderUser>
                 </MessageContainerHeader>
                 <MessagesContainer>
                     <MessageContainerBody>
