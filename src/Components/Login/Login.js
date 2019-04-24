@@ -77,7 +77,6 @@ class Login extends Component {
     };
     //make a POST request to the auth route in server with user credentials
     axios.post('/auth/login', userCredentials).then(response => {
-      console.log(response);
       //store the returned user data
       const user = response.data;
       //store the user on redux

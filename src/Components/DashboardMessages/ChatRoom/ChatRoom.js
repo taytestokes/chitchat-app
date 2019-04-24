@@ -154,7 +154,7 @@ class ChatRoom extends Component {
             //map through the filtered user and display jsx with information
             return (
                 <MessageContainerHeaderUser>
-                    <img src={mappedUser.picture} />
+                    <img src={mappedUser.picture} alt="user"/>
                     <HeaderUser>
                         <h1>{mappedUser.username}</h1>
                         <h2>{mappedUser.email}</h2>

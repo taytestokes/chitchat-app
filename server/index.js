@@ -30,6 +30,7 @@ let {
 const app = express();
 app.use(cors());
 app.use(cookieParser());
+
 //since file upload is such a large string, body-parser is not equipped to handle it
 //this will allow uploads through the body
 app.use(bodyParser.json({ limit: '50mb' }));

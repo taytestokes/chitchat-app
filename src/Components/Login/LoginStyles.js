@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import logo from '../../assets/logo.png';
 import plane from '../../assets/plane.png'
 
 //Animations 
