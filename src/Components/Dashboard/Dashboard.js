@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router-dom';
 import DashboardNav from '../DashboardNav/DashboardNav';
 import DashboardMessages from '../DashboardMessages/DashboardMessages';
 import DashboardUsers from '../DashboardUsers/DashboardUsers';
+import DashboardSettings from '../DashboardSettings/DashboardSettings';
 
 //Styled Components
 import { DashboardContainer, LoadingContainer, LoadingImage } from './DashboardStyles';
@@ -42,6 +43,7 @@ class Dashboard extends Component {
               <Switch>
                 <Route path="/dashboard/messages" component={DashboardMessages} />
                 <Route path="/dashboard/users" component={DashboardUsers} />
+                <Route path="/dashboard/settings" component={DashboardSettings}/>
               </Switch>
             </DashboardContainer>
         }
