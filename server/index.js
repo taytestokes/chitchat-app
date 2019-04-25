@@ -141,6 +141,7 @@ app.post('/new/conversation', messagesController.createConversation);
 
 //Dashboard Users Endpoints
 app.get('/users', usersController.getAllUsers);
+app.post('/update/user/:id', usersController.updateUser);
 
 //Setup configuration for AWS
 AWS.config.update({

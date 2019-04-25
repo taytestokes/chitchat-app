@@ -100,7 +100,7 @@ export const Message = styled.div`
         background: ${props => props.theme.primaryBlue};
         color: white;
         border-radius: 5px 5px 5px 5px;
-        font-size: 18px;
+        font-size: 16px;
         margin: 0 1.5%;
         padding: 10px;
         max-width: 80%;

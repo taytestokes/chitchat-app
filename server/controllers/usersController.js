@@ -1,6 +1,5 @@
 module.exports = {
     getAllUsers: (req, res) => {
-        console.log('hit');
         //store db instance
         const db = req.app.get('db');
         //take the current page from query
@@ -34,4 +33,25 @@ module.exports = {
                 });
             });
     },
+
+    updateUser: (req, res) => {
+        //destruct the id from params
+        const { id } = req.params;
+        //destruct the username and email from the body
+        const { username, email } = req.body;
+        //get the db instance
+        const db = req.app.get('db');
+        //check to make sure username is not already taken
+        db.users.find({ 'username !': username }).then(() => {
+            return db.update_user([username, email, id]);
+        }).then(dbResponse => {
+            //send a message saying user was updated
+            res.status(200).send('User updated!')
+        }).catch(err => {
+            //if err
+            console.warn(err.message);
+            //send error message
+            res.status(err.code).send(err.message);
+        });
+    }
 };

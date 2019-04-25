@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 //Redux action builders
 import { updateRoomId } from '../../redux/reducers/conversation_reducer';
@@ -68,10 +69,30 @@ class DashboardNav extends Component {
   };
 
   toggleEdit = () => {
+    //toggle the edit option
     this.setState({
       edit: !this.state.edit
     });
   };
+
+  updateUserInfo = () => {
+    //take the user id that is currently logged
+    const { user } = this.props.userReducer;
+    //take username and email off of local state
+    const { username, email } = this.state;
+    //create a body to send
+    const body = {
+      username,
+      email
+    };
+    //make a request to the server to update user info
+    axios.post(`/update/user/${user.user_id}`, body).then(response => {
+      console.log(response);
+      //toggle the dit
+      this.toggleEdit();
+    })
+
+  }
 
   render() {
     //take the user from redux state
@@ -103,7 +124,7 @@ class DashboardNav extends Component {
                   }
                   {
                     this.state.edit ?
-                      <button>Save</button>
+                      <button onClick={this.updateUserInfo}>Save</button>
                       :
                       null
                   }
