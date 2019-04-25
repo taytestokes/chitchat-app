@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const DashboardUsersContainer = styled.div`
     width: 94vw;
     height: 100%;
-    background: #F8F8F8;
+    background: #373737;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -15,16 +15,16 @@ export const DashboardUsersContainer = styled.div`
 export const UsersHeader = styled.div`
     width: 100%;
     height: 10vh;
-    background: white;
+    background: #2D2D2D;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid ${props => props.theme.lightGray};
+    border-bottom: 1px solid #232323;
     z-index: 2;
     h1 {
         font-size: 20px;
-        color: #232323;
+        color: #CCC;
         margin-left: 5%;
         font-weight: bold;
     }
@@ -44,15 +44,15 @@ export const UsersContainer = styled.div`
 export const UserContainerHeader = styled.div`
     width: 100%;
     height: 8%;
-    background: white;
+    background: #232323;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid ${props => props.theme.lightGray};
+    border: 1px solid #232323;
     span {
         font-size: 14px;
-        color: #232323;
+        color: #CCC;
     }
 `
 
@@ -104,14 +104,15 @@ export const PrevBtn = styled.button`
 export const UserCard = styled.div`
     width: 100%;
     height: 13%;
-    background: white;
+    background: #2D2D2D;
+    color: #CCC;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid ${props => props.theme.lightGray};
-    border-left: 1px solid ${props => props.theme.lightGray};
-    border-right: 1px solid ${props => props.theme.lightGray};
+    border-bottom: 1px solid #232323;
+    border-left: 1px solid #232323;
+    border-right: 1px solid #232323;
     &:hover {
         background: #F8F8F825;
     }
@@ -119,7 +120,7 @@ export const UserCard = styled.div`
         width: 35px;
         height: 35px;
         border-radius: 50%;
-        border: 1px solid ${props => props.theme.lightGray};
+        border: 1px solid #232323;
         margin-right: 4%;
     }
     span {

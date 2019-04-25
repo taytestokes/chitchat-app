@@ -16,7 +16,8 @@ import {
   SettingsContainer,
   PictureContainer,
   UserInfoContainer,
-  EditContainer
+  EditContainer,
+  SettingsMenuBackground
 } from './DashboardNavStyles';
 
 
@@ -80,37 +81,39 @@ class DashboardNav extends Component {
       <DashboardNavContainer>
         {
           this.state.slideout ?
-            <SettingsContainer>
-              <PictureContainer>
-                <img src={user.picture} />
-              </PictureContainer>
-              <UserInfoContainer>
-                <h1>Username</h1>
-                {
-                  this.state.edit ?
-                    <input type="text" value={this.state.username} onChange={(event) => this.handleInputChange('username', event)} />
-                    :
-                    <div>{this.state.username}</div>
-                }
-                <h1>Email</h1>
-                {
-                  this.state.edit ?
-                    <input type="text" value={this.state.email} onChange={(event) => this.handleInputChange('email', event)} />
-                    :
-                    <div>{this.state.email}</div>
-                }
-                {
-                  this.state.edit ?
-                    <button>Save</button>
-                    :
-                    null
-                }
-              </UserInfoContainer>
-              <EditContainer>
-                <FontAwesomeIcon icon="arrow-left" onClick={this.toggleSlideout} />
-                <FontAwesomeIcon icon="pencil-alt" onClick={this.toggleEdit} className="edit" />
-              </EditContainer>
-            </SettingsContainer>
+            <SettingsMenuBackground>
+              <SettingsContainer>
+                <PictureContainer>
+                  <img src={user.picture} />
+                </PictureContainer>
+                <UserInfoContainer>
+                  <h1>Username</h1>
+                  {
+                    this.state.edit ?
+                      <input type="text" value={this.state.username} onChange={(event) => this.handleInputChange('username', event)} />
+                      :
+                      <div>{this.state.username}</div>
+                  }
+                  <h1>Email</h1>
+                  {
+                    this.state.edit ?
+                      <input type="text" value={this.state.email} onChange={(event) => this.handleInputChange('email', event)} />
+                      :
+                      <div>{this.state.email}</div>
+                  }
+                  {
+                    this.state.edit ?
+                      <button>Save</button>
+                      :
+                      null
+                  }
+                </UserInfoContainer>
+                <EditContainer>
+                  <FontAwesomeIcon icon="arrow-left" onClick={this.toggleSlideout} />
+                  <FontAwesomeIcon icon="pencil-alt" onClick={this.toggleEdit} className="edit" />
+                </EditContainer>
+              </SettingsContainer>
+            </SettingsMenuBackground>
             :
             null
         }

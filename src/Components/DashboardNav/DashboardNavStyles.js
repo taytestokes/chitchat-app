@@ -4,10 +4,10 @@ import { NavLink, Link } from 'react-router-dom';
 //Animations
 const slide = keyframes`
     0% {
-        margin-right: 200vw;
+        left: -50vw;
     }
     100% {
-        margin-right: 0%;
+        left: 0;
     }
 `
 
@@ -115,12 +115,22 @@ export const LogoutContainer = styled(Link)`
 `
 
 // --- Slide Out Menu --- //
+export const SettingsMenuBackground = styled.div`
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.8);
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+`
+
 export const SettingsContainer = styled.div`
     position: absolute;
     top: 0;
     left: 0;
     z-index: 5;
-    width: 25%;
+    width: 20%;
     height: 100%;
     background: #232323;
     box-shadow: 0 0 15px 2px #23232320;
