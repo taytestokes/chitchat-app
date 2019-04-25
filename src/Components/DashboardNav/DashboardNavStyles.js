@@ -1,6 +1,5 @@
 import styled, { keyframes } from 'styled-components';
 import { NavLink, Link } from 'react-router-dom';
-import logo from '../../assets/logo.png';
 
 //Animations
 const slide = keyframes`
@@ -25,12 +24,26 @@ export const DashboardNavContainer = styled.div`
     font-family: 'Nunito';
 `
 
-export const NavLogo = styled.img.attrs({
-    src: logo
-})`
+export const ImageContainer = styled.div`
+    width: 75%;
     height: 8%;
-    width: 40%;
-    margin: 10% auto;
+    margin-top: 10%;
+    margin-bottom: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        border:1px solid ${props => props.theme.lightGray};
+        transition: linear 0.2s;
+        &:hover {
+            cursor: pointer;
+            border: 3px solid ${props => props.theme.lightGray};
+        }
+    }
 `
 
 export const DashboardNavLinksContainer = styled.div`
@@ -75,28 +88,6 @@ export const DashboardNavLink = styled(NavLink)`
     }
 `
 
-export const ImageContainer = styled.div`
-    width: 75%;
-    height: 8%;
-    margin-top: auto;
-    margin-bottom: 5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    img {
-        width: 35px;
-        height: 35px;
-        border-radius: 50%;
-        border:1px solid ${props => props.theme.lightGray};
-        transition: linear 0.2s;
-        &:hover {
-            cursor: pointer;
-            border: 3px solid ${props => props.theme.lightGray};
-        }
-    }
-`
-
 export const LogoutContainer = styled(Link)`
     width: 75%;
     height: 5%;
@@ -110,6 +101,7 @@ export const LogoutContainer = styled(Link)`
     color: #A9A9A9;
     text-decoration: none;
     transition: ease-in-out 0.1s;
+    margin-top: auto;
     margin-bottom: 5%;
     h1 {
         margin-left: 8%;

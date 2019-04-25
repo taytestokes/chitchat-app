@@ -114,7 +114,9 @@ class DashboardNav extends Component {
             :
             null
         }
-        <NavLogo />
+        <ImageContainer>
+          <img src={user.picture} onClick={this.toggleSlideout} />
+        </ImageContainer>
         <DashboardNavLinksContainer>
           <DashboardNavLink activeClassName="active" to={`/dashboard/messages`} onClick={this.handleLogout}>
             <FontAwesomeIcon icon="comment-alt" />
@@ -124,14 +126,7 @@ class DashboardNav extends Component {
             <FontAwesomeIcon icon="users" />
             <h1>Explore</h1>
           </DashboardNavLink>
-          <DashboardNavLink activeClassName="active" to="/dashboard/settings" onClick={this.handleLogout}>
-            <FontAwesomeIcon icon="user-cog" />
-            <h1>Settings</h1>
-          </DashboardNavLink>
         </DashboardNavLinksContainer>
-        <ImageContainer>
-          <img src={user.picture} onClick={this.toggleSlideout} />
-        </ImageContainer>
         <LogoutContainer to="/" onClick={this.handleLogout}>
           <FontAwesomeIcon icon="sign-out-alt" />
           <h1>Logout</h1>
