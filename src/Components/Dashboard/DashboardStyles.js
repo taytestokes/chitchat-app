@@ -44,6 +44,7 @@ export const LoadingContainer = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    background: #2D2D2D;
 `
 
 export const LoadingImage = styled.div`

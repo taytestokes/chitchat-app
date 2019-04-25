@@ -15,13 +15,13 @@ export const RoomContainer = styled.div`
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
     position: relative;
-    width: 60vw;
+    width: 60.1vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: white;
+    background: #2D2D2D;
     margin-left: .5vw;
     animation: ${slide} 0.3s linear;
 `
@@ -38,9 +38,8 @@ export const MessagesContainer = styled.div`
 export const MessageContainerHeader = styled.div`
     width: 100%;
     height: 11.1%;
-    background: white;
     z-index: 3;
-    border-bottom: 1px solid ${props => props.theme.lightGray};
+    background: #232323;
 `
 
 export const MessageContainerHeaderUser = styled.div`
@@ -52,7 +51,7 @@ export const MessageContainerHeaderUser = styled.div`
     align-items: center;
     h1 {
         font-size: 20px;
-        color: #232323;
+        color: #CCC;
         letter-spacing: 0.5px;
         margin-left: 3%;
         font-weight: bold;
@@ -112,13 +111,11 @@ export const Message = styled.div`
 export const NewMessageContainer = styled.div`
     width: 100%;
     height: 10%;
-    background: white;
     display: flex;
+    background: #232323;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 -5px 10px -5px #f1f1f1;
-    border-top: 1px solid ${props => props.theme.lightGray};
     span {
         color: ${props => props.theme.green};
         font-size: 28px;
@@ -136,22 +133,24 @@ export const NewMessageInput = styled.input.attrs({
 })`
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
-    width: 80%;
+    width: 75%;
     height: 50%;
     border: none;
     border-radius: 3px 3px 3px 3px;
+    border-bottom: 2px solid transparent;
+    background: rgba(0,0,0,0);
     font-size: 16px;
+    color: white;
+    caret-color: ${props => props.theme.green};
     outline: none;
+    margin-left: 5%;
     transition: ease-in-out 0.3s;
-    margin-left: 4%;
     &::placeholder {
         color: #ccc;
         font-weight: bold;
     }
     &:focus {
-        background: rgba(0,0,0,0);
-        transform: scale(1.05);
         font-size: 16px;
-        padding-left: 0;
+        border-bottom: 2px solid ${props => props.theme.green};
     }
 `

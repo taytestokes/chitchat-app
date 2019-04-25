@@ -9,7 +9,10 @@ import io from 'socket.io-client';
 import { updateRoomId } from '../../../redux/reducers/conversation_reducer';
 
 //Styled Components
-import { ConversationsContainer, ConversationFinderContainer, InboxContainer, ConversationTab } from './ConversationsStyles';
+import { ConversationsContainer, 
+         InboxContainer, 
+         ConversationTab 
+        } from './ConversationsStyles';
 
 class Conversations extends Component {
     constructor() {
@@ -77,9 +80,6 @@ class Conversations extends Component {
 
         return (
             <ConversationsContainer>
-                <ConversationFinderContainer>
-                    <h1>Message Inbox</h1>
-                </ConversationFinderContainer>
                 <InboxContainer>
                     {mappedUserConversations}
                 </InboxContainer>

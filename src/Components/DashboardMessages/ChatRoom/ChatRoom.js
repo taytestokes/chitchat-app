@@ -155,7 +155,7 @@ class ChatRoom extends Component {
             //take user id from props
             const { user_id } = this.props.userReducer.user;
             //define custom style for id the messgae is from the user or not
-            const messageStyle = user_id !== message.user_id ? { backgroundColor: '#EFF1F9', color: '#232323' } : {};
+            const messageStyle = user_id !== message.user_id ? { backgroundColor: '#8f8f8f', color: '#232323' } : {};
             //change the display for the message if the author isn't you
             const messageContainerStyle = user_id !== message.user_id ? { flexDirection: 'row-reverse' } : {};
             //change the display for the timestamp

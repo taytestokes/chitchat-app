@@ -14,12 +14,11 @@ const slide = keyframes`
 export const DashboardNavContainer = styled.div`
     width: 12vw;
     height: 100vh;
-    background: white;
+    background: #232323;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border-right: 1px solid ${props => props.theme.lightGray};
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
 `
@@ -69,15 +68,18 @@ export const DashboardNavLink = styled(NavLink)`
     font-size: 14px;
     font-weight: bold;
     margin-left: auto;
-    border-right: 5px solid white;
+    border-right: 5px solid transparent;
     padding-left: 6%;
     transition: ease 0.2s;
+    &:hover{
+        color: ${props => props.theme.green};
+    }
     &.active {
-        color: ${props => props.theme.primaryBlue};
-        background: #2b60e415;
-        border-right: 5px solid ${props => props.theme.primaryBlue};
+        color: ${props => props.theme.green};
+        background: #F8F8F815;
+        border-right: 5px solid ${props => props.theme.green};
         h1 {
-            color: black;
+            color: ${props => props.theme.green};
         }
         width: 80%;
     }
