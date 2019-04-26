@@ -12,7 +12,6 @@ import {
   DashboardNavLinksContainer,
   DashboardNavLink,
   LogoutContainer,
-  NavLogo,
   ImageContainer,
   SettingsContainer,
   PictureContainer,
@@ -105,7 +104,7 @@ class DashboardNav extends Component {
             <SettingsMenuBackground>
               <SettingsContainer>
                 <PictureContainer>
-                  <img src={user.picture} />
+                  <img src={user.picture} alt="user"/>
                 </PictureContainer>
                 <UserInfoContainer>
                   <h1>Username</h1>
@@ -139,7 +138,7 @@ class DashboardNav extends Component {
             null
         }
         <ImageContainer>
-          <img src={user.picture} onClick={this.toggleSlideout} />
+          <img src={user.picture} onClick={this.toggleSlideout} alt="user"/>
         </ImageContainer>
         <DashboardNavLinksContainer>
           <DashboardNavLink activeClassName="active" to={`/dashboard/messages`} onClick={this.handleLogout}>

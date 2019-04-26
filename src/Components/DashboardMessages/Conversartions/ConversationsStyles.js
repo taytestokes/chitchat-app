@@ -42,7 +42,7 @@ export const ConversationTab = styled(NavLink)`
         cursor: pointer;
     };
     &.active {
-        background: #F1F1F125
+        background: #F1F1F125;
         border-right: 5px solid ${props => props.theme.green};
     };
 `

@@ -71,5 +71,22 @@ module.exports = {
             console.warn(err.message);
             res.status(500).send(err.message);
         })
+    },
+
+    getConversationTabInfo: (req, res) => {
+        //take the id from params
+        const { id } = req.params;
+        //get the db instance
+        const db = req.app.get('db');
+        //query db for the information
+        db.get_conversation_tab_info([id]).then(dbResponse => {
+            //send the data if success
+            res.status(200).send(dbResponse[0]);
+        }).catch(err => {
+            //log err
+            console.warn(err.message)
+            //send the err message
+            res.status(500).send(err.message);
+        })
     }
 }

@@ -8,11 +8,15 @@ import io from 'socket.io-client';
 //Dispatchers from redux
 import { updateRoomId } from '../../../redux/reducers/conversation_reducer';
 
+//Components 
+import ConversationTabInfo from './ConversationTab/ConversationTab';
+
 //Styled Components
-import { ConversationsContainer, 
-         InboxContainer, 
-         ConversationTab 
-        } from './ConversationsStyles';
+import {
+    ConversationsContainer,
+    InboxContainer,
+    ConversationTab
+} from './ConversationsStyles';
 
 class Conversations extends Component {
     constructor() {
@@ -65,15 +69,11 @@ class Conversations extends Component {
     render() {
         //map through the user conversations on props and return a conversation tab displayed in JSX
         const mappedUserConversations = this.state.userConversations.map((conversation, index) => {
-            console.log(conversation)
             //take the conversaiton id from the conversation obj
             return (
-                <ConversationTab
-                    key={index}
-                    to={`/dashboard/messages/${conversation.conversation_id}`} activeClassName="active"
-                    onClick={() => this.handleRoomJoin(conversation.conversation_id)}
-                    >
-                    {conversation.conversation_id}
+                <ConversationTab key={index} to={`/dashboard/messages/${conversation.conversation_id}`}
+                    activeClassName="active" onClick={() => this.handleRoomJoin(conversation.conversation_id)}>
+                    <ConversationTabInfo conversation={conversation}/>
                 </ConversationTab>
             )
         });
