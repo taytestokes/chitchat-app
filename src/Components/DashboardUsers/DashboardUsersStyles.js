@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const DashboardUsersContainer = styled.div`
     width: 94vw;
     height: 100%;
-    background: #373737;
+    background: #2D2D2D;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -15,16 +15,16 @@ export const DashboardUsersContainer = styled.div`
 export const UsersHeader = styled.div`
     width: 100%;
     height: 10vh;
-    background: #2D2D2D;
+    background: #232323;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid #232323;
+    border-bottom: 1px solid black;
     z-index: 2;
     h1 {
         font-size: 20px;
-        color: #CCC;
+        color: #FFF;
         margin-left: 5%;
         font-weight: bold;
     }
@@ -49,19 +49,19 @@ export const UserContainerHeader = styled.div`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid #232323;
+    border: 1px solid black;
     span {
         font-size: 14px;
-        color: #CCC;
+        color: #FFF;
     }
 `
 
 export const NextBtn = styled.button`
-    width: 3%;
-    height: 40%;
-    background: ${props => props.theme.primaryBlue};
-    color: white;
-    border: 2px solid ${props => props.theme.primaryBlue};
+    width: 2.5%;
+    height: 35%;
+    background: transparent;
+    color: ${props => props.theme.green};
+    border: 1px solid ${props => props.theme.green};
     border-radius: 3px 3px 3px 3px;
     outline: none;
     font-size: 20px;
@@ -69,21 +69,19 @@ export const NextBtn = styled.button`
     transition: ease 0.2s;
     &:hover {
         cursor: pointer;
-        background: #477bff;
-        border: 2px solid #477bff;
     };
     &:active {
-        background: rgba(0,0,0,0);
-        color: ${props => props.theme.primaryBlue};
+        background: ${props => props.theme.green};
+        color: #232323;
     };
 `
 
 export const PrevBtn = styled.button`
-    width: 3%;
-    height: 40%;
-    background: ${props => props.theme.primaryBlue};
-    color: white;
-    border: 2px solid ${props => props.theme.primaryBlue};
+    width: 2.5%;
+    height: 35%;
+    background: transparent;
+    color: ${props => props.theme.green};
+    border: 1px solid ${props => props.theme.green};
     border-radius: 3px 3px 3px 3px;
     outline: none;
     font-size: 20px;
@@ -92,29 +90,27 @@ export const PrevBtn = styled.button`
     transition: ease 0.2s;
     &:hover {
         cursor: pointer;
-        background: #477bff;
-        border: 2px solid #477bff;
     };
     &:active {
-        background: rgba(0,0,0,0);
-        color: ${props => props.theme.primaryBlue};
+        background: ${props => props.theme.green};
+        color: #232323;
     };
 `
 
 export const UserCard = styled.div`
     width: 100%;
     height: 13%;
-    background: #2D2D2D;
-    color: #CCC;
+    background: #373737;
+    color: #FFF;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid #232323;
-    border-left: 1px solid #232323;
-    border-right: 1px solid #232323;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
     &:hover {
-        background: #F8F8F825;
+        background: #F1F1F125;
     }
     img {
         width: 35px;
@@ -139,7 +135,7 @@ export const MessageButton = styled.button`
     height: 35px;
     background-color: transparent;
     border: none;
-    border-radius: 3px 3px 3px 3px;
+    border-radius: 50%;
     color: ${props => props.theme.green};
     text-align: center;
     text-decoration: none;
@@ -149,6 +145,6 @@ export const MessageButton = styled.button`
     transition: ease-in-out 0.2s;
     &:hover {
         cursor: pointer;
-        color: ${props => props.theme.primaryBlue};
+        transform: scale(1.1);
     }
 `

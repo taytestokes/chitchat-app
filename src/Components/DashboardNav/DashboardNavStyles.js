@@ -15,6 +15,7 @@ export const DashboardNavContainer = styled.div`
     width: 12vw;
     height: 100vh;
     background: #232323;
+    border-right: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -36,11 +37,10 @@ export const ImageContainer = styled.div`
         width: 60px;
         height: 60px;
         border-radius: 50%;
-        border:1px solid ${props => props.theme.lightGray};
         transition: linear 0.2s;
         &:hover {
             cursor: pointer;
-            border: 3px solid ${props => props.theme.lightGray};
+            transform: scale(1.1);
         }
     }
 `
@@ -64,7 +64,7 @@ export const DashboardNavLink = styled(NavLink)`
     justify-content: flex-start;
     align-items: center;
     text-decoration: none;
-    color: #A9A9A9;
+    color: #FFF;
     font-size: 14px;
     font-weight: bold;
     margin-left: auto;
@@ -100,7 +100,7 @@ export const LogoutContainer = styled(Link)`
     padding-left: 30%;
     font-size: 14px;
     font-weight: bold;
-    color: #A9A9A9;
+    color: #FFF;
     text-decoration: none;
     transition: ease-in-out 0.1s;
     margin-top: auto;
@@ -152,7 +152,9 @@ export const PictureContainer = styled.div`
         border-radius: 50%;
         width: 100px;
         height: 100px;
-        border: 1px solid #232323;
+    }
+    span {
+
     }
 `
 
@@ -200,7 +202,7 @@ export const UserInfoContainer = styled.div`
         width: 32%;
         height: 8%;
         color: white;
-        background: ${props => props.theme.green};
+        background: transparent;
         border: 1px solid ${props => props.theme.green};
         border-radius: 2px 2px 2px 2px;
         outline: none;
@@ -208,8 +210,6 @@ export const UserInfoContainer = styled.div`
         margin-top: 10%;
         font-size: 16px;
         &:hover {
-            background: transparent;
-            color: ${props => props.theme.green};
             cursor: pointer;
         }
     }

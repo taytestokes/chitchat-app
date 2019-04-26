@@ -28,7 +28,7 @@ import 'reset-css';
 const theme = {
   primaryBlack: '#232323',
   secondaryBlack: '#141414',
-  primaryBlue: '#2b60e4',
+  primaryBlue: '#00d8ff',
   primaryRed: '#EE3E4C',
   lightGray: '#EFF1F9',
   green: '#20E89A'

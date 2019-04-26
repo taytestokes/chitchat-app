@@ -15,14 +15,13 @@ export const RoomContainer = styled.div`
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
     position: relative;
-    width: 60.1vw;
+    width: 60.6vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     background: #2D2D2D;
-    margin-left: .5vw;
     animation: ${slide} 0.3s linear;
 `
 
@@ -40,6 +39,7 @@ export const MessageContainerHeader = styled.div`
     height: 11.1%;
     z-index: 3;
     background: #232323;
+    border-bottom: 1px solid black;
 `
 
 export const MessageContainerHeaderUser = styled.div`
@@ -51,7 +51,7 @@ export const MessageContainerHeaderUser = styled.div`
     align-items: center;
     h1 {
         font-size: 20px;
-        color: #CCC;
+        color: #FFF;
         letter-spacing: 0.5px;
         margin-left: 3%;
         font-weight: bold;
@@ -97,9 +97,10 @@ export const Message = styled.div`
     h2 {
         min-width: auto;
         height: auto;
-        background: ${props => props.theme.primaryBlue};
-        color: white;
-        border-radius: 5px 5px 5px 5px;
+        background: transparent;
+        border: 2px solid ${props => props.theme.green};
+        color: ${props => props.theme.green};
+        border-radius: 5px 5px 0px 5px;
         font-size: 16px;
         margin: 0 1.5%;
         padding: 10px;
@@ -116,6 +117,7 @@ export const NewMessageContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    border-top: 1px solid black;
     span {
         color: ${props => props.theme.green};
         font-size: 28px;
@@ -147,10 +149,5 @@ export const NewMessageInput = styled.input.attrs({
     transition: ease-in-out 0.3s;
     &::placeholder {
         color: #ccc;
-        font-weight: bold;
-    }
-    &:focus {
-        font-size: 16px;
-        border-bottom: 2px solid ${props => props.theme.green};
     }
 `
