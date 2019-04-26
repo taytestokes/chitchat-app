@@ -46,6 +46,8 @@ module.exports = {
     getConversationUsers: (req, res) => {
         //destructure the conversation id from params
         const { id } = req.params;
+        //take the user id from the query
+        const { user_id } = req.query;
         //get the db instance
         const db = req.app.get('db');
         db.get_conversation_users([id]).then(dbResponse => {

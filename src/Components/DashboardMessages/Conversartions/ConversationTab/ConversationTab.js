@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 //Styled Components
 import { ConversationTab, ImageContainer, InfoContainer, DateContainer } from './ConversationTabStyle';
@@ -9,7 +10,8 @@ class ConversationTabCompInfo extends Component {
         super();
 
         this.state = {
-            conversationInfo: {}
+            conversationInfo: {},
+            conversationUsers: []
         };
     }
 
@@ -23,7 +25,6 @@ class ConversationTabCompInfo extends Component {
 
     // --- Methods
     getConversationTabInfo = id => {
-
         //make an http req to server to get info for the conversation
         axios.get(`/conversation/information/${id}`).then(response => {
             //set the convo info on state tp the data from the response
@@ -33,6 +34,11 @@ class ConversationTabCompInfo extends Component {
         });
     }
 
+    getConversationUsers = conversationId => {
+        //make an http request to get the users in the conversations
+        axios.get(`/conversation/users/${conversationId}?user_id=${}`)
+    }
+
     render() {
         //take the conversation infp off local state
         const { conversationInfo } = this.state;
@@ -40,7 +46,7 @@ class ConversationTabCompInfo extends Component {
         return (
             <ConversationTab>
                 <ImageContainer>
-                    <img src={conversationInfo.picture} alt="user"/>
+                    <img src={conversationInfo.picture} alt="user" />
                 </ImageContainer>
                 <InfoContainer>
                     <h1>{conversationInfo.conversation_name}</h1>
@@ -55,4 +61,6 @@ class ConversationTabCompInfo extends Component {
     }
 }
 
-export default ConversationTabCompInfo;
+const mapStateToProps = state => state;
+
+export default connect(mapStateToProps)(ConversationTabCompInfo);
