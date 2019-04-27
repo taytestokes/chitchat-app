@@ -50,7 +50,7 @@ module.exports = {
         const { user_id } = req.query;
         //get the db instance
         const db = req.app.get('db');
-        db.get_conversation_users([id]).then(dbResponse => {
+        db.get_conversation_users([id, user_id]).then(dbResponse => {
             //send the response from the db
             res.status(200).send(dbResponse);
         }).catch(err => {

@@ -25,7 +25,6 @@ class ChatRoom extends Component {
         const { roomId } = this.props.conversationReducer;
         // -- Requests To Get Info From DB
         this.getConversationMessages(roomId);
-        this.getConversationUsers(roomId);
         this.getConversationInfo(roomId);
 
         // -- Socket Event Listeners
@@ -58,7 +57,6 @@ class ChatRoom extends Component {
         if (roomId !== previousProps.conversationReducer.roomId) {
             //get the conversation message when component updates
             this.getConversationMessages(roomId);
-            this.getConversationUsers(roomId);
             this.getConversationInfo(roomId);
         };
 
@@ -120,17 +118,6 @@ class ChatRoom extends Component {
             //if error, catch the message
             console.log(error.message);
         })
-    };
-
-    getConversationUsers = roomId => {
-        axios.get(`/conversation/${roomId}/users`).then(response => {
-            //set the users array on local state to the response of the db
-            this.setState({
-                users: response.data
-            });
-        }).catch(err => {
-            console.log(err.message);
-        });
     };
 
     getConversationInfo = roomId => {

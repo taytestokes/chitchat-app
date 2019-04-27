@@ -19,8 +19,12 @@ class ConversationTabCompInfo extends Component {
     componentDidMount() {
         //take the conversation info off of props
         const { conversation } = this.props;
+        //take user off of redux state
+        const { user } = this.props.userReducer;
         //get the convertsation info
         this.getConversationTabInfo(conversation.conversation_id);
+        //get the conversation users
+        this.getConversationUsers(conversation.conversation_id, user.user_id);
     }
 
     // --- Methods
@@ -34,23 +38,34 @@ class ConversationTabCompInfo extends Component {
         });
     }
 
-    getConversationUsers = conversationId => {
+    getConversationUsers = (conversationId, userId) => {
         //make an http request to get the users in the conversations
-        axios.get(`/conversation/users/${conversationId}?user_id=${}`)
-    }
+        axios.get(`/conversation/users/${conversationId}?user_id=${userId}`).then(response => { 
+            //set the response to local state
+            this.setState({
+                conversationUsers: response.data
+            })
+        });
+    };
 
     render() {
-        //take the conversation infp off local state
-        const { conversationInfo } = this.state;
+        //take the info off local state
+        const { conversationInfo, conversationUsers } = this.state;
+        //map through the conversation users to display the users picture in the conversation
+        const mappedUser = conversationUsers.map((user, index) => {
+            return (
+                <img src={user.picture} alt="user" key={index}/>
+            )
+        })
+
         console.log(this.state);
         return (
             <ConversationTab>
                 <ImageContainer>
-                    <img src={conversationInfo.picture} alt="user" />
+                    {mappedUser}
                 </ImageContainer>
                 <InfoContainer>
                     <h1>{conversationInfo.conversation_name}</h1>
-                    <h2>{conversationInfo.username}</h2>
                     <h3>{conversationInfo.body}</h3>
                 </InfoContainer>
                 <DateContainer>
