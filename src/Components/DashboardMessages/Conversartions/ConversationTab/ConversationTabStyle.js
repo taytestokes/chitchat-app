@@ -18,9 +18,10 @@ export const ImageContainer = styled.div`
     justify-content: space-around;
     align-items: center;
     img {
-        height: 35px;
-        width: 35px;
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
+        border: 1px solid black;
     }
 `
 
@@ -30,19 +31,24 @@ export const InfoContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: left;
-    justify-content: space-around;
+    justify-content: center;
     text-decoration: none;
     h1 {
-        font-size: 18px;
+        font-size: 20px;
         color: white;
+        margin-top: 6%;
+        margin-bottom: 5%;
+        max-width: 100%;
+        text-overflow: ellipsis;
     }
     h2 {
-        font-size: 16px;
-        color: white;
-    }
-    h3 {
         font-size: 14px;
-        color: #CCC;
+        color: #A9A9A9;
+        max-width: 70%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        height: 25%;
     }
 `
 
@@ -53,6 +59,11 @@ export const DateContainer = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    color: #CCC;
     text-decoration: none;
+    h1{
+        font-size: 12px;
+        color: #A9A9A9;
+        margin-right: 25%;
+        margin-top: 3%;
+    }
 `

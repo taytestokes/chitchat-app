@@ -66,7 +66,7 @@ class ConversationTabCompInfo extends Component {
                 </ImageContainer>
                 <InfoContainer>
                     <h1>{conversationInfo.conversation_name}</h1>
-                    <h3>{conversationInfo.body}</h3>
+                    <h2>{conversationInfo.body}</h2>
                 </InfoContainer>
                 <DateContainer>
                     <h1>{conversationInfo.created_at}</h1>

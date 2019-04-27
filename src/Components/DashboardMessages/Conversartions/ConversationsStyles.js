@@ -38,6 +38,7 @@ export const ConversationTab = styled(NavLink)`
     z-index: 3;
     border-bottom: 1px solid black;
     border-right: 5px solid transparent;
+    text-decoration: none;
     &:hover {
         cursor: pointer;
     };
