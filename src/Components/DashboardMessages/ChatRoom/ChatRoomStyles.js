@@ -55,6 +55,36 @@ export const MessageContainerHeaderUser = styled.div`
         letter-spacing: 0.5px;
         margin-left: 3%;
         font-weight: bold;
+        width: auto;
+        height: 60%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+    .edit-conversation {
+        color: #414141;
+        font-size: 14px;
+        margin-left: 1%;
+        transition: linear 0.2s;
+        &:hover {
+            cursor: pointer;
+            color: #CCC;
+        }
+    }
+    input {
+        font-size: 20px;
+        color: #FFF;
+        letter-spacing: 0.5px;
+        margin-left: 3%;
+        font-weight: bold;
+        border: none;
+        outline: none;
+        width: auto;
+        height: 60%;
+        background: transparent;
+        font-family: 'Nunito';
+        border-bottom: 2px solid ${props => props.theme.green};
+        caret-color: ${props => props.theme.green};
     }
     span {
         margin-left: auto;
@@ -63,6 +93,36 @@ export const MessageContainerHeaderUser = styled.div`
         color: #CCC;
         &:hover {
             cursor: pointer;
+        }
+        div {
+            width: 15%; 
+            height: 5%;
+            border: 1px solid black;
+            background: #232323;
+            position: absolute;
+            right: 4%;
+            top: 6%;
+            cursor: default;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            span {
+                width: 90%;
+                height: 60%;
+                border-radius: 3px 3px 3px 3px;
+                color: ${props => props.theme.primaryRed};
+                font-size: 16px;
+                transition: linear 0.2s;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                letter-spacing: 1px;
+                &:hover {
+                    background: #F8F8F815;
+                }
+            }
         }
     }
 `

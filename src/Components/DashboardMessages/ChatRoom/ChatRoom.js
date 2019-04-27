@@ -15,7 +15,10 @@ class ChatRoom extends Component {
             input: '',
             messages: [],
             users: [],
-            conversationInfo: {}
+            conversationInfo: {},
+            toggleDelete: false,
+            edit: false,
+            conversationName: ''
         }
     };
 
@@ -127,10 +130,44 @@ class ChatRoom extends Component {
             this.setState({
                 conversationInfo: response.data
             });
+            //set the conversation name on local state
+            this.setState({
+                conversationName: response.data.conversation_name
+            });
         }).catch(err => {
             //if there is an error, log the message
             console.log(err.message);
         })
+    };
+
+    saveNameChange = () => {
+        //take the room name off of local state
+        const { conversationName } = this.state;
+        //make a request to save the name
+        axios.put(`/update/name?conversation_name=${conversationName}`).then(response => {
+            console.log(response);
+        })
+    }
+
+    handleNameChange = (key, event) => {
+        this.setState({
+            [key]: event.target.value
+        });
+        //if the key is enter save the new name
+    };
+
+    toggleDelete = () => {
+        //toggle the delete value on stata
+        this.setState({
+            toggleDelete: !this.state.toggleDelete
+        });
+    };
+
+    toggleEdit = () => {
+        //toggle the edit value on stata
+        this.setState({
+            edit: !this.state.edit
+        });
     };
 
     render() {
@@ -160,9 +197,29 @@ class ChatRoom extends Component {
             <RoomContainer>
                 <MessageContainerHeader>
                     <MessageContainerHeaderUser>
-                        <h1>{conversationInfo.conversation_name}</h1>
+                        {
+                            this.state.edit ?
+                                <input type="text" value={this.state.conversationName} onChange={(event) => this.handleChange('conversationName', event)} />
+                                :
+                                <h1>{conversationInfo.conversation_name}</h1>
+                        }
+                        {
+                            this.state.edit ?
+                                null
+                                :
+                                <FontAwesomeIcon icon="pencil-alt" className="edit-conversation" onClick={this.toggleEdit} />
+                        }
+
                         <span>
-                            <FontAwesomeIcon icon="ellipsis-v" />
+                            <FontAwesomeIcon icon="ellipsis-v" onClick={this.toggleDelete} />
+                            {
+                                this.state.toggleDelete ?
+                                    <div>
+                                        <span>&#10006; Remove</span>
+                                    </div>
+                                    :
+                                    null
+                            }
                         </span>
                     </MessageContainerHeaderUser>
                 </MessageContainerHeader>
