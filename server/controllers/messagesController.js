@@ -90,5 +90,17 @@ module.exports = {
             //send the err message
             res.status(500).send(err.message);
         })
+    },
+
+    updateConversationName: (req, res) => {
+        const { conversation_name } = req.body;
+        const { id } = req.params;
+        //get the db instance
+        const db = req.app.get('db');
+        //query to the db
+        db.update_conversation_name([conversation_name, id]).then(dbResponse => {
+            //if successful send a success message
+            res.status(200).send('Conversation name updated!');
+        }).catch(err => console.warn(err.message));
     }
 }

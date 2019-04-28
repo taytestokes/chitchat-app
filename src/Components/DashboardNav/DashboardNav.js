@@ -17,7 +17,8 @@ import {
   PictureContainer,
   UserInfoContainer,
   EditContainer,
-  SettingsMenuBackground
+  SettingsMenuBackground,
+  UploadPicContainer
 } from './DashboardNavStyles';
 
 
@@ -29,7 +30,11 @@ class DashboardNav extends Component {
       slideout: false,
       username: '',
       email: '',
-      edit: false
+      edit: false,
+      file: '',
+      fileName: '',
+      fileType: '',
+      img: ''
     };
   };
 
@@ -86,17 +91,57 @@ class DashboardNav extends Component {
     };
     //make a request to the server to update user info
     axios.post(`/update/user/${user.user_id}`, body).then(response => {
-      console.log(response);
-      //toggle the dit
+      //toggle the edit
       this.toggleEdit();
-    })
+    }).catch(err => {
+      console.log(err.message);
+    });
+  };
 
+  // --- S3 Methods
+  handlePhoto = event => {
+    //this will make a generic file reader that can convert files into strings and allows us to upload it a server
+    const reader = new FileReader();
+    //the file is located here
+    const file = event.target.files[0];
+    //this is an event handler that will not actually execute until line 100 executes
+    reader.onload = photo => {
+      //the 'photo' param is the processed image
+      this.setState({
+        file: photo.target.result,
+        fileName: file.name,
+        fileType: file.type,
+        img: '',
+      });
+    }
+    //take the file from the input field and proccess it as a dataurl (a special way to interpret files)
+    reader.readAsDataURL(file);
   }
+
+  sendPhoto = () => {
+    //take the user from redux state
+    const { user } = this.props.userReducer;
+    //destructure the image from state
+    const { file, fileName, fileType, img } = this.state;
+    //the img obj to send to server
+    const image = {
+      photo: {
+        file,
+        fileName,
+        fileType,
+        img
+      }
+    };
+    //make a post req to the server
+    axios.post(`/user/picture/${user.user_id}`, image).then(response => {
+      console.log(response);
+    }).catch(err => console.log(err.message))
+  };
 
   render() {
     //take the user from redux state
     const { user } = this.props.userReducer;
-
+    console.log(this.state);
     return (
       <DashboardNavContainer>
         {
@@ -104,8 +149,17 @@ class DashboardNav extends Component {
             <SettingsMenuBackground>
               <SettingsContainer>
                 <PictureContainer>
-                  <img src={user.picture} alt="user"/>
+                  <img src={user.picture} alt="user" />
                 </PictureContainer>
+                {
+                  this.state.edit ?
+                    <UploadPicContainer>
+                      <input type="file" onChange={this.handlePhoto}/>
+                      <button onClick={this.sendPhoto}>Upload</button>
+                    </UploadPicContainer>
+                    :
+                    null
+                }
                 <UserInfoContainer>
                   <h1>Username</h1>
                   {
@@ -138,7 +192,7 @@ class DashboardNav extends Component {
             null
         }
         <ImageContainer>
-          <img src={user.picture} onClick={this.toggleSlideout} alt="user"/>
+          <img src={user.picture} onClick={this.toggleSlideout} alt="user" />
         </ImageContainer>
         <DashboardNavLinksContainer>
           <DashboardNavLink activeClassName="active" to={`/dashboard/messages`} onClick={this.handleLogout}>

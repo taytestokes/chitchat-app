@@ -5,7 +5,15 @@ import io from 'socket.io-client';
 import axios from 'axios';
 
 //Styled Components
-import { RoomContainer, MessagesContainer, MessageContainerBody, Message, NewMessageContainer, MessageContainerHeader, NewMessageInput, MessageContainerHeaderUser } from './ChatRoomStyles';
+import { RoomContainer, 
+         MessagesContainer, 
+         MessageContainerBody, 
+         Message, 
+         NewMessageContainer, 
+         MessageContainerHeader, 
+         NewMessageInput, 
+         MessageContainerHeaderUser 
+        } from './ChatRoomStyles';
 
 class ChatRoom extends Component {
     constructor() {
@@ -141,23 +149,35 @@ class ChatRoom extends Component {
     };
 
     saveNameChange = () => {
+        //take the room id from redux state
+        const { roomId } = this.props.conversationReducer;
         //take the room name off of local state
         const { conversationName } = this.state;
         //make a request to save the name
-        axios.put(`/update/name?conversation_name=${conversationName}`).then(response => {
-            console.log(response);
+        axios.put(`/conversation/${roomId}`, {
+            conversation_name: conversationName
+        }).then(response => {
+            //if successful get the new name and turn off edit mode
+            this.getConversationInfo(roomId);
+            this.toggleEdit();
         })
     }
 
     handleNameChange = (key, event) => {
+        //change the conversation name on state
         this.setState({
             [key]: event.target.value
         });
-        //if the key is enter save the new name
     };
 
+    handleNameKeyDown = event => {
+        if(event.key === 'Enter'){
+            this.saveNameChange();
+        }
+    }
+
     toggleDelete = () => {
-        //toggle the delete value on stata
+        //toggle the delete value on state
         this.setState({
             toggleDelete: !this.state.toggleDelete
         });
@@ -173,7 +193,6 @@ class ChatRoom extends Component {
     render() {
         //destructure from state
         const { messages, conversationInfo } = this.state;
-
         //map through the messages on state to return the message as JSX
         const mappedMessages = messages.map(message => {
             //take user id from props
@@ -199,7 +218,7 @@ class ChatRoom extends Component {
                     <MessageContainerHeaderUser>
                         {
                             this.state.edit ?
-                                <input type="text" value={this.state.conversationName} onChange={(event) => this.handleChange('conversationName', event)} />
+                                <input type="text" value={this.state.conversationName} onChange={(event) => this.handleNameChange('conversationName', event)} onKeyDown={this.handleNameKeyDown}/>
                                 :
                                 <h1>{conversationInfo.conversation_name}</h1>
                         }
@@ -215,7 +234,7 @@ class ChatRoom extends Component {
                             {
                                 this.state.toggleDelete ?
                                     <div>
-                                        <span>&#10006; Remove</span>
+                                        <span>&#10006; Delete</span>
                                     </div>
                                     :
                                     null

@@ -142,7 +142,7 @@ export const SettingsContainer = styled.div`
 `
 
 export const PictureContainer = styled.div`
-    width: 100%;
+    width: 75%;
     height: 25%;
     display: flex;
     flex-direction: column;
@@ -155,6 +155,56 @@ export const PictureContainer = styled.div`
     }
     span {
 
+    }
+`
+
+export const UploadPicContainer = styled.div`
+    width: 75%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-between;
+    input {
+        width: 100%;
+        height: 45%;
+        font-family: 'Nunito';
+        &::-webkit-file-upload-button {
+        display: none;
+        }
+        &::before {
+            content: 'Select a new image';
+            width: 95%;  
+            height: 100%;       
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+            background: transparent;
+            border: 1px solid ${props => props.theme.green};
+            border-radius: 2px 2px 2px 2px;
+            outline: none;
+            white-space: nowrap;
+            -webkit-user-select: none;
+            cursor: pointer;
+            font-size: 12px;
+        }
+    }
+    button {
+        width: 32%;
+        height: 55%;
+        color: white;
+        background: transparent;
+        border: 1px solid ${props => props.theme.green};
+        border-radius: 2px 2px 2px 2px;
+        outline: none;
+        transition: ease-in 0.2s;
+        margin-top: 10%;
+        font-size: 12px;
+        &:hover {
+            cursor: pointer;
+        }
     }
 `
 

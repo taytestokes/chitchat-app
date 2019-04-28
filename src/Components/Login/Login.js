@@ -39,11 +39,7 @@ class Login extends Component {
       email: '',
       loginForm: true,
       loading: false,
-      errorMessage: '',
-      file: '',
-      fileName: '',
-      fileType: '',
-      img: ''
+      errorMessage: ''
     }
   }
 
@@ -151,50 +147,6 @@ class Login extends Component {
       });
     })
   };
-
-
-  handlePhoto = event => {
-    //this will make a generic file reader that can convert files into strings and allows us to upload it a server
-    const reader = new FileReader();
-    //the file is located here
-    const file = event.target.files[0];
-    console.log(file)
-    //this is an event handler that will not actually execute until line 100 executes
-    reader.onload = photo => {
-      //the 'photo' param is the processed image
-      this.setState({
-        file: photo.target.result,
-        fileName: file.name,
-        fileType: file.type,
-        img: '',
-      });
-    }
-    //take the file from the input field and proccess it as a dataurl (a special way to interpret files)
-    reader.readAsDataURL(file);
-  }
-
-  sendPhoto = () => {
-    //destructure the image from state
-    const { file, fileName, fileType, img } = this.state;
-    //the img obj to send to server
-    const image = {
-      photo: {
-        file,
-        fileName,
-        fileType,
-        img
-      }
-    };
-    //make a post req to the server
-    axios.post('/api/s3', image).then(response => {
-      console.log(response);
-      this.setState({
-        img: response.data.Location
-      })
-    }).catch(err => console.log(err.message))
-  }
-
-
 
   render() {
     return (
