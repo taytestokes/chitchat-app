@@ -5,6 +5,7 @@ import axios from 'axios';
 
 //Redux action builders
 import { updateRoomId } from '../../redux/reducers/conversation_reducer';
+import { updateUser } from '../../redux/reducers/user_reducer';
 
 //Styled Components
 import {
@@ -134,7 +135,11 @@ class DashboardNav extends Component {
     };
     //make a post req to the server
     axios.post(`/user/picture/${user.user_id}`, image).then(response => {
-      console.log(response);
+      //store the update user
+      let user = response.data[0];
+      //update the user on redux state
+      this.props.updateUser(user);
+      console.log(this.props.userReducer.user);
     }).catch(err => console.log(err.message))
   };
 
@@ -154,7 +159,7 @@ class DashboardNav extends Component {
                 {
                   this.state.edit ?
                     <UploadPicContainer>
-                      <input type="file" onChange={this.handlePhoto}/>
+                      <input type="file" onChange={this.handlePhoto} />
                       <button onClick={this.sendPhoto}>Upload</button>
                     </UploadPicContainer>
                     :
@@ -217,5 +222,5 @@ const mapStateToProps = (state) => {
   return state;
 }
 
-export default connect(mapStateToProps, { updateRoomId })(DashboardNav);
+export default connect(mapStateToProps, { updateRoomId, updateUser })(DashboardNav);
 

@@ -111,7 +111,7 @@ module.exports = {
             }
             //if upload was successful, update the users pic in the db
             db.update_user_picture([response.Location, id]).then(dbResponse => {
-                res.status(200).send('Profile picture updated!');
+                res.status(200).send(dbResponse);
             }).catch(err => {
                 console.log(err.message);
             })
