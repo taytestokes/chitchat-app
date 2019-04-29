@@ -151,11 +151,6 @@ class Login extends Component {
   render() {
     return (
       <LoginContainer>
-        <LeftContainer>
-          <PlaneOne />
-          <PlaneTwo />
-        </LeftContainer>
-        <RightContainer>
           {
             this.state.loginForm ?
               <LoginFormContainer>
@@ -193,7 +188,6 @@ class Login extends Component {
                 </SignUpWrapper>
               </SignupFormContainer>
           }
-        </RightContainer>
       </LoginContainer>
     )
   }

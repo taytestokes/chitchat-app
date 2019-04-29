@@ -2,18 +2,6 @@ import styled, { keyframes } from 'styled-components';
 import plane from '../../assets/plane.png'
 
 //Animations 
-const slideUp = keyframes`
-    0% {
-        opacity: .25;
-        transform: scaleX(.1);
-        margin-left: 100vw;
-    }
-    100% {
-        opacity: 1;
-        transform: scaleX(1);
-    }
-`
-
 const loading = keyframes`
     0% {
         transform: rotate(0deg);
@@ -24,7 +12,6 @@ const loading = keyframes`
 `
 
 //Styled Components
-
 export const LoadingCircle = styled.div`
     width: 35px;
     height: 35px;
@@ -43,61 +30,29 @@ export const LoginContainer = styled.div`
     height: 100vh;
     background: white;
     display: flex;
-    flex-direction: row;
-`
-
-export const LeftContainer = styled.div`
-    width: 65%;
-    height: 100%;
-    position: relative;
-`
-
-export const PlaneOne = styled.img.attrs({
-    src: plane
-})`
-    width: 70px;
-    height: 70px;
-    position: absolute;
-    bottom: 0;
-    left: 1%;
-`
-export const PlaneTwo = styled.img.attrs({
-    src: plane
-})`
-    width: 50px;
-    height: 50px;
-    position: absolute;
-    bottom: 7%;
-    left: 2%;
-    transform: scaleX(-1);
-`
-
-export const RightContainer = styled.div`
-    width: 35%;
-    height: 100%;
-    background: ${props => props.theme.green};
-    display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    background: #232323;
 `
 
 /* Login Form Container */
 
 export const LoginFormContainer = styled.div`
-    width: 70%;
-    height: 80%;
+    width: 35%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: left;
-    animation: ${slideUp} .5s;
+    align-items: center;
+    border: 2px solid ${props => props.theme.green};
+    border-radius: 2px 2px 2px 2px;
 `
 
 export const LoginFormHeader = styled.h1`
     font-size: 35px;
     color: white;
-    margin-top: 25%;
+    margin-top: 10%;
 `
 
 export const LoginFormSubHeader = styled.h2`
@@ -185,19 +140,20 @@ export const SignUpWrapper = styled.div`
 
 /* Signup Form Container */
 export const SignupFormContainer = styled.div`
-    width: 70%;
-    height: 80%;
+    width: 35%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: left;
-    animation: ${slideUp} .5s;
+    align-items: center;
+    border: 2px solid ${props => props.theme.green};
+    border-radius: 2px 2px 2px 2px;
 `
 
 export const SignupFormHeader = styled.h1`
     font-size: 35px;
     color: white;
-    margin-top: 25%;
+    margin-top: 10%;
 `
 
 export const SignupFormSubHeader = styled.h2`
