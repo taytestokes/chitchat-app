@@ -19,7 +19,6 @@ export const LoadingCircle = styled.div`
     border-top: 3px solid white;
     border-radius: 50%;
     margin-top: 15%;
-    margin-left: 30%;
     animation: ${loading} 1s linear infinite;
 `
 
@@ -112,7 +111,7 @@ export const LoginBtn = styled.button`
     transition: ease 0.3s;
     &:hover {
         cursor: pointer;
-        background: white;
+        background: transparent;
         border: 2px solid ${props => props.theme.green};
         color: ${props => props.theme.green}
     }
@@ -168,7 +167,7 @@ export const SignupUsernameInput = styled.input.attrs({
     width: 90%;
     height: 8%;
     background: transparent;
-    color: #232323;
+    color: white;
     border: none;
     border-bottom: 2px solid white;
     font-size: 18px;
@@ -186,7 +185,7 @@ export const SignupPasswordInput = styled.input.attrs({
     width: 90%;
     height: 8%;
     background: transparent;
-    color: #232323;
+    color: white;
     border: none;
     border-bottom: 2px solid white;
     font-size: 18px;
@@ -204,7 +203,7 @@ export const SignupEmailInput = styled.input.attrs({
     width: 90%;
     height: 8%;
     background: transparent;
-    color: #232323;
+    color: white;
     border: none;
     border-bottom: 2px solid white;
     font-size: 18px;
@@ -231,7 +230,7 @@ export const SignupBtn = styled.button`
     transition: ease 0.3s;
     &:hover {
         cursor: pointer;
-        background: white;
+        background: transparent;
         border: 2px solid ${props => props.theme.green};
         color: ${props => props.theme.green}
     }
