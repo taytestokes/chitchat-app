@@ -38,7 +38,7 @@ class Conversations extends Component {
         //get the user from redux state
         const { user } = this.props.userReducer;
         //ajax request to server for users conversations
-        axios.get(`/user/conversations/${user.user_id}`).then(response => {
+        axios.get(`/messages/user/conversations/${user.user_id}`).then(response => {
             //store the conversations on local state
             this.setState({
                 userConversations: response.data

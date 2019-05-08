@@ -9,7 +9,7 @@ const { addRoutes } = require('./routers/routers');
 const AWS = require('aws-sdk');
 
 //Controllers
-const messagesController = require('./controllers/messagesController');
+
 const usersController = require('./controllers/usersController');
 
 //Express Initial Setup & Configuration
@@ -23,15 +23,6 @@ connectToDB(app);
 
 //Routes
 addRoutes(app);
-
-//Dashboard Messages Endpoints
-app.get('/user/conversations/:id', messagesController.getUserConversations);
-app.get('/conversation/messages/:id', messagesController.getConversationMessages);
-app.get('/conversation/users/:id', messagesController.getConversationUsers);
-app.get('/conversation/info/:id', messagesController.getConversationInfo);
-app.get('/conversation/information/:id', messagesController.getConversationTabInfo);
-app.put('/conversation/:id', messagesController.updateConversationName);
-app.post('/new/conversation', messagesController.createConversation);
 
 //Dashboard Users Endpoints
 app.get('/users', usersController.getAllUsers);

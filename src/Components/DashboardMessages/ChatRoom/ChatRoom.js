@@ -120,7 +120,7 @@ class ChatRoom extends Component {
 
     getConversationMessages = roomId => {
         //make an http request to server to get the messages for the conversation
-        axios.get(`/conversation/messages/${roomId}`).then(response => {
+        axios.get(`/messages/conversation/messages/${roomId}`).then(response => {
             //set the local state with the data recieved from the server
             this.setState({
                 messages: response.data
@@ -133,7 +133,7 @@ class ChatRoom extends Component {
 
     getConversationInfo = roomId => {
         //make a requeast to get information about the room
-        axios.get(`/conversation/info/${roomId}`).then(response => {
+        axios.get(`/messages/conversation/info/${roomId}`).then(response => {
             //set the room information to local state
             this.setState({
                 conversationInfo: response.data
@@ -154,7 +154,7 @@ class ChatRoom extends Component {
         //take the room name off of local state
         const { conversationName } = this.state;
         //make a request to save the name
-        axios.put(`/conversation/${roomId}`, {
+        axios.put(`/messages/conversation/${roomId}`, {
             conversation_name: conversationName
         }).then(response => {
             //if successful get the new name and turn off edit mode

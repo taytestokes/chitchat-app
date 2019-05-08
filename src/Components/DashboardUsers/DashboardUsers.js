@@ -66,7 +66,7 @@ class DashboardUsers extends Component {
             user
         }
         //http request to server to create a new conversation in db
-        axios.post('/new/conversation', data).then(response => {
+        axios.post('/messages/new/conversation', data).then(response => {
             //log the success message
             console.log(response.data);
             //destruct the room id from the response

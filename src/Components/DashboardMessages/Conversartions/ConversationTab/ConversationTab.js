@@ -30,7 +30,7 @@ class ConversationTabCompInfo extends Component {
     // --- Methods
     getConversationTabInfo = id => {
         //make an http req to server to get info for the conversation
-        axios.get(`/conversation/information/${id}`).then(response => {
+        axios.get(`/messages/conversation/information/${id}`).then(response => {
             //set the convo info on state tp the data from the response
             this.setState({
                 conversationInfo: response.data
@@ -40,7 +40,7 @@ class ConversationTabCompInfo extends Component {
 
     getConversationUsers = (conversationId, userId) => {
         //make an http request to get the users in the conversations
-        axios.get(`/conversation/users/${conversationId}?user_id=${userId}`).then(response => { 
+        axios.get(`/messages/conversation/users/${conversationId}?user_id=${userId}`).then(response => { 
             //set the response to local state
             this.setState({
                 conversationUsers: response.data
