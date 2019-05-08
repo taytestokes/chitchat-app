@@ -5,10 +5,10 @@ const socket = require('socket.io');
 const passport = require('passport');
 const { provider } = require('./middleware/provider');
 const { connectToDB } = require('./db/database/bootstrap.database');
+const { addRoutes } = require('./routers/routers');
 const AWS = require('aws-sdk');
 
 //Controllers
-const authController = require('./controllers/authController');
 const messagesController = require('./controllers/messagesController');
 const usersController = require('./controllers/usersController');
 
@@ -21,10 +21,8 @@ provider(app);
 //Database Setup
 connectToDB(app);
 
-//Auth Endpoints
-app.post('/auth/login', passport.authenticate('login'), authController.login);
-app.post('/auth/register', passport.authenticate('register'), authController.register);
-app.get('/auth/logout', authController.logout);
+//Routes
+addRoutes(app);
 
 //Dashboard Messages Endpoints
 app.get('/user/conversations/:id', messagesController.getUserConversations);
