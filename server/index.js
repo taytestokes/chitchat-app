@@ -2,15 +2,10 @@ require('dotenv').config();
 require('./auth/passport.auth');
 const express = require('express');
 const socket = require('socket.io');
-const passport = require('passport');
+
 const { provider } = require('./middleware/provider');
 const { connectToDB } = require('./db/database/bootstrap.database');
 const { addRoutes } = require('./routers/routers');
-const AWS = require('aws-sdk');
-
-//Controllers
-
-const usersController = require('./controllers/usersController');
 
 //Express Initial Setup & Configuration
 const app = express();
@@ -23,11 +18,6 @@ connectToDB(app);
 
 //Routes
 addRoutes(app);
-
-//Dashboard Users Endpoints
-app.get('/users', usersController.getAllUsers);
-app.post('/update/user/:id', usersController.updateUser);
-app.post('/user/picture/:id', usersController.uploadUserPicture);
 
 //Server Setup
 const server = app.listen(4000, () => {

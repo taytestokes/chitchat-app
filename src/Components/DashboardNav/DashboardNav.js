@@ -91,7 +91,7 @@ class DashboardNav extends Component {
       email
     };
     //make a request to the server to update user info
-    axios.post(`/update/user/${user.user_id}`, body).then(response => {
+    axios.post(`/users/update/user/${user.user_id}`, body).then(response => {
       //toggle the edit
       this.toggleEdit();
     }).catch(err => {
@@ -134,7 +134,7 @@ class DashboardNav extends Component {
       }
     };
     //make a post req to the server
-    axios.post(`/user/picture/${user.user_id}`, image).then(response => {
+    axios.post(`/users/user/picture/${user.user_id}`, image).then(response => {
       //store the update user
       let user = response.data[0];
       //update the user on redux state

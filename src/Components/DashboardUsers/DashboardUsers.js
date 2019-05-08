@@ -37,7 +37,7 @@ class DashboardUsers extends Component {
     getUsers = (pageNumber = this.state.currentPage) => {
         //get all of the users that are != to the user logged in
         axios
-            .get(`/users?page=${pageNumber}`)
+            .get(`/users/users?page=${pageNumber}`)
             .then(response => {
                 const {
                     result,
