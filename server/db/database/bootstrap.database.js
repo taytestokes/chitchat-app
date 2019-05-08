@@ -10,7 +10,7 @@ const connectToDB = app => {
     massive(DATABASE_CONNECTION)
         .then(dbInstance => {
             app.set('db', dbInstance);
-            console.log('Connected to PostgreSQL DB');
+            console.log('🐘  Connected to PostgreSQL DB 🐘');
         })
         .catch(err => console.warn(err));
 };
