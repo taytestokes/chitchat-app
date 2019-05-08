@@ -2,33 +2,29 @@
 
 This is a small messaging platform application that was designed and developed by myself.
 
-## Design
+## Technologies
 
-I wanted to give this application a more modern feel with the ability to switchb between a light and dark mode.
+### CLient
 
-### Dark Mode
+- React
+- React Router
+- Redux
+- Styled Components
 
-```
-#232323 - Black Navbar
-#FFFFFF - White
-#404040 - Black Background
-#646464 - Dark Gray for input fields and text bubbles
-#D8D8D8 - Light Gray
-#3498DB - Blue
-#28B463 - Green
-```
+### Server
 
-![Dark Mode](/assets/darkmode.png)
+- Node
+- Express
+- Body-Parser
+- Cookie-Parser
+- Cors
+- Massive
+- Bcrypt
+- AWS-SDK (S3)
+- Passport
+- Passport-Local
+- Socket.io
 
-### Light Mode
-
-```
-#232323 - Black Navbar
-#FFFFFF - White
-#F2F4F4 - Light Gray for input fields and text bubbles
-#D8D8D8 - Light Gray
-#3498DB - Blue
-#28B463 - Green
-```
-
-![Light Mode](/assets/lightmode.png)
+### Database
+- Cloud Based On Heroku
+- PostgreSQL
