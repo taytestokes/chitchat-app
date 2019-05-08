@@ -25,12 +25,11 @@ module.exports = {
     getAllUsers: (req, res) => {
         //store db instance
         const db = req.app.get('db');
-        //take the current page from query
-        const { page } = req.query;
+        //take the current page and user_id from query
+        const { page, user_id } = req.query;
+        console.log(req.query);
         //define the amount of users to display on a page
         const page_size = 7;
-        //get the user id
-        const { user_id } = req.user || {};
         //define a count variable set to 0 to capture the dbresponse
         let count = 0;
         //get all users from db that are not the user

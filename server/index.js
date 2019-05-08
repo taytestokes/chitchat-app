@@ -6,7 +6,7 @@ const { connectToDB } = require('./db/database/bootstrap.database');
 const { addRoutes } = require('./routers/routers');
 const { socketConnection } = require('./sockets/setup.socket');
 
-//Express Initial Setup & Configuration
+//Express Setup
 const app = express();
 
 //Middleware

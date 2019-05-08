@@ -139,14 +139,12 @@ class DashboardNav extends Component {
       let user = response.data[0];
       //update the user on redux state
       this.props.updateUser(user);
-      console.log(this.props.userReducer.user);
     }).catch(err => console.log(err.message))
   };
 
   render() {
     //take the user from redux state
     const { user } = this.props.userReducer;
-    console.log(this.state);
     return (
       <DashboardNavContainer>
         {

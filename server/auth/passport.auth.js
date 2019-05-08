@@ -10,7 +10,7 @@ passport.use('register', registerStrategy);
 
 //Serialize and Deserialize user
 passport.serializeUser(function (user, done) {
-    done(null, user);
+    done(null, user.user_id);
 });
 
 passport.deserializeUser(function (id, done) {

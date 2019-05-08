@@ -5,10 +5,6 @@ import axios from 'axios';
 //Styled Components
 import {
   LoginContainer,
-  LeftContainer,
-  RightContainer,
-  PlaneOne,
-  PlaneTwo,
   LoginFormContainer,
   LoginFormHeader,
   LoginFormSubHeader,
