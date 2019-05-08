@@ -1,13 +1,10 @@
 require('dotenv').config();
 const express = require('express');
-const sessions = require('express-session');
-const bodyParser = require('body-parser');
-const cors = require('cors');
 const socket = require('socket.io');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcrypt');
-const cookieParser = require('cookie-parser');
+const { provider } = require('./middleware/provider');
 const massive = require('massive');
 const AWS = require('aws-sdk');
 
@@ -24,13 +21,9 @@ let {
 
 //Express Initial Setup & Configuration
 const app = express();
-app.use(cors());
-app.use(cookieParser());
 
-//since file upload is such a large string, body-parser is not equipped to handle it
-//this will allow uploads through the body
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
+//Middleware
+provider(app);
 
 //Massive Configuration
 massive(DATABASE_CONNECTION).then(dbInstance => {
@@ -38,16 +31,7 @@ massive(DATABASE_CONNECTION).then(dbInstance => {
     console.log('Connected to PostgreSQL DB');
 }).catch(err => console.warn(err));
 
-//Sessions Configuration
-app.use(sessions({
-    saveUninitialized: true,
-    resave: true,
-    secret: "This is my secret for now"
-}));
 
-//Passport Configuration For Authentication
-app.use(passport.initialize());
-app.use(passport.session());
 
 passport.use('login', new LocalStrategy(
     function (username, password, done) {
