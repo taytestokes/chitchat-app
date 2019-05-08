@@ -5,7 +5,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const bcrypt = require('bcrypt');
 const { provider } = require('./middleware/provider');
-const massive = require('massive');
+const { connectToDB } = require('./db/database/bootstrap.database');
 const AWS = require('aws-sdk');
 
 //Controllers
@@ -15,7 +15,6 @@ const usersController = require('./controllers/usersController');
 
 //Variables from .ENV
 let {
-    DATABASE_CONNECTION,
     DEFAULT_PIC
 } = process.env;
 
@@ -25,11 +24,8 @@ const app = express();
 //Middleware
 provider(app);
 
-//Massive Configuration
-massive(DATABASE_CONNECTION).then(dbInstance => {
-    app.set('db', dbInstance);
-    console.log('Connected to PostgreSQL DB');
-}).catch(err => console.warn(err));
+//Database Setup
+connectToDB(app);
 
 
 
