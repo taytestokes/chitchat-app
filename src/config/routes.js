@@ -4,10 +4,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 //Components
-import Dashboard from './Components/Dashboard/Dashboard';
-import Login from './Components/Login/Login';
+import Dashboard from '../components/Dashboard/Dashboard';
+import Login from '../components/Login/Login';
 
-
+//Router
 export default (
     <Switch>
         <Route exact path="/" component={Login} />

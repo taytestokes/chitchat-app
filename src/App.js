@@ -19,7 +19,7 @@ import { faCommentAlt,
         } from '@fortawesome/free-solid-svg-icons';
 
 //Routes
-import routes from './routes';
+import routes from './config/routes';
 
 //Reset CSS
 import 'reset-css';

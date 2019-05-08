@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import plane from '../../assets/plane.png'
 
 //Animations 
 const loading = keyframes`
