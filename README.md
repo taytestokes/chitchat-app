@@ -4,7 +4,7 @@ This is a small messaging platform application that was designed and developed b
 
 ## Technologies
 
-### CLient
+### Client
 
 - React
 - React Router
