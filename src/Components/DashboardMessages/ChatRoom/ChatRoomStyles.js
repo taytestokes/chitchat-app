@@ -22,6 +22,7 @@ export const RoomContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
     animation: ${slide} 0.3s linear;
+    background: white;
 `
 
 export const MessagesContainer = styled.div`

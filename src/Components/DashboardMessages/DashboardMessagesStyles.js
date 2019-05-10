@@ -9,7 +9,7 @@ export const MessageDashboard = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    background: white;
+    background: ${props => props.theme.lightGray};
 `
 
 export const PlaceHolder = styled.div`
@@ -22,5 +22,5 @@ export const PlaceHolder = styled.div`
     justify-content: center;
     align-items: center;
     font-size: 75px;
-    color: #37373770;
+    color: #37373730;
 `

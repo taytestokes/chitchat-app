@@ -14,7 +14,7 @@ const slide = keyframes`
 export const DashboardNavContainer = styled.div`
     width: 12vw;
     height: 100vh;
-    background: #222324;
+    background: #232323;
     border-right: 1px solid black;
     display: flex;
     flex-direction: column;

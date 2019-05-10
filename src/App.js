@@ -30,7 +30,8 @@ const theme = {
   secondaryBlack: '#141414',
   primaryBlue: '#00d8ff',
   primaryRed: '#EE3E4C',
-  lightGray: '#EFF1F9',
+  lightGray: '#DFE3EA',
+  darkGray: '#C4C5C1',
   green: '#20E89A'
 };
 
