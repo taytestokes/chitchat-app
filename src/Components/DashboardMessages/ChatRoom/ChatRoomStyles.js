@@ -21,7 +21,6 @@ export const RoomContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background: #2D2D2D;
     animation: ${slide} 0.3s linear;
 `
 

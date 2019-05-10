@@ -43,7 +43,7 @@ export const LoginFormContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 2px solid ${props => props.theme.green};
+    border: 2px solid white;
     border-radius: 2px 2px 2px 2px;
 `
 
@@ -129,7 +129,7 @@ export const SignUpWrapper = styled.div`
     span {
         font-size: 16px;
         text-decoration: none;
-        color: ${props => props.theme.primaryBlue};
+        color: ${props => props.theme.green};
         &:hover {
             cursor: pointer;
         }
@@ -144,7 +144,7 @@ export const SignupFormContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    border: 2px solid ${props => props.theme.green};
+    border: 2px solid white;
     border-radius: 2px 2px 2px 2px;
 `
 

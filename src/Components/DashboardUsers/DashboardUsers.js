@@ -39,9 +39,8 @@ class DashboardUsers extends Component {
         const { user_id } = this.props.userReducer.user;
         //get all of the users that are != to the user logged in
         axios
-            .get(`/users/users?page=${pageNumber}&user_id=${user_id}`)
+            .get(`/users/users?page=${pageNumber}&user_id=${user_id || {}}`)
             .then(response => {
-                console.log(response)
                 const {
                     result,
                     pageNumber,

@@ -9,7 +9,7 @@ export const MessageDashboard = styled.div`
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    background: #2D2D2D;
+    background: white;
 `
 
 export const PlaceHolder = styled.div`

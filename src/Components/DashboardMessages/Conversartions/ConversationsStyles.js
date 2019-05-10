@@ -10,8 +10,7 @@ export const ConversationsContainer = styled.div`
     overflow: scroll;
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
-    background: #2D2D2D;
-    border-right: 1px solid black;
+    border-right: 1px solid ${props => props.theme.lightGray};
 `
 
 export const InboxContainer = styled.div`
@@ -36,14 +35,14 @@ export const ConversationTab = styled(NavLink)`
     align-items: center;
     transition: ease-in-out 0.3s;
     z-index: 3;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid ${props => props.theme.lightGray};
     border-right: 5px solid transparent;
     text-decoration: none;
     &:hover {
         cursor: pointer;
     };
     &.active {
-        background: #F1F1F125;
+        background: #20E89A15;
         border-right: 5px solid ${props => props.theme.green};
     };
 `

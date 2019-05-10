@@ -15,7 +15,7 @@ const registerStrategy = new LocalStrategy({
         //take the email off of the request body
         const { email } = req.body;
         //store the db instance in a variable
-        const db = app.get('db');
+        const db = req.app.get('db');
         //hash and encrypt the new users password
         const hashedPassword = bcrypt.hashSync(password, 15);
         //check to see if there is already a user with that username
