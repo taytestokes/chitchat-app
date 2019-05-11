@@ -74,7 +74,7 @@ export const MessageContainerHeaderUser = styled.div`
     }
     input {
         font-size: 20px;
-        color: #FFF;
+        color: #232323;
         letter-spacing: 0.5px;
         margin-left: 3%;
         font-weight: bold;
