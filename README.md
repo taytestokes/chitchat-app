@@ -28,3 +28,10 @@ This is a small messaging platform application that was designed and developed b
 ### Database
 - Cloud Based On Heroku
 - PostgreSQL
+
+## Preview
+[User Inbox](Images/userinbox.png)
+
+[User Dashboard](Images/userdash.png)
+
+[User Profile](Images/userprofile.png)
