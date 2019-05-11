@@ -30,8 +30,8 @@ This is a small messaging platform application that was designed and developed b
 - PostgreSQL
 
 ## Preview
-[User Inbox](Images/userinbox.png)
+![User Inbox](Images/userinbox.png)
 
-[User Dashboard](Images/userdash.png)
+![User Dashboard](Images/userdash.png)
 
-[User Profile](Images/userprofile.png)
+![User Profile](Images/userprofile.png)
