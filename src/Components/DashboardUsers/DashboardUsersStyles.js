@@ -15,16 +15,16 @@ export const DashboardUsersContainer = styled.div`
 export const UsersHeader = styled.div`
     width: 100%;
     height: 10vh;
-    background: #232323;
+    background: #FFF;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid #F3F3F2;
     z-index: 2;
     h1 {
         font-size: 20px;
-        color: #FFF;
+        color: #232323;
         margin-left: 5%;
         font-weight: bold;
     }
@@ -44,15 +44,15 @@ export const UsersContainer = styled.div`
 export const UserContainerHeader = styled.div`
     width: 100%;
     height: 8%;
-    background: #232323;
+    background: #FFF;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid black;
+    border: 2px solid #F3F3F2;
     span {
         font-size: 14px;
-        color: #FFF;
+        color: #232323;
     }
 `
 
@@ -61,7 +61,7 @@ export const NextBtn = styled.button`
     height: 35%;
     background: transparent;
     color: ${props => props.theme.green};
-    border: 1px solid ${props => props.theme.green};
+    border: 2px solid ${props => props.theme.green};
     border-radius: 3px 3px 3px 3px;
     outline: none;
     font-size: 20px;
@@ -81,7 +81,7 @@ export const PrevBtn = styled.button`
     height: 35%;
     background: transparent;
     color: ${props => props.theme.green};
-    border: 1px solid ${props => props.theme.green};
+    border: 2px solid ${props => props.theme.green};
     border-radius: 3px 3px 3px 3px;
     outline: none;
     font-size: 20px;
@@ -100,15 +100,15 @@ export const PrevBtn = styled.button`
 export const UserCard = styled.div`
     width: 100%;
     height: 13%;
-    background: #373737;
-    color: #FFF;
+    background: #FFF;
+    color: #232323;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border-bottom: 1px solid black;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    border-bottom: 2px solid #F3F3F2;
+    border-left: 2px solid #F3F3F2;
+    border-right: 2px solid #F3F3F2;
     &:hover {
         background: #F1F1F125;
     }
