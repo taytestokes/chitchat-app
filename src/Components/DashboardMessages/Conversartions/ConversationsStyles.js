@@ -10,7 +10,22 @@ export const ConversationsContainer = styled.div`
     overflow: scroll;
     @import url('https://fonts.googleapis.com/css?family=Nunito');
     font-family: 'Nunito';
-    border-right: 1px solid ${props => props.theme.darkGray};
+    background: white;
+`
+
+export const ConversationHeader = styled.div`
+    width: 100%;
+    height: 11.1%;
+    background: white;
+    border-bottom: 2px solid #F3F3F2;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    h1 {
+        font-size: 22px;
+        margin-left: 10%;
+    }
 `
 
 export const InboxContainer = styled.div`
@@ -26,8 +41,8 @@ export const InboxContainer = styled.div`
 `
 
 export const ConversationTab = styled(NavLink)`
-    width: 99%;
-    height: 12%;
+    width: 99.9%;
+    height: 15%;
     background: white;
     margin-left: auto;
     display: flex;
@@ -36,14 +51,12 @@ export const ConversationTab = styled(NavLink)`
     align-items: center;
     transition: ease-in-out 0.3s;
     z-index: 3;
-    border-bottom: 1px solid ${props => props.theme.darkGray};
-    border-right: 5px solid transparent;
+    border-bottom: 1px solid #F3F3F2;
     text-decoration: none;
     &:hover {
         cursor: pointer;
     };
     &.active {
         background: ${props => props.theme.lightGray};
-        border-right: 5px solid ${props => props.theme.green};
     };
 `

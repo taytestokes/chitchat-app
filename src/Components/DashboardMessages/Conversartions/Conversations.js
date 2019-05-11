@@ -15,7 +15,8 @@ import ConversationTabInfo from './ConversationTab/ConversationTab';
 import {
     ConversationsContainer,
     InboxContainer,
-    ConversationTab
+    ConversationTab,
+    ConversationHeader
 } from './ConversationsStyles';
 
 class Conversations extends Component {
@@ -80,6 +81,9 @@ class Conversations extends Component {
 
         return (
             <ConversationsContainer>
+                <ConversationHeader>
+                    <h1>User Inbox</h1>
+                </ConversationHeader>
                 <InboxContainer>
                     {mappedUserConversations}
                 </InboxContainer>

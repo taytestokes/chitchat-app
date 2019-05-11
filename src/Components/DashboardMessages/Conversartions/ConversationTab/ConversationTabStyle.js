@@ -17,16 +17,17 @@ export const ImageContainer = styled.div`
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    margin-left: 2%;
     img {
         height: 40px;
         width: 40px;
         border-radius: 50%;
-        border: 1px solid black;
+        border: 1px solid ${props => props.theme.darkGray};
     }
 `
 
 export const InfoContainer = styled.div`
-    width: 65%;
+    width: 45%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -35,15 +36,15 @@ export const InfoContainer = styled.div`
     text-decoration: none;
     h1 {
         font-size: 20px;
-        color: white;
+        color: #232323;
         margin-top: 6%;
         margin-bottom: 5%;
         max-width: 100%;
         text-overflow: ellipsis;
     }
     h2 {
-        font-size: 14px;
-        color: #A9A9A9;
+        font-size: 16px;
+        color: #CCC;
         max-width: 70%;
         overflow: hidden;
         white-space: nowrap;
@@ -53,7 +54,7 @@ export const InfoContainer = styled.div`
 `
 
 export const DateContainer = styled.div`
-    width: 10%;
+    width: 5%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -62,7 +63,7 @@ export const DateContainer = styled.div`
     text-decoration: none;
     h1{
         font-size: 12px;
-        color: #A9A9A9;
+        color: ${props => props.theme.green};
         margin-right: 25%;
         margin-top: 3%;
     }

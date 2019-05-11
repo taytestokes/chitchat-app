@@ -22,7 +22,6 @@ export const RoomContainer = styled.div`
     justify-content: flex-start;
     align-items: center;
     animation: ${slide} 0.3s linear;
-    background: white;
 `
 
 export const MessagesContainer = styled.div`
@@ -32,14 +31,16 @@ export const MessagesContainer = styled.div`
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    border-left: 2px solid #F3F3F2;
 `
 
 export const MessageContainerHeader = styled.div`
     width: 100%;
     height: 11.1%;
     z-index: 3;
-    background: #232323;
-    border-bottom: 1px solid black;
+    background: white;
+    border-bottom: 2px solid #F3F3F2;
+    border-left: 2px solid #F3F3F2;
 `
 
 export const MessageContainerHeaderUser = styled.div`
@@ -51,7 +52,7 @@ export const MessageContainerHeaderUser = styled.div`
     align-items: center;
     h1 {
         font-size: 20px;
-        color: #FFF;
+        color: #232323;
         letter-spacing: 0.5px;
         margin-left: 3%;
         font-weight: bold;
@@ -62,13 +63,13 @@ export const MessageContainerHeaderUser = styled.div`
         align-items: center;
     }
     .edit-conversation {
-        color: #414141;
+        color: #CCC;
         font-size: 14px;
         margin-left: 1%;
         transition: linear 0.2s;
         &:hover {
             cursor: pointer;
-            color: #CCC;
+            color: ${props => props.theme.green};
         }
     }
     input {
@@ -157,9 +158,9 @@ export const Message = styled.div`
     h2 {
         min-width: auto;
         height: auto;
-        background: transparent;
+        background: ${props => props.theme.green};
         border: 2px solid ${props => props.theme.green};
-        color: ${props => props.theme.green};
+        color: white;
         border-radius: 5px 5px 0px 5px;
         font-size: 16px;
         margin: 0 1.5%;
@@ -173,11 +174,12 @@ export const NewMessageContainer = styled.div`
     width: 100%;
     height: 10%;
     display: flex;
-    background: #232323;
+    background: white;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid black;
+    border-top: 1px solid #F3F3F2;
+    border-left: 2px solid #F3F3F2;
     span {
         color: ${props => props.theme.green};
         font-size: 28px;
@@ -202,7 +204,7 @@ export const NewMessageInput = styled.input.attrs({
     border-bottom: 2px solid transparent;
     background: rgba(0,0,0,0);
     font-size: 16px;
-    color: white;
+    color: #232323;
     caret-color: ${props => props.theme.green};
     outline: none;
     margin-left: 5%;

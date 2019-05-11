@@ -13,14 +13,13 @@ export const MessageDashboard = styled.div`
 `
 
 export const PlaceHolder = styled.div`
-    width: 45%;
+    width: 60.6vw;
     height: 100%;
-    margin-left: auto;
-    margin-right: 10%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 75px;
     color: #37373730;
+    border-left: 2px solid #F3F3F2;
 `
