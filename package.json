@@ -34,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "jest --env=jsdom",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -48,7 +48,6 @@
   ],
   "devDependencies": {
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.13.0",
-    "jest": "^24.8.0"
+    "enzyme-adapter-react-16": "^1.13.0"
   }
 }
